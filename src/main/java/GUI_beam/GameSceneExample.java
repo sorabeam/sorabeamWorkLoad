@@ -14,6 +14,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.animation.AnimationTimer;
 
+import javax.print.attribute.standard.Media;
+
+import Media.PlayList;
+import Media.MediaController;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +38,9 @@ public class GameSceneExample extends Application {
         root.setPrefSize(800, 600);
         Scene scene = new Scene(root);
 
+        PlayList p = new PlayList();
+        MediaController m = new MediaController();
+
 //        DropShadow dropShadow = new DropShadow();
 //        dropShadow.setRadius(50.0);
 //        dropShadow.setColor(Color.rgb(254, 244, 153, 0.41));
@@ -49,8 +57,6 @@ public class GameSceneExample extends Application {
 
 //        root.getChildren().add(backGround);
 //        root.getChildren().add(PlayerImage);
-
-        new Image("imgSC.png");
         Animate player = new Animate( new Image("imgSC.png"),
                 0,5,120,139);
         root.getChildren().add(player);
