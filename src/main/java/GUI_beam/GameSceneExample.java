@@ -1,24 +1,12 @@
 package GUI_beam;
 
+import Media.JooxBox;
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.animation.AnimationTimer;
-
-import javax.print.attribute.standard.Media;
-
-import Media.PlayList;
-import Media.MediaController;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,8 +26,8 @@ public class GameSceneExample extends Application {
         root.setPrefSize(800, 600);
         Scene scene = new Scene(root);
 
-        PlayList p = new PlayList();
-        MediaController m = new MediaController();
+        JooxBox sportify = new JooxBox();
+        sportify.play("MainMenuMusic",true,100);
 
 //        DropShadow dropShadow = new DropShadow();
 //        dropShadow.setRadius(50.0);
