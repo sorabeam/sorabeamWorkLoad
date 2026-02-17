@@ -5,6 +5,7 @@ import GameLogic.*;
 import GameScenes.GameOverScene;
 import GameScenes.InGameScene;
 import GameScenes.IntroScene;
+import GameScenes.SelectCharScene;
 import Media.JooxBox;
 import components.ScoreBoard;
 import javafx.application.Application;
@@ -18,9 +19,11 @@ import javafx.stage.Stage;
 public class TestInGame extends Application {
     private Scene introScene;
     private Scene inGameScene;
+    private Scene selectCharScene;
     private Scene gameOverScene;
     private void initScenes() {
         this.introScene = new IntroScene().getScene();
+        this.selectCharScene = new SelectCharScene().getScene();
         this.inGameScene = new InGameScene().getScene();
 //        this.gameOverScene = new GameOverScene().getScene();
     }
@@ -31,6 +34,9 @@ public class TestInGame extends Application {
             switch (newState) {
                 case INTRO -> {
                     stage.setScene(introScene);
+                }
+                case SELECTCHAR -> {
+                    stage.setScene(selectCharScene);
                 }
                 case INGAME -> {
                     stage.setScene(inGameScene);

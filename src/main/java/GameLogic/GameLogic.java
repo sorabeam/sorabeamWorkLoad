@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleObjectProperty;
 public class GameLogic {
     private static int score;
     private static int bestScore;
-//    private static GameState gameState;
     private static final ObjectProperty<GameState> gameState = new SimpleObjectProperty<>(GameState.INTRO);
     //score
 
