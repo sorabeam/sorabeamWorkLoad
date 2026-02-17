@@ -25,7 +25,7 @@ public class TestInGame extends Application {
         this.introScene = new IntroScene().getScene();
         this.selectCharScene = new SelectCharScene().getScene();
         this.inGameScene = new InGameScene().getScene();
-//        this.gameOverScene = new GameOverScene().getScene();
+        this.gameOverScene = new GameOverScene().getScene();
     }
     @Override
     public void start(Stage stage) {
@@ -46,8 +46,10 @@ public class TestInGame extends Application {
                 }
             }
         });
-        GameLogic.setGameState(GameState.INTRO);
-        stage.setScene(introScene);
+//        GameLogic.setGameState(GameState.INTRO);
+//        stage.setScene(introScene);
+        GameLogic.setGameState(GameState.GAMEOVER);
+        stage.setScene(gameOverScene);
         stage.show();
     }
 

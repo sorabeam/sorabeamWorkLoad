@@ -15,7 +15,7 @@ public class GameSceneExample extends Application {
 
 
     private String BackGround = "BGTest.png";
-    private String PlayerStrI = "Player.png";
+    private String PlayerStrI = "Characters/Player.png";
     private String light = "Blue_Light.png";
     private double playerSpeed = 3;
     private Set<String> keysPressed = new HashSet<>();
