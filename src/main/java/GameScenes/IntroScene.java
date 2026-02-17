@@ -19,7 +19,7 @@ public class IntroScene {
         BackgroundSize size = new BackgroundSize(
                 100, 100,
                 true, true,
-                true, false
+                false, true
         );
         Image backgroundImg = new Image(Objects.requireNonNull(getClass().getResource("/Maps/stage_background1.png")).toExternalForm());
         BackgroundImage backgroundImage = new BackgroundImage(
