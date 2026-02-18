@@ -34,8 +34,8 @@ javafx {
 }
 
 application {
-    //mainClass = 'supakorn.Main.MainGameScene' // path to your main class
-    mainClass = 'supakorn.Animation.Tester'
+    mainClass = 'supakorn.Main.MainMenu2' // path to your main class
+    //mainClass = 'supakorn.Animation.Tester'
 }
 
 test {

@@ -46,6 +46,21 @@ public class Asset{
     public static final ImageView BobaCookie =
             new ImageView( new Image("/Image/Boba_Milk_Tea_Cookie.png"));
 
+    public static final ImageView LillyProfile =
+            new ImageView( new Image("/Image/LillyProfile.png"));
+
+    public static final ImageView LillyBar =
+            new ImageView( new Image("/Image/LillyBar.png"));
+
+    public static final ImageView Glass1 =
+            new ImageView( new Image("/Image/Glass1.png"));
+
+    public static final ImageView Glass2 =
+            new ImageView( new Image("/Image/Glass2.png"));
+
+    public static final ImageView Glass3 =
+            new ImageView( new Image("/Image/Glass3.png"));
+
     public static StackPane text(String txt,int size){
 
         Text tS = new Text(txt);
