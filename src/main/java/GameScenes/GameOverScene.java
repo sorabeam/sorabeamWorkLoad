@@ -1,9 +1,10 @@
 package GameScenes;
 
-import GameLogic.GameLogic;
+import GameLogic.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -27,7 +28,7 @@ public class GameOverScene {
         StackPane placeholder = new StackPane();
         Image image = new Image(Objects.requireNonNull(getClass().getResource("/UI/placeholder.png")).toExternalForm());
         ImageView img = new ImageView(image);
-        img.setFitWidth(500);
+        img.setFitWidth(600);
         img.setFitHeight(100);
         placeholder.getChildren().add(img);
         placeholder.setAlignment(Pos.CENTER);
@@ -37,7 +38,7 @@ public class GameOverScene {
         finalScore.setStroke(Color.BLACK);
         finalScore.setStrokeWidth(3);
 
-        Image pCharImg = new Image(Objects.requireNonNull(getClass().getResource("/Characters/Player.png")).toExternalForm());
+        Image pCharImg = new Image(Objects.requireNonNull(getClass().getResource("/Characters/char3.png")).toExternalForm());
         ImageView charView = new ImageView(pCharImg);
         charView.setFitWidth(300);
         charView.setPreserveRatio(true);
@@ -83,6 +84,23 @@ public class GameOverScene {
             );
         """);
         StackPane.setAlignment(bottomShadow, Pos.BOTTOM_CENTER);
+        Image backBtnImage = new Image(Objects.requireNonNull(getClass().getResource("/UI/backBtn.png")).toExternalForm());
+        ImageView backBtnView = new ImageView(backBtnImage);
+        Button backBtn = new Button();
+        backBtnView.setFitWidth(100);
+        backBtnView.setPreserveRatio(true);
+        backBtn.setStyle("""
+            -fx-background-color: transparent;
+            -fx-padding: 0;
+            -fx-background-insets: 0;
+            -fx-border-color: transparent;
+        """);
+        backBtn.setGraphic(backBtnView);
+        backBtn.setOnMouseEntered(e -> backBtn.setOpacity(0.6));
+        backBtn.setOnMouseExited(e -> backBtn.setOpacity(1));
+        backBtn.setOnAction(e -> {
+            GameLogic.setGameState(GameState.INTRO);
+        });
 
         content.setPadding(new Insets(0, 0, 60, 0));
 
@@ -99,6 +117,15 @@ public class GameOverScene {
         bottomShadow.setMaxHeight(80);
 
         content.getChildren().addAll(highestScore, score);
+        HBox wrapper = new HBox();
+        wrapper.getChildren().add(backBtn);
+        wrapper.setAlignment(Pos.BOTTOM_RIGHT);
+//        wrapper.prefWidthProperty().bind(root.widthProperty().multiply(0.8));
+        wrapper.setMaxWidth(1200);
+        wrapper.setPadding(new Insets(16));
+        content.getChildren().add(wrapper);
+        content.setPadding(new Insets(16));
+        content.setSpacing(12);
 
         root.getChildren().addAll(content, bottomShadow);
         this.scene = new Scene(root);

@@ -46,10 +46,8 @@ public class TestInGame extends Application {
                 }
             }
         });
-//        GameLogic.setGameState(GameState.INTRO);
-//        stage.setScene(introScene);
         GameLogic.setGameState(GameState.GAMEOVER);
-        stage.setScene(gameOverScene);
+//        stage.setScene(introScene);
         stage.show();
     }
 
