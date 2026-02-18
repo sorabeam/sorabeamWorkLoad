@@ -34,7 +34,8 @@ javafx {
 }
 
 application {
-    mainClass = 'GUI_beam.GameSceneExample' // path to your main class
+    //mainClass = 'supakorn.Main.MainGameScene' // path to your main class
+    mainClass = 'supakorn.Animation.Tester'
 }
 
 test {
