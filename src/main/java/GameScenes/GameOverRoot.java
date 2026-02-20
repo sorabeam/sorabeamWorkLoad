@@ -3,7 +3,6 @@ package GameScenes;
 import GameLogic.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,11 +16,9 @@ import javafx.scene.text.Text;
 
 import java.util.Objects;
 
-public class GameOverScene {
-    private Scene scene;
-
-    public GameOverScene() {
-        AnchorPane root = new AnchorPane();
+public class GameOverRoot extends AnchorPane {
+    public GameOverRoot() {
+//        AnchorPane root = new AnchorPane();
         Font textFont = Font.loadFont(Objects.requireNonNull(getClass().getResource("/Fonts/Chango-Regular.ttf")).toExternalForm(), 36);
         VBox content = new VBox();
         content.setAlignment(Pos.CENTER);
@@ -127,11 +124,6 @@ public class GameOverScene {
         content.setPadding(new Insets(16));
         content.setSpacing(12);
 
-        root.getChildren().addAll(content, bottomShadow);
-        this.scene = new Scene(root);
-    }
-
-    public Scene getScene() {
-        return scene;
+        this.getChildren().addAll(bottomShadow, content);
     }
 }

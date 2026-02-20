@@ -3,7 +3,6 @@ package GameScenes;
 import GUI_beam.Animate;
 import components.ScoreBoard;
 import javafx.animation.AnimationTimer;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -12,9 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Objects;
-import java.util.Set;
 
-public class InGameScene {
+public class InGameRoot extends StackPane {
     private Scene scene;
 
     //physics setting
@@ -30,17 +28,16 @@ public class InGameScene {
         onGround = false;
     }
 
-    public InGameScene() {
-        StackPane root = new StackPane();
+    public InGameRoot() {
+//        StackPane root = new StackPane();
         AnchorPane gameLayer = new AnchorPane();
         AnchorPane uiLayer = new AnchorPane();
         ScoreBoard scoreBoard = new ScoreBoard();
-        root.setPrefSize(800, 600);
+        this.setPrefSize(800, 600);
         AnchorPane.setTopAnchor(scoreBoard, 10.0);
         AnchorPane.setRightAnchor(scoreBoard, 20.0);
         uiLayer.getChildren().add(scoreBoard);
-        root.getChildren().addAll(gameLayer, uiLayer);
-        this.scene = new Scene(root);
+        this.getChildren().addAll(gameLayer, uiLayer);
         Image backgroundImg = new Image(Objects.requireNonNull(getClass().getResource("/Maps/stage_background2.png")).toExternalForm());
         BackgroundSize size = new BackgroundSize(
                 100, 100,
@@ -54,14 +51,14 @@ public class InGameScene {
                 BackgroundPosition.CENTER,
                 size
         );
-        root.setBackground(new Background(backgroundImage));
+        this.setBackground(new Background(backgroundImage));
 
         //ground
         Rectangle ground = new Rectangle();
         ground.setHeight(groundH);
         ground.setLayoutX(0);
-        ground.widthProperty().bind(root.widthProperty());
-        ground.layoutYProperty().bind(root.heightProperty().subtract(groundH));
+        ground.widthProperty().bind(this.widthProperty());
+        ground.layoutYProperty().bind(this.heightProperty().subtract(groundH));
         ground.setFill(Color.LIGHTGRAY);
         gameLayer.getChildren().add(ground);
 
@@ -82,7 +79,7 @@ public class InGameScene {
                 last = now;
                 velocity += gravity;
                 player.setLayoutY(player.getLayoutY()+velocity);
-                double groundY = root.getHeight()-groundH;
+                double groundY = getHeight()-groundH;
                 double playerFeet = player.getLayoutY()+player.getBoundsInParent().getHeight();
                 if(playerFeet>groundY) {
                     player.setLayoutY(groundY-player.getBoundsInParent().getHeight());
@@ -97,14 +94,10 @@ public class InGameScene {
 
         playerAnimations.start();
 
-        scene.setOnKeyPressed(e -> {
+        setOnKeyPressed(e -> {
             if(e.getCode()==KeyCode.SPACE) {
                 handlePlayerJump();
             }
         });
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 }
