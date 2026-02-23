@@ -14,14 +14,13 @@ public class Animate extends ImageView implements Animatable{
     protected long lastTime = 0;
     protected double accumulator = 0;
 
-    private int maxRow;                             //0
+    private int maxRow;                             //
     private int maxFramePerRow;                     // equal to
 
     private int frameWidth;                         //Test On 120px
     private int frameHeight;                        //Test On 139px
     private double frameDuration = 0.05;
 
-    private AnimationTimer animator;
     private ObjectProperty<AnimationType> state;
 
     public Animate(Image image,int maxRow,int maxFramePerRow,int frameWidth,int frameHeight){
@@ -42,41 +41,22 @@ public class Animate extends ImageView implements Animatable{
         });
 
         DrawAnimation();
-        PlayAnimation();
     }
 
-    @Override
-    public void PlayAnimation() {
+    public void update(double deltaTime) {
 
-        animator = new AnimationTimer() {
+        accumulator += deltaTime;
 
-            @Override
-            public void handle(long now) {
+        if (accumulator >= frameDuration) {
+            accumulator = 0;
+            currentFrame++;
 
-                if (lastTime == 0) {
-                    lastTime = now;
-                    return;
-                }
-
-                double deltaTime = (now - lastTime) / 1_000_000_000.0;
-                lastTime = now;
-
-                accumulator += deltaTime;
-
-                if (accumulator >= frameDuration) {
-
-                    accumulator = 0;
-                    currentFrame++;
-
-                    if (currentFrame >= maxFramePerRow) {
-                        currentFrame = 0;
-                    }
-
-                    DrawAnimation();
-                }
+            if (currentFrame >= maxFramePerRow) {
+                currentFrame = 0;
             }
-        };
-        animator.start();
+
+            DrawAnimation();
+        }
     }
 
     @Override
@@ -97,10 +77,6 @@ public class Animate extends ImageView implements Animatable{
 
     public void setFrameDuration(int fd){
         this.frameDuration = fd;
-    }
-
-    public AnimationTimer getAnimator(){
-        return animator;
     }
 
 }

@@ -1,20 +1,16 @@
 package CleanCode.Scene;
 
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 
-public abstract class BaseScene {
+public abstract class BaseRoot extends StackPane{
 
-    protected StackPane root;
     protected Scene scene;
+    protected StackPane root = this;
 
-    public BaseScene() {
-        root = new StackPane();
-        scene = new Scene(root);
-    }
-
-    public Scene getScene() {
-        return scene;
+    public BaseRoot(){
+        scene = getScene();
     }
 
     public Region spacer(char c){

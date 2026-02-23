@@ -11,7 +11,7 @@ import supakorn.Button.CDBtn;
 import supakorn.CookieData;
 import supakorn.Image.OutlineText;
 
-public class CookieSelectionScene extends BaseScene{
+public class CookieSelectionScene extends BaseRoot{
 
     ImageView SkillVideo;
     OutlineText name,Description,Record;

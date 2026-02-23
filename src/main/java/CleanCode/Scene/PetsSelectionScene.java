@@ -6,7 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-public class PetsSelectionScene extends BaseScene{
+public class PetsSelectionScene extends BaseRoot{
 
     public PetsSelectionScene(){
 

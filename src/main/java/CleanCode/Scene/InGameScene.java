@@ -9,8 +9,8 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 
-public class InGameScene extends BaseScene{
-    SettingZone settingZone = new SettingZone(root,spacer('H'));
+public class InGameScene extends BaseRoot{
+    SettingZone settingZone = new SettingZone(this,spacer('H'));
     HpDisplayZone hpzone = new HpDisplayZone();
     ShowScore sc = new ShowScore();
     LastRecord lastRecord = new LastRecord();

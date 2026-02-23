@@ -7,7 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-public class MainMenuScene extends BaseScene {
+public class MainMenuScene extends BaseRoot {
 
     public MainMenuScene() {
         playMusic();
