@@ -15,19 +15,11 @@ public class BaseButton extends Button implements ClickAble{
     private boolean isHovering = false;
     private boolean clicked = false;
 
-    public BaseButton(ImageView img, double fitHeight, double fitWidth) {
+    public BaseButton(ImageView img) {
 
         super();
 
         CreateBtn();
-
-        if (fitHeight > 0) {
-            img.setFitHeight(fitHeight);
-        }
-
-        if (fitWidth > 0) {
-            img.setFitWidth(fitWidth);
-        }
 
         img.setPreserveRatio(true);
 
