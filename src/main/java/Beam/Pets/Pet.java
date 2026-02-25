@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 
 public abstract class Pet {
     int id;
-
+    int cooldowntime;
     String Pid;   //paneID
     String BGid;
 
@@ -60,5 +60,17 @@ public abstract class Pet {
 
     public void setBtnView(ImageView btnView) {
         BtnView = btnView;
+    }
+
+    public int getCooldowntime() {
+        return cooldowntime;
+    }
+
+    public void setCooldowntime(int cooldowntime) {
+        this.cooldowntime = cooldowntime;
+    }
+
+    public void ActiveCooldowm(){
+        // threds.sleep(cooldowntime)
     }
 }
