@@ -23,6 +23,7 @@ public class Animate extends ImageView implements Animatable{
     private int maxFPRTakeDamage;
     private int maxFPRSkill;
 
+    private boolean isLoop = true;
     private int maxFPR;// equal to
 
     private int frameWidth;                         //Test On 120px
@@ -70,6 +71,12 @@ public class Animate extends ImageView implements Animatable{
             currentFrame = 0;
             maxFPR = maxFPRType[newValue.getRow()];
 
+            if (getAnimationState() == AnimationType.SKILL){
+                isLoop = false;
+            } else {
+                isLoop = true;
+            }
+
             if (getAnimationState() == AnimationType.RUN) {
                 setFrameDuration(0.08f);
             } else if (getAnimationState() == AnimationType.DOUBLE_JUMP) {
@@ -77,6 +84,8 @@ public class Animate extends ImageView implements Animatable{
             } else if (getAnimationState() == AnimationType.SKILL) {
                 setFrameDuration(0.12f);
             }
+
+
         });
 
         DrawAnimation();
@@ -91,8 +100,10 @@ public class Animate extends ImageView implements Animatable{
 
             currentFrame++;
 
-            if (currentFrame >= maxFPR) {
+            if ( (currentFrame >= maxFPR ) && isLoop) {
                 currentFrame = 0;
+            } else if ( (currentFrame >= maxFPR ) && !isLoop ) {
+                currentFrame = maxFPR-1;
             }
 
             DrawAnimation();
