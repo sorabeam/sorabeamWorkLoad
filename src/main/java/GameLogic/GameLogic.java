@@ -2,11 +2,15 @@ package GameLogic;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class GameLogic {
     private static int score;
     private static int bestScore;
-    private static final ObjectProperty<GameState> gameState = new SimpleObjectProperty<>(GameState.INTRO);
+    private static final ObjectProperty<GameState> gameState = new SimpleObjectProperty<>(null);
+    private static Scene curScene;
+    private static Stage stage;
     //score
 
     public static int getScore() {
@@ -44,5 +48,22 @@ public class GameLogic {
 
     public static ObjectProperty<GameState> gameStateProperty() {
         return gameState;
+    }
+
+    public static Scene getCurScene() {
+        return curScene;
+    }
+
+    public static void setCurScene(Scene curScene) {
+        GameLogic.curScene = curScene;
+        stage.setScene(curScene);
+    }
+
+    public static void setStage(Stage primaryStage){
+        stage = primaryStage;
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 }
