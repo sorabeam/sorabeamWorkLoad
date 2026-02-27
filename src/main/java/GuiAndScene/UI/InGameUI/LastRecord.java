@@ -1,7 +1,5 @@
-package CleanCode.UI.InGameUI;
+package GuiAndScene.UI.InGameUI;
 
-import javafx.geometry.Pos;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;

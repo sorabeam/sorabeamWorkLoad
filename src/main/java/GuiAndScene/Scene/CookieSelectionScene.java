@@ -1,11 +1,10 @@
-package CleanCode.Scene;
+package GuiAndScene.Scene;
 
-import CleanCode.UI.CookiesUI.*;
+import GuiAndScene.UI.CookiesUI.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import supakorn.Asset;
 import supakorn.Button.CDBtn;
 import supakorn.CookieData;

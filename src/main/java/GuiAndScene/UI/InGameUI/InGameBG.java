@@ -26,7 +26,7 @@ public class InGameBG extends StackPane {
     }
 }*/
 
-package CleanCode.UI.InGameUI;
+package GuiAndScene.UI.InGameUI;
 
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Pos;

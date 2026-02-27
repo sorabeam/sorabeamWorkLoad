@@ -1,4 +1,4 @@
-package CleanCode.UI.PetsUI;
+package GuiAndScene.UI.PetsUI;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;

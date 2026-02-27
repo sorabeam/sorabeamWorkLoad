@@ -1,6 +1,6 @@
-package CleanCode.Scene;
+package GuiAndScene.Scene;
 
-import CleanCode.UI.MainUI.*;
+import GuiAndScene.UI.MainUI.*;
 import supakorn.Media.JooxBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

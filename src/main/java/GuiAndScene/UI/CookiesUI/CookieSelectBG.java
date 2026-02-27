@@ -1,4 +1,4 @@
-package CleanCode.UI.CookiesUI;
+package GuiAndScene.UI.CookiesUI;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;

@@ -1,25 +1,25 @@
-package CleanCode.Scene;
+package GuiAndScene.Scene;
 
-import CleanCode.UI.InGameUI.*;
-import CleanCode.UI.MainUI.MainMenuBG;
+import GuiAndScene.UI.InGameUI.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
+import supakorn.ObsticleAndItem.Spawner;
 
 public class InGameScene extends BaseRoot{
     SettingZone settingZone = new SettingZone(this,spacer('H'));
     HpDisplayZone hpzone = new HpDisplayZone();
     ShowScore sc = new ShowScore();
     LastRecord lastRecord = new LastRecord();
+    private Pane gameLayer = new Pane();
 
     public InGameScene(){
         super();
 
         root.getChildren().addAll(
                 new InGameBG(scene),
+                gameLayer,
                 settingZone,
                 lastRecord,
                 hpzone,
@@ -35,6 +35,14 @@ public class InGameScene extends BaseRoot{
         StackPane.setAlignment(settingZone,Pos.TOP_RIGHT);
         StackPane.setMargin(settingZone,new Insets(20,20,0,0));
 
+        Spawner spawner =
+                new Spawner(
+                        gameLayer,
+                        scene.getWidth(),
+                        scene.getHeight()
+                );
+
+        spawner.start();
     }
 
 

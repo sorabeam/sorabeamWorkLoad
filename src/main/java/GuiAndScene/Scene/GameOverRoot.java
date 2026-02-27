@@ -1,4 +1,4 @@
-package CleanCode.Scene;
+package GuiAndScene.Scene;
 
 import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;

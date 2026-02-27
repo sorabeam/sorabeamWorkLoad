@@ -1,4 +1,4 @@
-package CleanCode.UI.CookiesUI;
+package GuiAndScene.UI.CookiesUI;
 
 import Got.GameLogic.GameState;
 import javafx.geometry.Pos;

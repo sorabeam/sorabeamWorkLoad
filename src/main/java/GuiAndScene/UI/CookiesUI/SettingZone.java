@@ -1,4 +1,4 @@
-package CleanCode.UI.CookiesUI;
+package GuiAndScene.UI.CookiesUI;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;

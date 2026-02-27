@@ -1,12 +1,9 @@
-package CleanCode.UI.InGameUI;
+package GuiAndScene.UI.InGameUI;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import supakorn.Asset;
 
 public class HpDisplayZone extends StackPane {

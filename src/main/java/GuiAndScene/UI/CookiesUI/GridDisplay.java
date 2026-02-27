@@ -1,9 +1,7 @@
-package CleanCode.UI.CookiesUI;
+package GuiAndScene.UI.CookiesUI;
 
 import javafx.scene.layout.GridPane;
-import supakorn.Asset;
 import supakorn.Button.CDBtn;
-import supakorn.CookieData;
 
 public class GridDisplay extends GridPane {
 

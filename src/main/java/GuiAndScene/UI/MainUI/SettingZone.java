@@ -1,4 +1,4 @@
-package CleanCode.UI.MainUI;
+package GuiAndScene.UI.MainUI;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;

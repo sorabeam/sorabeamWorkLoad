@@ -1,10 +1,9 @@
-package CleanCode.Scene;
+package GuiAndScene.Scene;
 
-import CleanCode.UI.PetsUI.*;
+import GuiAndScene.UI.PetsUI.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
 public class PetsSelectionScene extends BaseRoot{
 

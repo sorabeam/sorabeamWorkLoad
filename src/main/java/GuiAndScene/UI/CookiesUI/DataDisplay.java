@@ -1,6 +1,6 @@
-package CleanCode.UI.CookiesUI;
+package GuiAndScene.UI.CookiesUI;
 
-import CleanCode.Scene.CookieSelectionScene;
+import GuiAndScene.Scene.CookieSelectionScene;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;

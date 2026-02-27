@@ -1,4 +1,4 @@
-package CleanCode.UI.InGameUI;
+package GuiAndScene.UI.InGameUI;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
@@ -7,7 +7,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import supakorn.Asset;
 import supakorn.Button.SettingBtn;
-import supakorn.Image.OutlineText;
 
 public class SettingZone extends HBox {
 

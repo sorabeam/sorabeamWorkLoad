@@ -1,12 +1,10 @@
-package CleanCode.UI.CookiesUI;
+package GuiAndScene.UI.CookiesUI;
 
-import CleanCode.Scene.CookieSelectionScene;
+import GuiAndScene.Scene.CookieSelectionScene;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import supakorn.Image.OutlineText;
-import supakorn.Scene.CookiesSelectionScene;
 
 import static javafx.geometry.Pos.BOTTOM_CENTER;
 

@@ -1,9 +1,9 @@
 package Got.GameLogic;
 
-import CleanCode.Scene.CookieSelectionScene;
-import CleanCode.Scene.InGameScene;
-import CleanCode.Scene.MainMenuScene;
-import CleanCode.Scene.PetsSelectionScene;
+import GuiAndScene.Scene.CookieSelectionScene;
+import GuiAndScene.Scene.InGameScene;
+import GuiAndScene.Scene.MainMenuScene;
+import GuiAndScene.Scene.PetsSelectionScene;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
@@ -37,6 +37,7 @@ public class TestInGame2 extends Application {
 
         GameLogic.setGameState(GameState.INTRO);
         GameLogic.setCurScene(scene);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
 

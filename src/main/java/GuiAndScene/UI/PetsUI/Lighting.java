@@ -1,4 +1,4 @@
-package CleanCode.UI.PetsUI;
+package GuiAndScene.UI.PetsUI;
 
 public class Lighting {
 }

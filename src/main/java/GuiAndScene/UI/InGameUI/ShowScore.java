@@ -1,4 +1,4 @@
-package CleanCode.UI.InGameUI;
+package GuiAndScene.UI.InGameUI;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

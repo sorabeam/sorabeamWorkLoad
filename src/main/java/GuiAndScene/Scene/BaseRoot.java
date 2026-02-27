@@ -1,8 +1,6 @@
-package CleanCode.Scene;
+package GuiAndScene.Scene;
 
 import Got.GameLogic.GameLogic;
-import Got.GameLogic.TestInGame2;
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 

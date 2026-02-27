@@ -1,13 +1,10 @@
-package CleanCode.UI.MainUI;
+package GuiAndScene.UI.MainUI;
 
 import Got.GameLogic.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import supakorn.Asset;
 import supakorn.Button.NavBtn;
 
