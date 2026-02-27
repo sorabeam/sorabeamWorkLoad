@@ -113,7 +113,6 @@ public class InGameRoot extends StackPane {
 
                             if (pearl.getBoundsInParent().intersects(obstacle.getBoundsInParent())) {
 
-                                System.out.println("BOOM 😏🔥");
 
                                 scoreBoard.addScore(100);
 
