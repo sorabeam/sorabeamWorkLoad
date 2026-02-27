@@ -22,7 +22,7 @@ public class MainMenuBG extends StackPane {
         name.setMaxWidth(1);
         StackPane.setMargin(name,new Insets(0,0,20,40));
 
-        ImageView MBg = Asset.createImageView("BgLobby",1,1);
+        ImageView MBg = Asset.createBackgroundView("BgLobby",1,1);
 
         //  bind กับตัวเองแทน scene
         MBg.fitWidthProperty().bind(widthProperty());

@@ -26,6 +26,19 @@ public class Asset {
         });
     }
 
+    public static Image getBg(String name) {
+
+        return imageCache.computeIfAbsent(name, key -> {
+            URL url = Asset.class.getResource("/Image/BackGround/" + key + ".png");
+
+            if (url == null) {
+                throw new RuntimeException("Image not found: " + key);
+            }
+
+            return new Image(url.toExternalForm());
+        });
+    }
+
     public static ImageView createImageView(String key, double H, double W) {
 
         ImageView view = new ImageView(getImage(key));
@@ -55,5 +68,23 @@ public class Asset {
 
         CDBtn btn = new CDBtn(createImageView(bid,H,W),name,desc,score,Simg);
         return btn;
+    }
+
+    public static ImageView createBackgroundView(String key, int H, int W) {
+
+        ImageView view = new ImageView(getBg(key));
+
+        if (H == 0 && W > 0) {
+            view.setFitWidth(W);
+            view.setPreserveRatio(true);
+        } else if (H > 0 && W == 0) {
+            view.setFitHeight(H);
+            view.setPreserveRatio(true);
+        } else {
+            view.setFitHeight(H);
+            view.setFitWidth(W);
+        }
+
+        return view;
     }
 }

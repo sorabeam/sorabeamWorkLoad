@@ -17,7 +17,7 @@ public class PetSelectionBG extends StackPane {
         FloorFade fade = new FloorFade(200);
         StackPane.setAlignment(fade, Pos.BOTTOM_CENTER);
 
-        ImageView bg = Asset.createImageView("RedStage",1000,1000);
+        ImageView bg = Asset.createBackgroundView("RedStage",1000,1000);
         bg.setPreserveRatio(false);
         bg.fitWidthProperty().bind(scene.widthProperty());
         bg.fitHeightProperty().bind(scene.heightProperty());

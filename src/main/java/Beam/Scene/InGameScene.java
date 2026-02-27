@@ -5,6 +5,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 
+import static Got.GameLogic.GameLogic.getStage;
+
 public class InGameScene extends BaseRoot{
     SettingZone settingZone = new SettingZone(this,spacer('H'));
     HpDisplayZone hpzone = new HpDisplayZone();
@@ -30,6 +32,8 @@ public class InGameScene extends BaseRoot{
         settingZone.setMaxWidth(50);
         StackPane.setAlignment(settingZone,Pos.TOP_RIGHT);
         StackPane.setMargin(settingZone,new Insets(20,20,0,0));
+
+        getStage().setResizable(false);
 
     }
 
