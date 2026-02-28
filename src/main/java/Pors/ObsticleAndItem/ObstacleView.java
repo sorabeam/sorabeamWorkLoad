@@ -15,8 +15,8 @@ public class ObstacleView extends ImageView {
         this.vy = vy;
 
         setImage(new Image("/Image/Obstacle/" + obstacle.getName() + ".png"));
-        setFitWidth(150);
-        setFitHeight(200);
+        setFitWidth(75);
+        setFitHeight(90);
     }
 
     public void update() {
