@@ -1,130 +1,159 @@
 package Beam.Scene;
 
+import Beam.Asset;
+import Beam.Cookies.Cookie;
 import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;
+import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import Beam.CharactorData;
+import javafx.util.Duration;
 
 import java.util.Objects;
 
-public class GameOverRoot extends AnchorPane {
+public class GameOverRoot extends BaseRoot {
+
+    private void addHoverEffect(Button btn) {
+
+        ScaleTransition scaleUp = new ScaleTransition(Duration.millis(150), btn);
+        scaleUp.setToX(1.1);
+        scaleUp.setToY(1.1);
+
+        ScaleTransition scaleDown = new ScaleTransition(Duration.millis(150), btn);
+        scaleDown.setToX(1.0);
+        scaleDown.setToY(1.0);
+
+        btn.setOnMouseEntered(e -> scaleUp.playFromStart());
+        btn.setOnMouseExited(e -> scaleDown.playFromStart());
+    }
+
+    //change to game data later, after game really done
     public GameOverRoot() {
-//        AnchorPane root = new AnchorPane();
-        Font textFont = Font.loadFont(Objects.requireNonNull(getClass().getResource("/Fonts/Chango-Regular.ttf")).toExternalForm(), 36);
-        VBox content = new VBox();
-        content.setAlignment(Pos.CENTER);
-        StackPane placeholder = new StackPane();
-        Image image = new Image(Objects.requireNonNull(getClass().getResource("/UI/placeholder.png")).toExternalForm());
-        ImageView img = new ImageView(image);
-        img.setFitWidth(600);
-        img.setFitHeight(100);
-        placeholder.getChildren().add(img);
-        placeholder.setAlignment(Pos.CENTER);
-        Text finalScore = new Text(GameLogic.getScore() + " score!");
-        finalScore.setFill(Color.WHITE);
-        finalScore.setFont(textFont);
-        finalScore.setStroke(Color.BLACK);
-        finalScore.setStrokeWidth(3);
-
-        Image pCharImg = new Image(Objects.requireNonNull(getClass().getResource("/Characters/char3.png")).toExternalForm());
-        ImageView charView = new ImageView(pCharImg);
-        charView.setFitWidth(300);
-        charView.setPreserveRatio(true);
-        placeholder.getChildren().add(finalScore);
-        content.getChildren().addAll(placeholder, charView);
-
-        Text highestScore = new Text("Highest Score");
-        highestScore.setFont(textFont);
-//        highestScore.setFill(Color.WHITE);
-        highestScore.setStroke(Color.BLACK);
-        highestScore.setStrokeWidth(3);
-        LinearGradient gradient1 = new LinearGradient(
-                0, 0,
-                1, 0,
-                true,
-                CycleMethod.NO_CYCLE,
-                new Stop(0, Color.YELLOW),
-                new Stop(1, Color.WHITE)
+        super();
+//        Cookie cookie = CharactorData.getCurrent_Cookie();
+//        ImageView cookieView = Asset.createImageView(cookie.getImgURL(), 400, 400);
+        StackPane charWrapper = new StackPane();
+        ImageView cookieView = Asset.createImageView("TestChar", 600, 600);
+        BackgroundImage bkImg = new BackgroundImage(
+                Asset.getImage("BackGround/RedStage"),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(
+                        100, 100,
+                        true, true, true, true
+                )
         );
-        highestScore.setFill(gradient1);
 
-        Text score = new Text(GameLogic.getBestScore()+" score!");
-//        score.setFill(Color.WHITE);
-        score.setFont(textFont);
+        Font headerFont = Font.loadFont(Objects.requireNonNull(getClass().getResource("/Fonts/Chango-Regular.ttf")).toExternalForm(), 24);
+        Font contentFont = Font.loadFont(Objects.requireNonNull(getClass().getResource("/Fonts/Chango-Regular.ttf")).toExternalForm(), 16);
+
+        ImageView petView = Asset.createImageView("Moji", 150, 150);
+        StackPane.setAlignment(petView, Pos.TOP_RIGHT);
+
+        Text username = new Text("Boba");
+        username.setFont(headerFont);
+        username.setFill(Color.WHITE);
+        username.setStroke(Color.BLACK);
+        username.setStrokeWidth(3);
+        StackPane.setAlignment(username, Pos.TOP_CENTER);
+
+        charWrapper.getChildren().addAll(petView, cookieView, username);
+        charWrapper.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        StackPane.setAlignment(charWrapper, Pos.BOTTOM_LEFT);
+
+
+        HBox statsPane = new HBox();
+        StackPane wrapper = new StackPane();
+        ImageView statsImg = Asset.createImageView("statsBox", 400, 400);
+        VBox statVBox = new VBox();
+        Text score = new Text(GameLogic.getScore()+"score!");
+        Text bestScore = new Text("Highest " + GameLogic.getBestScore() + "score!");
+        score.setFont(headerFont);
+        bestScore.setFont(contentFont);
+        statVBox.setAlignment(Pos.CENTER);
+
+        score.setFill(Color.WHITE);
         score.setStroke(Color.BLACK);
-        score.setStrokeWidth(3);
-        LinearGradient gradient2 = new LinearGradient(
-                0, 0,
-                1, 0,
-                true,
-                CycleMethod.NO_CYCLE,
-                new Stop(0, Color.rgb(255, 39, 56, 0.6)),
-                new Stop(1, Color.WHITE)
-        );
-        score.setFill(gradient2);
+        score.setStrokeWidth(1);
 
-        Region bottomShadow = new Region();
-        bottomShadow.setPrefHeight(80);
-        bottomShadow.setStyle("""
-            -fx-background-color: linear-gradient(to top,
-                rgba(255, 249, 78, 0.5),
-                rgba(255, 255, 255,0.0)
-            );
-        """);
-        StackPane.setAlignment(bottomShadow, Pos.BOTTOM_CENTER);
-        Image backBtnImage = new Image(Objects.requireNonNull(getClass().getResource("/UI/backBtn.png")).toExternalForm());
-        ImageView backBtnView = new ImageView(backBtnImage);
+        bestScore.setFill(Color.WHITE);
+        bestScore.setStroke(Color.BLACK);
+        bestScore.setStrokeWidth(1);
+
+        statVBox.getChildren().addAll(score, bestScore);
+
+        statsPane.setAlignment(Pos.CENTER_RIGHT);
+        wrapper.setPadding(new Insets(16));
+        wrapper.getChildren().addAll(statsImg, statVBox);
+
+        StackPane wrapper2 = new StackPane();
+        ImageView curCharBox = Asset.createImageView("charBox", 300, 300);
+        ImageView curCharView = Asset.createImageView("B1", 200, 200);
+        StackPane.setMargin(curCharView, new Insets(0, -20, 0, 20));
+        wrapper2.getChildren().addAll(curCharBox, curCharView);
+
+        statsPane.setSpacing(-48);
+        statsPane.getChildren().addAll(wrapper2, wrapper);
+        setBackground(new Background(bkImg));
+
+        HBox btnPane = new HBox();
+//        HBox wrapper3 = new HBox();
+        ImageView replayView = Asset.createImageView("replay", 100, 300);
+        ImageView backView = Asset.createImageView("backBtn", 100, 200);
+        ImageView playMoreView = Asset.createImageView("playMoreTest", 200, 400);
+        Button replayBtn = new Button();
         Button backBtn = new Button();
-        backBtnView.setFitWidth(100);
-        backBtnView.setPreserveRatio(true);
-        backBtn.setStyle("""
-            -fx-background-color: transparent;
-            -fx-padding: 0;
-            -fx-background-insets: 0;
-            -fx-border-color: transparent;
-        """);
-        backBtn.setGraphic(backBtnView);
-        backBtn.setOnMouseEntered(e -> backBtn.setOpacity(0.6));
-        backBtn.setOnMouseExited(e -> backBtn.setOpacity(1));
+        Button playMoreBtn = new Button();
+        replayBtn.setGraphic(replayView);
+        backBtn.setGraphic(backView);
+        playMoreBtn.setGraphic(playMoreView);
+        replayBtn.setStyle("-fx-background-color: transparent;");
+        backBtn.setStyle("-fx-background-color: transparent;");
+        playMoreBtn.setStyle("-fx-background-color: transparent;");
+
         backBtn.setOnAction(e -> {
             GameLogic.setGameState(GameState.INTRO);
+//            System.out.println("Clicked INTRO");
         });
 
-        content.setPadding(new Insets(0, 0, 60, 0));
+        replayBtn.setOnAction(e -> {
+            GameLogic.setGameState(GameState.INGAME);
+//            System.out.println("Clicked INGAME");
+        });
 
-        AnchorPane.setTopAnchor(content, 0.0);
-        AnchorPane.setBottomAnchor(content, 0.0);
-        AnchorPane.setLeftAnchor(content, 0.0);
-        AnchorPane.setRightAnchor(content, 0.0);
+        addHoverEffect(replayBtn);
+        addHoverEffect(backBtn);
 
-        AnchorPane.setLeftAnchor(bottomShadow, 0.0);
-        AnchorPane.setRightAnchor(bottomShadow, 0.0);
-        AnchorPane.setBottomAnchor(bottomShadow, 0.0);
+//        btnPane.setAlignment(Pos.BOTTOM_RIGHT);
+        btnPane.setPadding(new Insets(32));
+        btnPane.setSpacing(16);
+        btnPane.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        btnPane.getChildren().addAll(playMoreBtn, backBtn, replayBtn);
+        StackPane.setAlignment(btnPane, Pos.BOTTOM_RIGHT);
+        btnPane.setAlignment(Pos.CENTER);
 
-        bottomShadow.setMinHeight(60);
-        bottomShadow.setMaxHeight(80);
+        //setting part
+//        StackPane settingPane = new StackPane();
+//        ImageView settingView = Asset.createImageView("SettingBtn", 80, 80);
+//        Button settingBtn = new Button();
+//        settingBtn.setGraphic(settingView);
+//        settingBtn.setStyle("-fx-background-color: transparent;");
+//        StackPane.setAlignment(settingBtn, Pos.TOP_LEFT);
+//        settingPane.getChildren().add(settingBtn);
+//        settingPane.setPadding(new Insets(24));
+//        StackPane.setAlignment(btnPane, Pos.BOTTOM_RIGHT);
 
-        content.getChildren().addAll(highestScore, score);
-        HBox wrapper = new HBox();
-        wrapper.getChildren().add(backBtn);
-        wrapper.setAlignment(Pos.BOTTOM_RIGHT);
-//        wrapper.prefWidthProperty().bind(root.widthProperty().multiply(0.8));
-        wrapper.setMaxWidth(1200);
-        wrapper.setPadding(new Insets(16));
-        content.getChildren().add(wrapper);
-        content.setPadding(new Insets(16));
-        content.setSpacing(12);
-
-        this.getChildren().addAll(bottomShadow, content);
+        ImageView bannerView = Asset.createImageView("banner", 200, 230);
+        StackPane.setAlignment(bannerView, Pos.TOP_RIGHT);
+        StackPane.setMargin(bannerView, new Insets(0, 40, 0, 0));
+        getChildren().addAll(charWrapper, statsPane, bannerView, btnPane);
     }
 }
