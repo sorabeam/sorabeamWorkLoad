@@ -1,6 +1,7 @@
 package GameScenes;
 
-import GUI_beam.Animate;
+import Beam.Animation.Animate;
+import Beam.Asset;
 import components.ScoreBoard;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -61,7 +62,7 @@ public class InGameRoot extends StackPane {
         ground.setFill(Color.LIGHTGRAY);
         gameLayer.getChildren().add(ground);
 
-        Animate player = new Animate(new Image(Objects.requireNonNull(getClass().getResource("/imgSC.png")).toExternalForm()), 0,5,120,139);
+        Animate player = new Animate(new Image(Objects.requireNonNull(getClass().getResource("/Characters/char3.png")).toExternalForm()), 0,5,0,0,0,0,0,0,0,400,400);
 //        player.setLayoutX(root.getWidth()/2-player.getBoundsInParent().getWidth()/2);
         player.setLayoutX(800/2 - 120/2); // make player at the center with fixed position, will fix later
         gameLayer.getChildren().add(player);

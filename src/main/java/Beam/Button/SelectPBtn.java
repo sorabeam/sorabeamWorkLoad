@@ -2,16 +2,22 @@ package Beam.Button;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import Beam.Image.OutlineText;
 
 public class SelectPBtn extends BaseButton{
-    public SelectPBtn(ImageView img, String text, int txtSize, double MarginBtm) {
+
+    ImageView img;
+    Image I,Bg;
+    String name,D;
+
+    public SelectPBtn(ImageView img, Image I , Image Bg, String name , String D, int txtSize, double MarginBtm) {
 
         super(img);
 
-        OutlineText txt = setText( text,txtSize,MarginBtm);
+        OutlineText txt = setText(name,txtSize,MarginBtm);
         FavBtn fav = BuildFav();
         StackPane newImg = new StackPane(fav,img,txt);
         super.setGraphic(newImg);
@@ -34,5 +40,45 @@ public class SelectPBtn extends BaseButton{
         StackPane.setMargin(fav , new Insets(0,0,18,40));
 
         return fav;
+    }
+
+    public ImageView getImg() {
+        return img;
+    }
+
+    public void setImg(ImageView img) {
+        this.img = img;
+    }
+
+    public Image getI() {
+        return I;
+    }
+
+    public void setI(Image i) {
+        I = i;
+    }
+
+    public Image getBg() {
+        return Bg;
+    }
+
+    public void setBg(Image bg) {
+        Bg = bg;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getD() {
+        return D;
+    }
+
+    public void setD(String d) {
+        D = d;
     }
 }

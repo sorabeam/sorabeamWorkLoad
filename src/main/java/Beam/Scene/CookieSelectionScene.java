@@ -1,3 +1,4 @@
+
 package Beam.Scene;
 
 import Beam.UI.CookiesUI.*;
@@ -5,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+
 import Beam.Asset;
 import Beam.Button.CDBtn;
 import Beam.CharactorData;

@@ -1,10 +1,15 @@
+
 package Beam.Scene;
 
+import Beam.Button.CDBtn;
+import Beam.Button.SelectPBtn;
 import Beam.UI.PetsUI.*;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+
 import Beam.CharactorData;
 import Beam.Image.OutlineText;
 
@@ -14,14 +19,16 @@ public class PetsSelectionScene extends BaseRoot{
     ImageView BGpicture;
     OutlineText name,Description;
 
-    private String txt = CharactorData.getCurrent_Cookie().get_Desc();
+    SelectPBtn ins1, ins2, ins3, ins4;
+
+    private String txt = CharactorData.getCurrent_Pet().getDesc();
 
     public PetsSelectionScene(){
         super();
 
         PetSelectionBtn petSelectionBtn = new PetSelectionBtn(spacer('H'));
         SettingZone settingZone = new SettingZone(root,spacer('H'));
-        HBox petsShow = new PetsShow(spacer('H'));
+        HBox petsShow = new PetsShow(spacer('H'),ins1, ins2, ins3, ins4);
         SelectingView selectingView = new SelectingView();
 
         VBox leftVBox = new VBox(selectingView);
@@ -40,21 +47,20 @@ public class PetsSelectionScene extends BaseRoot{
         leftVBox.setAlignment(Pos.CENTER);
         rightVBox.setSpacing(50);
 
-//        petsShow.setBackground(new Background(
-//                new BackgroundFill(Color.BLUE,null,null)
-//        ));
-//
-//        rightVBox.setBackground(new Background(
-//                new BackgroundFill(Color.VIOLET,null,null)
-//        ));
-//
-//        selectingView.setBackground(new Background(
-//                new BackgroundFill(Color.YELLOW,null,null)
-//        ));
-//
-//        petSelectionBtn.setBackground(new Background(
-//                new BackgroundFill(Color.GREEN,null,null)
-//        ));
+    }
 
+    private void enableSwap(SelectPBtn button) {
+
+        button.setOnAction(e -> {
+
+            Integer col = GridPane.getColumnIndex(button);
+            Integer row = GridPane.getRowIndex(button);
+
+            Picture.setImage(button.getI());
+            name.setText(button.getName());
+            Description.setText(button.getD());
+            BGpicture.setImage(button.getBg());
+
+        });
     }
 }

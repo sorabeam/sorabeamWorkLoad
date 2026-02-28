@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 
 public class Animate extends ImageView implements Animatable{
 
-    protected int currentRow = 0;
+    protected int currentRow = 4;
     protected int currentFrame = 0;
     protected long lastTime = 0;
     protected double accumulator = 0;
@@ -38,6 +38,8 @@ public class Animate extends ImageView implements Animatable{
 
         super(image);
 
+        setFrameDuration(0.08f);
+
         this.maxFPRIdel = Math.max(0,idle);
         this.maxFPRRun = Math.max(0,run);
         this.maxFPRJumpUp = Math.max(0,jumpUp);
@@ -58,15 +60,16 @@ public class Animate extends ImageView implements Animatable{
         maxFPRType[7] = this.maxFPRTakeDamage;
         maxFPRType[8] = this.maxFPRSkill;
 
-        this.maxFPR = this.maxFPRIdel;
+        this.maxFPR = this.maxFPRDoubleJump;
 
         this.frameWidth = Math.max(0,frameWidth);
         this.frameHeight = Math.max(0,frameHeight);
 
-        state = new SimpleObjectProperty<>(AnimationType.IDLE);
+        state = new SimpleObjectProperty<>(AnimationType.DOUBLE_JUMP);
 
         state.addListener((obs,
                            oldValue, newValue) -> {
+            System.out.println(newValue + " " + newValue.getRow() );
             currentRow = newValue.getRow();
             currentFrame = 0;
             maxFPR = maxFPRType[newValue.getRow()];

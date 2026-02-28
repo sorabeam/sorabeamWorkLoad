@@ -35,7 +35,11 @@ javafx {
 
 application {
 //    mainClass = 'GUI_beam.GameSceneExample' // path to your main class
-    mainClass = "GameLogic.TestInGame"
+//    mainClass = "GameLogic.TestInGame"
+    //mainClass = 'supakorn.Scene.MainMenuScene' // path to your main class
+    //mainClass = 'supakorn.Scene.StartUp'
+    mainClass = 'Got.GameLogic.TestInGame2'
+    //mainClass = 'supakorn.Animation.Tester'
     applicationDefaultJvmArgs = [
         "--enable-native-access=javafx.graphics"
     ]

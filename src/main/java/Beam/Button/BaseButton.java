@@ -73,7 +73,7 @@ public class BaseButton extends Button implements ClickAble{
         dropShadow.setOffsetY(0);
         dropShadow.setColor(Color.rgb(2, 2, 2, 0.4));
 
-        setOnAction(e -> { handleClick(); });
+        setOnAction(e -> {handleClick();});
         setOnMouseEntered(e -> { onHoverEnter(); });
         setOnMouseExited(e -> { onHoverExit(); });
 

@@ -2,6 +2,7 @@ package Beam.Scene;
 
 import Beam.UI.MainUI.*;
 import Beam.Media.JooxBox;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -36,6 +37,6 @@ public class MainMenuScene extends BaseRoot {
 
     private void playMusic() {
         JooxBox sportify = new JooxBox();
-        sportify.play("MainMenuMusic", true, 10);
+        sportify.play("MainMenuMusic", true, 100);
     }
 }

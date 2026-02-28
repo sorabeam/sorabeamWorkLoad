@@ -65,11 +65,7 @@ public class InGameBG extends StackPane {
         FloorFade fade = new FloorFade(200);
         StackPane.setAlignment(fade, Pos.BOTTOM_CENTER);
 
-        ImageView ExpBar = Asset.createImageView("EXPBar",0,10);
-        ExpBar.fitWidthProperty().bind(scene.widthProperty());
-        StackPane.setAlignment(ExpBar,Pos.BOTTOM_CENTER);
-
-        getChildren().addAll(bgLayer, ExpBar, fade);
+        getChildren().addAll(bgLayer, fade);
     }
 
     private void startLoop(Scene scene){

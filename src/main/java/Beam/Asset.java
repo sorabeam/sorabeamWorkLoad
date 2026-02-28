@@ -26,19 +26,6 @@ public class Asset {
         });
     }
 
-    public static Image getBg(String name) {
-
-        return imageCache.computeIfAbsent(name, key -> {
-            URL url = Asset.class.getResource("/Image/BackGround/" + key + ".png");
-
-            if (url == null) {
-                throw new RuntimeException("Image not found: " + key);
-            }
-
-            return new Image(url.toExternalForm());
-        });
-    }
-
     public static ImageView createImageView(String key, double H, double W) {
 
         ImageView view = new ImageView(getImage(key));
@@ -57,22 +44,9 @@ public class Asset {
         return view;
     }
 
-    public static CDBtn createGridButton(Cookie _char, double H, double W){
+    public static ImageView createBackgroundView(String key, double H, double W) {
 
-        String bid = _char.get_Bid();
-        String name = _char.get_Name();
-        String desc = _char.get_Desc();
-        String score = "Best Record : " + _char.get_Score();
-
-        Image Simg = getImage(_char.get_Sid());
-
-        CDBtn btn = new CDBtn(createImageView(bid,H,W),name,desc,score,Simg);
-        return btn;
-    }
-
-    public static ImageView createBackgroundView(String key, int H, int W) {
-
-        ImageView view = new ImageView(getBg(key));
+        ImageView view = new ImageView(getBackGroundImage(key));
 
         if (H == 0 && W > 0) {
             view.setFitWidth(W);
@@ -86,5 +60,31 @@ public class Asset {
         }
 
         return view;
+    }
+
+    public static Image getBackGroundImage(String name) {
+
+        return imageCache.computeIfAbsent(name, key -> {
+            URL url = Asset.class.getResource("/Image/BackGround/" + key + ".png");
+
+            if (url == null) {
+                throw new RuntimeException("Image not found: " + key);
+            }
+
+            return new Image(url.toExternalForm());
+        });
+    }
+
+    public static CDBtn createGridButton(Cookie _char, double H, double W){
+
+        String bid = _char.get_Bid();
+        String name = _char.get_Name();
+        String desc = _char.get_Desc();
+        String score = "Best Record : " + _char.get_Score();
+
+        Image Simg = getImage(_char.get_Sid());
+
+        CDBtn btn = new CDBtn(createImageView(bid,H,W),name,desc,score,Simg);
+        return btn;
     }
 }
