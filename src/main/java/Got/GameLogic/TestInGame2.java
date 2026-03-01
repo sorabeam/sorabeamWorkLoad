@@ -1,9 +1,6 @@
 package Got.GameLogic;
 
-import Beam.Scene.CookieSelectionScene;
-import Beam.Scene.InGameScene;
-import Beam.Scene.MainMenuScene;
-import Beam.Scene.PetsSelectionScene;
+import Beam.Scene.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;
@@ -55,12 +52,12 @@ public class TestInGame2 extends Application {
                 case SELECTCHAR -> gameRoot.getChildren().setAll(new CookieSelectionScene());
                 case INGAME -> gameRoot.getChildren().setAll(new InGameScene());
                 case SELECTPET -> gameRoot.getChildren().setAll(new PetsSelectionScene());
-                case GAMEOVER -> gameRoot.getChildren().setAll(new MainMenuScene());
+                case GAMEOVER -> gameRoot.getChildren().setAll(new GameOverRoot());
             }
         });
 
         GameLogic.setCurScene(scene);
-        GameLogic.setGameState(GameState.INTRO);
+        GameLogic.setGameState(GameState.GAMEOVER);
 
         stage.show();
 

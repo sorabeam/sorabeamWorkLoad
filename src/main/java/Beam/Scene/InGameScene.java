@@ -66,11 +66,14 @@ public class InGameScene extends BaseRoot{
         StackPane.setAlignment(settingZone,Pos.TOP_RIGHT);
         StackPane.setMargin(settingZone,new Insets(20,20,0,0));
 
+        Cookie player = new BobaCookie();
+
         Spawner spawner =
                 new Spawner(
                         gameLayer,
                         scene.getWidth(),
-                        scene.getHeight()
+                        scene.getHeight(),
+                        player
                 );
 
         spawner.start();
@@ -95,7 +98,6 @@ public class InGameScene extends BaseRoot{
 
         gameLayer.getChildren().add(obstacle);
 
-        Cookie player = new BobaCookie();
         player.setGameLayer(gameLayer);
         player.createCookie();
 
@@ -131,7 +133,7 @@ public class InGameScene extends BaseRoot{
 
                 if (shiftHeld && player.isOnGround()) {
                     player.slide();
-                    System.out.println("fwesdfcd");
+                    System.out.println("slide");
                 }
 
                 //Pew-Pew Pearl And Obstacle

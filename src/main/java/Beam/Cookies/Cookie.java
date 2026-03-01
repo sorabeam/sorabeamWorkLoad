@@ -71,6 +71,7 @@ public abstract class Cookie {
 
     public void takeDamage(int damage){
         hp -= damage;
+        System.out.println("Cookie take " + damage + " damage");
     }
 
     public void setHp(int hp) {
@@ -79,6 +80,7 @@ public abstract class Cookie {
 
     public void heal(int healunit){
         hp += healunit;
+        System.out.println("Cookie get " + healunit + " heathPoint");
     }
 
     public void die(){

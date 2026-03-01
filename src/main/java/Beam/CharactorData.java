@@ -36,7 +36,7 @@ public class CharactorData {
     public static final Pet LOCKING =
             new SamplePet(4, "Lock","Play more 1.67M Games to unlock","Lemon");
 
-    private static Cookie Current_Cookie = WHITE_LILY;
+    private static Cookie Current_Cookie = BOBACOOKIE;
 
     public static Cookie getCurrent_Cookie() {
         return Current_Cookie;

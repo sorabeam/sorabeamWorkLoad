@@ -20,7 +20,7 @@ public class HealingPotion extends BaseItem{
     }
 
     @Override
-    public void interact(Cookie player) {
-        //player.heal(healingStat);
+    public void interact(Cookie cookie) {
+        cookie.heal(healingStat);
     }
 }
