@@ -11,6 +11,8 @@ public class GameLogic {
     private static final ObjectProperty<GameState> gameState = new SimpleObjectProperty<>(null);
     private static Scene curScene;
     private static Stage stage;
+
+    private static double multiplier = 1;
     //score
 
     public static int getScore() {
@@ -65,5 +67,13 @@ public class GameLogic {
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public static double getMultiplier() {
+        return multiplier;
+    }
+
+    public static void setMultiplier(double multiplier) {
+        GameLogic.multiplier = multiplier;
     }
 }
