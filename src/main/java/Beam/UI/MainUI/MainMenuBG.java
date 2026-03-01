@@ -11,25 +11,22 @@ import Beam.Image.OutlineText;
 
 public class MainMenuBG extends StackPane {
 
-    public MainMenuBG(Scene scene){
+    public MainMenuBG(){
+
+        ImageView MBg = Asset.createBackgroundView("BgLobby",1,1);
+
+        // bind กับตัวเอง
+        MBg.fitWidthProperty().bind(widthProperty());
+        MBg.fitHeightProperty().bind(heightProperty());
 
         FloorFade fade = new FloorFade(200);
         StackPane.setAlignment(fade, Pos.BOTTOM_CENTER);
 
-        OutlineText name = new OutlineText("sorabeam"  ,'M',18);
-        StackPane.setAlignment(name,Pos.BOTTOM_LEFT);
-        name.setMaxHeight(1);
-        name.setMaxWidth(1);
+        OutlineText name = new OutlineText("sorabeam",'M',18);
+        StackPane.setAlignment(name, Pos.BOTTOM_LEFT);
         StackPane.setMargin(name,new Insets(0,0,20,40));
 
-        ImageView MBg = Asset.createBackgroundView("BgLobby",1,1);
-
-        //  bind กับตัวเองแทน scene
-        MBg.fitWidthProperty().bind(widthProperty());
-        MBg.fitHeightProperty().bind(heightProperty());
-
-        getChildren().addAll(MBg,fade,name);
-
+        getChildren().addAll(MBg, fade, name);
     }
-
 }
+

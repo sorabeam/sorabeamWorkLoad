@@ -11,6 +11,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -39,10 +41,16 @@ public class InGameScene extends BaseRoot{
     public InGameScene(){
         super();
 
-        root.getChildren().add(new InGameBG(scene));
+        getStage().setMinWidth(1440);
+        getStage().setMinHeight(940);
+        getStage().setResizable(false);
+
+        setBackground(new Background(new BackgroundFill(Color.WHITE,null,null)));
+
+        root.getChildren().add(new InGameBG(root));
 
         uiLayer.getChildren().addAll(
-                new ExpBar(scene),
+                //new ExpBar(root),
                 settingZone,
                 lastRecord,
                 hpzone,
@@ -71,7 +79,7 @@ public class InGameScene extends BaseRoot{
         Rectangle ground = new Rectangle();
         ground.setHeight(groundH);
         ground.setLayoutX(0);
-        ground.widthProperty().bind(scene.widthProperty());
+        ground.widthProperty().bind(root.widthProperty());
         ground.layoutYProperty().bind(root.heightProperty().subtract(groundH));
         ground.setFill(Color.LIGHTGRAY);
         gameLayer.getChildren().add(ground);

@@ -19,9 +19,8 @@ public class MainMenuScene extends BaseRoot {
         StackPane MainMenuButtons = new MainMenuButtons();
         StackPane GlassDecoration = new GlassDecoration();
 
-
         root.getChildren().addAll(
-                new MainMenuBG(scene),
+                new MainMenuBG(),
                 profile,
                 Setting,
                 MainMenuButtons,
@@ -37,6 +36,6 @@ public class MainMenuScene extends BaseRoot {
 
     private void playMusic() {
         JooxBox sportify = new JooxBox();
-        sportify.play("MainMenuMusic", true, 100);
+        sportify.play("MainMenuMusic", true, 0);
     }
 }

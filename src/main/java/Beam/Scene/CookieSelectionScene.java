@@ -35,6 +35,7 @@ public class CookieSelectionScene extends BaseRoot{
         initCDBtn();
 
         HBox MainHBox = new HBox(new CharacterDisplay(this),new DataDisplay(txt,this),characterBoard);
+        MainHBox.setPadding(new Insets(0,30,0,30));
         CharacterSelectButtons Btns = new CharacterSelectButtons();
         VBox MainLayer = new VBox(Setting,MainHBox,Btns);
 
@@ -45,7 +46,7 @@ public class CookieSelectionScene extends BaseRoot{
 
         VBox.setMargin(Btns,new Insets(0,0,30,30));
         MainHBox.setPrefHeight(540);
-        MainHBox.setSpacing(40);
+        MainHBox.setSpacing(20);
         MainHBox.setAlignment(Pos.CENTER);
         MainLayer.setSpacing(60);
         MainLayer.setAlignment(Pos.TOP_RIGHT);

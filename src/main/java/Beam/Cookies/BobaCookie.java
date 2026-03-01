@@ -12,8 +12,9 @@ public class BobaCookie extends Cookie{
         super(1, "BobaCookie" , 500,
                 "Boba Milk Tea Cookie is a laid-back spirit " +"\n"+
                       "and the true queen of the boba world." +"\n"+
-                      "Every 10 seconds, she launches the Pearl Beads forward," +
-                "smashing through obstacles and earning bonus points.\"?");
+                      "Every 10 seconds, she launches the Pearl "+ " \n " +
+                      "Beads forward, smashing through obstacles "+ " \n " +
+                      "and earning bonus points.?");
 
         setImgURL("Boba_Milk_Tea_Cookie");
         skillcoodown = 10;

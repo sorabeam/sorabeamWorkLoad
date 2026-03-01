@@ -34,9 +34,9 @@ public class PetsShow extends HBox {
                 CharactorData.LOCKING.getName(),
                 CharactorData.LOCKING.getDesc(), 28,50);
 
-        getChildren().addAll(spacer, ins1, ins2, ins3, ins4);
+        getChildren().addAll( ins1, ins2, ins3, ins4);
         setSpacing(-15);
-        setPadding(new Insets(0,10,0,0));
+        setPadding(new Insets(0,0,0,0));
 
     }
 }

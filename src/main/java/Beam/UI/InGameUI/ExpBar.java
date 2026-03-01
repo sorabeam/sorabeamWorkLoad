@@ -8,9 +8,9 @@ import javafx.scene.layout.StackPane;
 
 public class ExpBar extends StackPane {
 
-    public ExpBar(Scene scene) {
+    public ExpBar(StackPane root) {
         ImageView ExpBar = Asset.createImageView("EXPBar", 0, 10);
-        ExpBar.fitWidthProperty().bind(scene.widthProperty());
+        ExpBar.fitWidthProperty().bind(root.widthProperty());
         StackPane.setAlignment(ExpBar, Pos.BOTTOM_CENTER);
 
         getChildren().add(ExpBar);

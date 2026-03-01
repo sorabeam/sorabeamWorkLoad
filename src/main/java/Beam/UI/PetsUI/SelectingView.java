@@ -2,9 +2,9 @@ package Beam.UI.PetsUI;
 
 import Beam.CharactorData;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.TextAlignment;
 import Beam.Asset;
 import Beam.Button.BaseButton;
@@ -13,24 +13,18 @@ import Beam.Image.OutlineText;
 import static javafx.geometry.Pos.*;
 
 public class SelectingView extends StackPane {
-    public SelectingView(){
+    public SelectingView(StackPane root){
 
-        setPrefSize(550, 865);
-        setMinSize(550, 550);
-        setMaxSize(550, 865);
-
-        Rectangle clip = new Rectangle();
-        clip.widthProperty().bind(widthProperty());
-        clip.heightProperty().bind(heightProperty());
-
-        setClip(clip);
+        setPrefSize(400, 865);
+        setMinSize(400, 550);
+        setMaxSize(400, 865);
 
         ImageView Show = CharactorData.getCurrent_Pet().getView();
         ImageView SelectingBg = CharactorData.getCurrent_Pet().getBg();
         BaseButton DeployBtn = new BaseButton( Asset.createImageView("DeplayBtn",0,330));
 
         SelectingBg.setPreserveRatio(false);
-        SelectingBg.fitHeightProperty().bind(heightProperty());
+        SelectingBg.fitHeightProperty().bind(root.heightProperty());
         StackPane.setAlignment(SelectingBg,CENTER);
 
         OutlineText PName = new OutlineText(CharactorData.getCurrent_Pet().getName(),'C',40);

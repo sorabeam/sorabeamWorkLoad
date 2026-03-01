@@ -20,7 +20,7 @@ public class NavBtn extends BaseButton{
     public void handleClick() {
         super.handleClick();
 
-        getStage().setResizable(false);
+        getStage().setResizable(true);
         GameLogic.setGameState(switchState);
         System.out.println(switchState);
     }

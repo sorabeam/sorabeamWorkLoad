@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 
 import Beam.CharactorData;
 import Beam.Image.OutlineText;
+import javafx.scene.paint.Color;
 
 public class PetsSelectionScene extends BaseRoot{
 
@@ -29,19 +30,20 @@ public class PetsSelectionScene extends BaseRoot{
         PetSelectionBtn petSelectionBtn = new PetSelectionBtn(spacer('H'));
         SettingZone settingZone = new SettingZone(root,spacer('H'));
         HBox petsShow = new PetsShow(spacer('H'),ins1, ins2, ins3, ins4);
-        SelectingView selectingView = new SelectingView();
+        SelectingView selectingView = new SelectingView(root);
 
         VBox leftVBox = new VBox(selectingView);
         VBox rightVBox = new VBox(settingZone,petsShow,petSelectionBtn);
         HBox mainHBox = new HBox(leftVBox,spacer('H'),rightVBox);
 
-
         HBox.setMargin(rightVBox,new Insets(20,20,30,0));
 
         root.getChildren().addAll(
-                new PetSelectionBG(scene),
+                new PetSelectionBG(),
                 mainHBox
         );
+
+        //root.setBackground(new Background(new BackgroundFill(Color.RED,null,null)));
 
         leftVBox.setPadding(new Insets(0,0,0,50));
         leftVBox.setAlignment(Pos.CENTER);
