@@ -3,11 +3,16 @@ package Pors.ObjectInGame.Items;
 import Beam.Cookies.Cookie;
 import Got.GameLogic.GameLogic;
 
-public class CroissantOriginal extends BaseItem {
+public class CroissantOriginal extends CroissantBase {
     private double multiplier;
 
-    public CroissantOriginal(String name, int multiplier){
-        super(name);
+//    public CroissantOriginal(String name, int multiplier){
+//        super(name);
+//        setMultiplier(multiplier);
+//    }
+
+    public CroissantOriginal(int multiplier){
+        super("CroissantOriginal");
         setMultiplier(multiplier);
     }
 
