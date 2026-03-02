@@ -150,6 +150,9 @@ public class Spawner {
             javafx.scene.Node node = it.next();
 
             if (node instanceof ItemView i) {
+                if(i.getTranslateY() >= sceneHeight-180) {
+                    i.setSpeed(getSpeed(), 0);
+                }
                 i.update();
 
                 if (i.getTranslateX() < -100 ||
@@ -211,5 +214,9 @@ public class Spawner {
                 }
             }
         }
+    }
+
+    public double getSpeed() {
+        return speed;
     }
 }

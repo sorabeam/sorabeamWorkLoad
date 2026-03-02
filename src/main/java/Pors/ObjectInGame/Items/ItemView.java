@@ -35,4 +35,9 @@ public class ItemView extends ImageView {
     public BaseItem getItem() {
         return item;
     }
+
+    public void setSpeed(double vx, double vy) {
+        this.vx = vx;
+        this.vy = vy;
+    }
 }

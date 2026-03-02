@@ -6,8 +6,13 @@ import Got.GameLogic.GameLogic;
 public class CroissantOriginal extends BaseItem {
     private double multiplier;
 
-    public CroissantOriginal(String name, int multiplier){
-        super(name);
+//    public CroissantOriginal(String name, int multiplier){
+//        super(name);
+//        setMultiplier(multiplier);
+//    }
+
+    public CroissantOriginal(int multiplier){
+        super("CroissantOriginal");
         setMultiplier(multiplier);
     }
 

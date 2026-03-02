@@ -11,6 +11,7 @@ public class GameLogic {
     private static final ObjectProperty<GameState> gameState = new SimpleObjectProperty<>(null);
     private static Scene curScene;
     private static Stage stage;
+    private static int cookieCountMod = 0;
     //score
 
     public static int getScore() {
@@ -65,5 +66,13 @@ public class GameLogic {
 
     public static Stage getStage() {
         return stage;
+    }
+
+    public static int getCookieCountMod() {
+        return cookieCountMod;
+    }
+
+    public static void setCookieCountMod(int cookieCountMod) {
+        GameLogic.cookieCountMod = cookieCountMod;
     }
 }

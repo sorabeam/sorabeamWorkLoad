@@ -2,8 +2,11 @@ package Beam.Scene;
 
 import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
+import Beam.Cookies.CrossiantCookie;
 import Beam.UI.InGameUI.*;
 import Filmmy.Pearl;
+import GameLogic.GameLogic;
+import Pors.ObjectInGame.Items.*;
 import Pors.ObjectInGame.Spawner;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -66,7 +69,8 @@ public class InGameScene extends BaseRoot{
         StackPane.setAlignment(settingZone,Pos.TOP_RIGHT);
         StackPane.setMargin(settingZone,new Insets(20,20,0,0));
 
-        Cookie player = new BobaCookie();
+//        Cookie player = new BobaCookie();
+        Cookie player = new CrossiantCookie();
 
         Spawner spawner =
                 new Spawner(
@@ -139,6 +143,30 @@ public class InGameScene extends BaseRoot{
                 //Pew-Pew Pearl And Obstacle
                 List<Node> toRemove = new ArrayList<>();
                 double screenWidth = getWidth();
+                if(player instanceof CrossiantCookie) {
+                    if(((CrossiantCookie) player).isUsingSkill()) {
+                        ((CrossiantCookie) player).setUsingSkill(false);
+                        BaseItem croissantSummon = null;
+                        int currentRoll = GameLogic.getCookieCountMod();
+                        if(currentRoll >= 300) {
+                            croissantSummon = new CroissantOriginal(1);
+                            currentRoll = 0;
+                        } else if(currentRoll >= 200) {
+                            croissantSummon = new CroissantButter(5);
+                        } else if(currentRoll >= 0) { //test !!! change back
+                            croissantSummon = new CroissantStrawberry(20);
+                        }
+
+                        ItemView croissantSummonView = new ItemView(croissantSummon, 0, 15);
+                        croissantSummonView.setTranslateX(Math.max(player.getHitbox().getLayoutX()+100, screenWidth-300));
+                        croissantSummonView.setFitHeight(150);
+                        croissantSummonView.setFitWidth(150);
+                        croissantSummonView.setPreserveRatio(true);
+                        gameLayer.getChildren().add(croissantSummonView);
+                        GameLogic.setCookieCountMod(currentRoll+1);
+                        System.out.println("Player using skill");
+                    }
+                }
 
                 for (Node node : gameLayer.getChildren()) {
 
@@ -175,6 +203,9 @@ public class InGameScene extends BaseRoot{
                 case SHIFT -> {
                     shiftHeld = true;
                     player.slide();
+                }
+                case Q -> {
+                    player.useSkill();
                 }
             }
         });
