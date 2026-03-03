@@ -19,25 +19,31 @@ public class Spawner {
     private double sceneWidth;
     private double sceneHeight;
     private Cookie cookie;
-    private double speed = -2.5;
+    private double speed = -350;
+
+    private long lastUpdateTime = 0;
 
     private List<List<SpawnAction>> spawnSets = List.of(
             //SET1
             List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 2_000_000_000L, "Jelly1", 100),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100),
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 1_000_000_000L, "ObsTest", 10),
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 3_000_000_000L, "ObsTest", 10),
-                    new SpawnAction(SpawnAction.Type.ITEM,     2_000_000_000L, "HealingPotion", 100)
+                    new SpawnAction(SpawnAction.Type.JELLY, 2_000_000_000L, "Jelly1", 100,650),
+                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100,650),
+                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100,650),
+                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100,525),
+                    new SpawnAction(SpawnAction.Type.OBSTACLE, 0L, "ObsTest", 10,650),
+                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100,650),
+                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100,650),
+                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 100,525),
+                    new SpawnAction(SpawnAction.Type.OBSTACLE, 0L, "ObsTest", 10,650),
+                    new SpawnAction(SpawnAction.Type.ITEM,     2_000_000_000L, "HealingPotion", 100,650)
             ),
 
             //SET2
             List.of(
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 1_000_000_000L, "ObsTest", 15),
-                    new SpawnAction(SpawnAction.Type.ITEM,     1_000_000_000L, "HealingPotion", 50),
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "ObsTest", 20),
-                    new SpawnAction(SpawnAction.Type.JELLY, 2_000_000_000L, "Jelly1", 100)
+                    new SpawnAction(SpawnAction.Type.OBSTACLE, 1_000_000_000L, "ObsTest", 15,650),
+                    new SpawnAction(SpawnAction.Type.ITEM,     1_000_000_000L, "HealingPotion", 50,650),
+                    new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "ObsTest", 20,650),
+                    new SpawnAction(SpawnAction.Type.JELLY, 2_000_000_000L, "Jelly1", 100,650)
             )
     );
 
@@ -56,12 +62,18 @@ public class Spawner {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                if (lastUpdateTime == 0) {
+                    lastUpdateTime = now;
+                    return;
+                }
+
+                double deltaTime = (now - lastUpdateTime) / 1_000_000_000.0;
+                lastUpdateTime = now;
+
                 spawnBySet(now);
-                //spawnObstacle(now);
-                updateObstacles();
-                //spawnItem(now);
-                updateItem();
-                updateJelly();
+                updateObstacles(deltaTime);
+                updateItem(deltaTime);
+                updateJelly(deltaTime);
                 checkCollision(cookie);
             }
         };
@@ -70,7 +82,12 @@ public class Spawner {
 
     private void spawnBySet(long now) {
 
-        if (currentSetIndex >= spawnSets.size()) return;
+        if (currentSetIndex >= spawnSets.size()) {
+            currentSetIndex = 0;
+            currentActionIndex = 0;
+            lastSpawnTime = now;
+            return;
+        }
 
         List<SpawnAction> set = spawnSets.get(currentSetIndex);
 
@@ -93,7 +110,7 @@ public class Spawner {
 
         lastSpawnTime = now;
 
-        double y = 650;
+        //double y = 650;
 
         if (action.type == SpawnAction.Type.OBSTACLE) {
             ObstacleView obs = new ObstacleView(
@@ -102,7 +119,7 @@ public class Spawner {
                     0
             );
             obs.setTranslateX(sceneWidth + 50);
-            obs.setTranslateY(y);
+            obs.setTranslateY(action.height);
             gameLayer.getChildren().add(obs);
 
         } else if (action.type == SpawnAction.Type.ITEM){
@@ -112,7 +129,7 @@ public class Spawner {
                     0
             );
             item.setTranslateX(sceneWidth + 50);
-            item.setTranslateY(y);
+            item.setTranslateY(action.height);
             gameLayer.getChildren().add(item);
         } else {
             JellyView jelly = new JellyView(
@@ -121,20 +138,20 @@ public class Spawner {
                     0
             );
             jelly.setTranslateX(sceneWidth + 50);
-            jelly.setTranslateY(y);
+            jelly.setTranslateY(action.height);
             gameLayer.getChildren().add(jelly);
         }
 
         currentActionIndex++;
     }
 
-    private void updateObstacles() {
+    private void updateObstacles(double deltaTime) {
         Iterator<javafx.scene.Node> it = gameLayer.getChildren().iterator();
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
             if (node instanceof ObstacleView o) {
-                o.update();
+                o.update(deltaTime);
 
                 if (o.getTranslateX() < -100 ||
                         o.getTranslateY() > sceneHeight + 100) {
@@ -144,13 +161,13 @@ public class Spawner {
         }
     }
 
-    private void updateItem() {
+    private void updateItem(double deltaTime) {
         Iterator<javafx.scene.Node> it = gameLayer.getChildren().iterator();
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
             if (node instanceof ItemView i) {
-                i.update();
+                i.update(deltaTime);
 
                 if (i.getTranslateX() < -100 ||
                         i.getTranslateY() > sceneHeight + 100) {
@@ -160,13 +177,13 @@ public class Spawner {
         }
     }
 
-    private void updateJelly() {
+    private void updateJelly(double deltaTime) {
         Iterator<javafx.scene.Node> it = gameLayer.getChildren().iterator();
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
             if (node instanceof JellyView i) {
-                i.update();
+                i.update(deltaTime);
 
                 if (i.getTranslateX() < -100 ||
                         i.getTranslateY() > sceneHeight + 100) {

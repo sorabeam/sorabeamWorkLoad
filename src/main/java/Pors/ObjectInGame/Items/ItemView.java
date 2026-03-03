@@ -19,9 +19,9 @@ public class ItemView extends ImageView {
         setFitHeight(50);
     }
 
-    public void update() {
-        setTranslateX(getTranslateX() + vx);
-        setTranslateY(getTranslateY() + vy);
+    public void update(double deltaTime) {
+        setTranslateX(getTranslateX() + vx * deltaTime);
+        setTranslateY(getTranslateY() + vy * deltaTime);
     }
 
     public int getHealAmount() {

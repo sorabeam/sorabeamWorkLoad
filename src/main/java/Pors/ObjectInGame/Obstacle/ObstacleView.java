@@ -19,9 +19,14 @@ public class ObstacleView extends ImageView {
         setFitHeight(90);
     }
 
-    public void update() {
+    /*public void update() {
         setTranslateX(getTranslateX() + vx);
         setTranslateY(getTranslateY() + vy);
+    }*/
+
+    public void update(double deltaTime) {
+        setTranslateX(getTranslateX() + vx * deltaTime);
+        setTranslateY(getTranslateY() + vy * deltaTime);
     }
 
     public int getDamage() {
