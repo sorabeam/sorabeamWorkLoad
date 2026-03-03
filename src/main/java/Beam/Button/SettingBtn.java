@@ -62,7 +62,6 @@ public class SettingBtn extends BaseButton {
 //      BtnPane.setBackground(new Background(new BackgroundFill(Color.GREEN,null,null)));
 
         NavBtn play = new NavBtn(Asset.createImageView("SBtnBg",0,400), GameState.INGAME);
-        deleteThis(play);
         StackPane stpp = new StackPane(Asset.createImageView("SBtnBg",0,400));
         OutlineText outl = new OutlineText("Play",'C',25);
         outl.setDropShadow(shadow);
@@ -71,6 +70,7 @@ public class SettingBtn extends BaseButton {
         StackPane.setAlignment(outl,Pos.TOP_LEFT);
         StackPane.setMargin(outl,new Insets(24,0,0,86));
         play.setGraphic(stpp);
+        deleteThis(play);
 
         NavBtn selectPets = new NavBtn(Asset.createImageView("SBtnBg",0,400), GameState.SELECTPET);
         deleteThis(selectPets);
@@ -148,11 +148,19 @@ public class SettingBtn extends BaseButton {
 
     private void deleteThis(BaseButton button) {
 
+        var oldAction = button.getOnAction();
+
         button.setOnAction(e -> {
-            root.getChildren().remove(overlay);
-            if(button instanceof NavBtn){
-                GameLogic.setGameState(((NavBtn)button).getSwitchState());
+
+            if(button instanceof NavBtn && ((NavBtn)button).getSwitchState() == GameLogic.getGameState() ) {
+                root.getChildren().remove(overlay);
+                return;
             }
+
+            if (oldAction != null) {
+                oldAction.handle(e);
+            }
+            root.getChildren().remove(overlay);
         });
     }
 }
