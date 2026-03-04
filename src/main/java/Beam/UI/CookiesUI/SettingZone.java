@@ -22,6 +22,7 @@ public class SettingZone extends HBox {
         setMaxHeight(80);
         setMaxWidth(500);
 
+        setPadding(new Insets(0,22,0,0));
         setSpacing(10);
         getChildren().addAll(spacer,Pname,WifiImg, NavSettingBtn);
 

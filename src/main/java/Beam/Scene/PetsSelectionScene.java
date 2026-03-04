@@ -39,9 +39,10 @@ public class PetsSelectionScene extends BaseRoot{
 
         VBox leftVBox = new VBox(selectingView);
         VBox rightVBox = new VBox(settingZone,box,petSelectionBtn);
+        VBox.setMargin(settingZone,new Insets(20,20,0,0));
         HBox mainHBox = new HBox(leftVBox,spacer('H'),rightVBox);
 
-        HBox.setMargin(rightVBox,new Insets(20,20,30,0));
+        HBox.setMargin(rightVBox,new Insets(8,-12,0,0));
 
         root.getChildren().addAll(
                 new PetSelectionBG(),
