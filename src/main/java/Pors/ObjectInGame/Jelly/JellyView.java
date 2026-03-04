@@ -75,4 +75,13 @@ public class JellyView extends ImageView {
     public BaseJelly getJelly() {
         return jelly;
     }
+
+    public void setSpeed(double vx, double vy) {
+        this.vx = vx;
+        this.vy = vy;
+    }
+
+    public void setSpeedX(double vx) {
+        this.vx = vx;
+    }
 }

@@ -86,4 +86,9 @@ public class Croissant extends BaseItem {
                 break;
         }
     }
+
+    public void setSpeed(double vx, double vy) {
+        this.vx = vx;
+        this.vy = vy;
+    }
 }

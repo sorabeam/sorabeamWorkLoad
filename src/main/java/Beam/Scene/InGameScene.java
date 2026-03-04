@@ -5,6 +5,7 @@ import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
 import Beam.Cookies.CrossiantCookie;
 import Beam.Cookies.TomYumCookie;
+import Beam.Pets.Chilly;
 import Beam.Pets.Pet;
 import Beam.Pets.Salad;
 import Beam.UI.InGameUI.*;
@@ -41,7 +42,8 @@ public class InGameScene extends BaseRoot{
     StackPane uiLayer = new StackPane(); // สำหรับ UI
 
     private boolean shiftHeld = false;
-    double groundSpeed = -350;
+//    double groundSpeedDefault = Spawner.getSpeed();
+//    double groundSpeed = Spawner.getSpeed();
 
     SettingZone settingZone = new SettingZone(this,spacer('H'));
     HpDisplayZone hpzone = new HpDisplayZone();
@@ -86,7 +88,8 @@ public class InGameScene extends BaseRoot{
 //       Cookie player = new BobaCookie();
         Cookie player = CharactorData.getCurrent_Cookie();
 //        Pet pet = CharactorData.getCurrent_Pet();
-        Pet pet = new Salad();
+//        Pet pet = new Salad();
+        Pet pet = new Chilly();
 
         spawner =
                 new Spawner(
@@ -183,6 +186,7 @@ public class InGameScene extends BaseRoot{
                 groundY = gameLayer.getHeight() - groundH;
 
                 double groundWidth = scene.getWidth();
+                double groundSpeed = Spawner.getSpeed();
 
                 ground1.setTranslateX(ground1.getTranslateX() + groundSpeed * dt);
                 ground2.setTranslateX(ground2.getTranslateX() + groundSpeed * dt);
@@ -223,7 +227,7 @@ public class InGameScene extends BaseRoot{
                         double petY = pet.getView().getLayoutY() + pet.getView().getTranslateY();
                         spawnItem.setTranslateX(petX);
                         spawnItem.setTranslateY(petY);
-                        spawnItem.setSpeed(-350, 0);
+                        spawnItem.setSpeed(Spawner.getSpeed(), 0);
                         pet.setUsingSkill(false);
                         tarPetPosY = 0;
                         pet.getView().setEffect(null);
