@@ -50,13 +50,12 @@ public abstract class Pet {
         double x = getView().getLayoutX();
         double y = getView().getLayoutY();
         double ux = getTargetPosX()-x;
-        double uy = getTargetPoxY()-getView().getLayoutY();
+        double uy = getTargetPoxY()-y;
         double dist = Math.hypot(ux, uy);
-        if(dist==0) return;
-        double oneUx = ux/dist;
-        double oneUy = uy/dist;
-        getView().setLayoutX(Math.min(x+oneUx*speed*dt, getTargetPosX()));
-        getView().setLayoutY(Math.min(y+oneUy*speed*dt, getTargetPoxY()));
+        if(dist<1e-6) return;
+        double step = Math.min(speed*dt, dist);
+        view.setLayoutX(x+ux/dist*step);
+        view.setLayoutY(y+uy/dist*step);
     }
 
     public void updateIndex() {

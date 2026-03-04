@@ -10,7 +10,7 @@ public class Moji extends Pet {
         setView(Asset.createImageView("Moji",0,480));
         setBg(Asset.createImageView("Selecting_Boba",0,350));
         setBtnView(Asset.createImageView("UnSelect_Boba",0,230));
-        setCooldowntime(5000);
+        setCooldowntime(20000);
         setSkillReady(true);
         setUsingSkill(false);
         setSpeed(500);

@@ -123,6 +123,7 @@ public class InGameScene extends BaseRoot{
         timer = new AnimationTimer() {
 
             long last = 0;
+            double petCooldownTimer = pet.getCooldowntime()/1000.0;
 
             @Override
             public void handle(long now) {
@@ -139,8 +140,14 @@ public class InGameScene extends BaseRoot{
 
                 player.update(dt);          // physics + movement
                 player.getCookie().update(dt);
-
 //                pet.getView().layoutYProperty().bind(player.getCookie().layoutYProperty().add(30));
+
+                petCooldownTimer -= dt;
+                if(petCooldownTimer<=0) {
+                    pet.useSkill();
+                    petCooldownTimer = pet.getCooldowntime()/1000.0;
+                }
+
                 if(pet.isUsingSkill()) {
                     double tarPetPosX = Math.max(player.getCookie().getLayoutX()+100, getWidth()-100);
                     double tarPetPosY = player.getCookie().getLayoutY();
@@ -149,9 +156,11 @@ public class InGameScene extends BaseRoot{
                         ItemView spawnItem = pet.getCurrentSpawnItem();
                         pet.updateIndex();
                         gameLayer.getChildren().add(spawnItem);
-                        spawnItem.setLayoutX(pet.getView().getLayoutX());
-                        spawnItem.setLayoutY(pet.getView().getLayoutY());
-                        spawnItem.setSpeed(-100, 0);
+                        double petX = pet.getView().getLayoutX() + pet.getView().getTranslateX();
+                        double petY = pet.getView().getLayoutY() + pet.getView().getTranslateY();
+                        spawnItem.setTranslateX(petX);
+                        spawnItem.setTranslateY(petY);
+                        spawnItem.setSpeed(-350, 0);
                         pet.setUsingSkill(false);
                     }
                 } else {
@@ -240,9 +249,9 @@ public class InGameScene extends BaseRoot{
                 case Q -> {
                     player.useSkill();
                 }
-                case T -> {
-                    pet.useSkill();
-                }
+//                case T -> {
+//                    pet.useSkill();
+//                }
             }
         });
 
