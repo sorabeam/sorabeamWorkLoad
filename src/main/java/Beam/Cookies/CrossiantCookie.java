@@ -2,6 +2,7 @@ package Beam.Cookies;
 
 import Beam.Animation.Animate;
 import Beam.Animation.AnimationType;
+import Beam.Asset;
 import Beam.Image.OutlineText;
 import Pors.ObjectInGame.Items.CroissantType;
 import javafx.scene.effect.DropShadow;
@@ -23,6 +24,7 @@ public class CrossiantCookie extends Cookie {
                         "Butter gives a Speed Boost," + "\n" +
                         "and Strawberry restores 20 HP.");
         setImgURL("Croissant_Cookie_sheet");
+        setProfileImg(Asset.getImage("Profile_Cross"));
         setScore(256200);
     }
 

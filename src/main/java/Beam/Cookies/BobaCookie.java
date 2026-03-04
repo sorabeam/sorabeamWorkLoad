@@ -12,7 +12,7 @@ public class BobaCookie extends Cookie{
 
     public BobaCookie(){
 
-        super(1, "BobaCookie" , 150,
+        super(1, "Boba" , 150,
                 "Boba Milk Tea Cookie is a laid-back" +"\n"+
                         "spirit  and the true queen of" +"\n"+
                         "the boba world. Every 10 seconds,"+ "\n" +
@@ -21,6 +21,7 @@ public class BobaCookie extends Cookie{
                         "earning bonus points." );
 
         setImgURL("Boba_Milk_Tea_Cookie");
+        setProfileImg(Asset.getImage("Profile_Boba"));
         setScore(23500);
     }
 

@@ -1,5 +1,9 @@
 package Beam.Button;
 
+import Beam.CharactorData;
+import Beam.Pets.Pet;
+import Got.GameLogic.GameLogic;
+import Got.GameLogic.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -7,15 +11,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import Beam.Image.OutlineText;
 
+import static Got.GameLogic.GameLogic.getStage;
+
 public class SelectPBtn extends BaseButton{
 
     ImageView img;
     Image I,Bg;
     String name,D;
+    Pet pet;
+    public SelectPBtn(Pet pet ,int txtSize, double MarginBtm) {
+        super(new ImageView(pet.getBtnImage()));
 
-    public SelectPBtn(ImageView img, Image I , Image Bg, String name , String D, int txtSize, double MarginBtm) {
-
-        super(img);
+        img = new ImageView(pet.getBtnImage());
+        img.setFitWidth(230);
+        img.setPreserveRatio(true);
+        I = pet.getView().getImage();
+        Bg = pet.getBgImage();
+        name = pet.getName();
+        D = pet.getDesc();
 
         img.setFitWidth(270);
 
@@ -25,6 +38,8 @@ public class SelectPBtn extends BaseButton{
         FavBtn fav = BuildFav();
         StackPane newImg = new StackPane(fav,img,txt);
         super.setGraphic(newImg);
+
+        this.pet = pet;
     }
 
     private OutlineText setText(String text,int txtSize,double MarginBtm){
@@ -45,6 +60,12 @@ public class SelectPBtn extends BaseButton{
         StackPane.setMargin(fav , new Insets(0,0,18,40));
 
         return fav;
+    }
+
+    @Override
+    public void handleClick() {
+        super.handleClick();
+        CharactorData.setCurrent_Pet(pet);
     }
 
     public ImageView getImg() {

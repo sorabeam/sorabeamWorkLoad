@@ -1,5 +1,6 @@
 package Got.GameLogic;
 
+import Beam.CharactorData;
 import Beam.Media.JooxBox;
 import Beam.Scene.*;
 import javafx.application.Application;
@@ -73,6 +74,7 @@ public class TestInGame2 extends Application {
 
                 case INGAME -> {
 
+                    CharactorData.getCurrent_Cookie().setHp(CharactorData.getCurrent_Cookie().getMaxhp());
                     GameLogic.setScore(0);
                     playMusic("SoundMAP" + GameLogic.getMap(),50);
 

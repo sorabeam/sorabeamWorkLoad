@@ -5,14 +5,23 @@ import Beam.Media.JooxBox;
 import Got.GameLogic.GameLogic;
 import Pors.ObjectInGame.Interactable;
 
+import java.util.Objects;
+
 public class BaseJelly implements Interactable {
     private String name;
     private int score;
 
-    public BaseJelly(String name, int score)
+    public BaseJelly(String name)
     {
         setName(name);
-        setScore(score);
+        if(Objects.equals(name, "Jelly2"))
+        {
+            setScore(200);
+        }
+        else
+        {
+            setScore(100);
+        }
     }
 
     @Override

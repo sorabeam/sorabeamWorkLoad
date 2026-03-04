@@ -13,8 +13,9 @@ public class Moji extends Pet {
         super(3, "Moji Niga", " au ai ah ");
 
         setView(Asset.createImageView("Moji",0,480));
-        setBg(Asset.createImageView("Selecting_Boba",0,350));
-        setBtnView(Asset.createImageView("UnSelect_Boba",0,230));
+        setViewImage(Asset.getImage("Moji"));
+        setBgImage(Asset.getImage("Selecting_Boba"));
+        setBtnImage(Asset.getImage("UnSelect_Boba"));
         setCooldowntime(20000);
 //        setCooldowntime(5000);
         setSkillReady(true);

@@ -24,21 +24,17 @@ public class CharactorData {
 
     public static final Pet MOJINIGA = new Moji();
 
+    public static final Pet Chilly = new Chilly();
 
-
-    public static final Pet PANDAFANG =
-            new SamplePet(2, "Kangfuniga","Chi ga dutch","Pitachio");
-
-    public static final Pet KANGFUNIGA =
-            new SamplePet(3, "Kangfuniga","Chi ga dutch","Pitachio");
+    public static final Pet SALAD = new Salad();
 
     public static final Pet LOCKING =
-            new SamplePet(4, "Lock","Play more 1.67M Games to unlock","Lemon");
+            new SamplePet(4, "Lock","","UnSelect_Lock");
 
 
 
     private static Cookie Current_Cookie = BOBACOOKIE;
-    private static Pet Current_Pet = CHILLY;
+    private static Pet Current_Pet = SALAD;
 
 
 

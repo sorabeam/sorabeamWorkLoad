@@ -10,6 +10,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -56,6 +57,8 @@ public abstract class Cookie {
     String name;
     String desc;
 
+    Image profileImg;
+
     public Cookie(int id,String name,int hp, String desc) {
 
         this.id = id;
@@ -83,9 +86,11 @@ public abstract class Cookie {
     public abstract void useSkill();
 
     public void takeDamage(int damage){
-
         hp -= damage;
+        GameLogic.getHpBar().updateHpBar();
         System.out.println("Cookie take " + damage + " damage");
+
+        System.out.println(hp);
         JooxBox.getInstance().playSFX("Hit",100);
 
         cookie.changeAnimationState(AnimationType.TAKE_DAMAGE);
@@ -103,6 +108,8 @@ public abstract class Cookie {
     }
 
     public void heal(int healunit){
+
+        GameLogic.getHpBar().updateHpBar();
         hp = Math.min(maxhp,hp + healunit);;
         System.out.println("Cookie get " + healunit + " heathPoint");
     }
@@ -149,6 +156,22 @@ public abstract class Cookie {
         );
 
         return cookie;
+    }
+
+    public int getMaxhp() {
+        return maxhp;
+    }
+
+    public void setMaxhp(int maxhp) {
+        this.maxhp = maxhp;
+    }
+
+    public Image getProfileImg() {
+        return profileImg;
+    }
+
+    public void setProfileImg(Image profileImg) {
+        this.profileImg = profileImg;
     }
 
     public void update(double deltaTime){

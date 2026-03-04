@@ -1,6 +1,7 @@
 package Got.GameLogic;
 
 import Beam.Scene.*;
+import Beam.UI.InGameUI.HpDisplayZone;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -18,6 +19,7 @@ public class GameLogic {
     private static TestInGame2 app;
     private static int cookieCountMod = 0;
     private static int Map = 1;
+    private static HpDisplayZone hpBar;
 
     private static StackPane gameroot;
 
@@ -142,5 +144,21 @@ public class GameLogic {
 
     public static void setGameroot(StackPane gameroot) {
         GameLogic.gameroot = gameroot;
+    }
+
+    public static void setBestScore(int bestScore) {
+        GameLogic.bestScore = bestScore;
+    }
+
+    public static HpDisplayZone getHpBar() {
+        return hpBar;
+    }
+
+    public static void setHpBar(HpDisplayZone hpBar) {
+        GameLogic.hpBar = hpBar;
+    }
+
+    public static InGameScene getCurrentGameScene() {
+        return currentGameScene;
     }
 }

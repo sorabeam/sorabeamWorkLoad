@@ -1,5 +1,7 @@
 package Beam.Cookies;
 
+import Beam.Asset;
+
 public class TomYumCookie extends Cookie {
     protected double cooldownTimer = 0;
     protected double skillCooldown = 20;
@@ -15,6 +17,7 @@ public class TomYumCookie extends Cookie {
                         "Jellies fall from the sky," + "\n" +
                         "granting bonus points.");
         setImgURL("TomYum_Cookie_sheet");
+        setProfileImg(Asset.getImage("Profile_Tomyum"));
         setScore(133000);
     }
 

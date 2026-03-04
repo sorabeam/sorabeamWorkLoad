@@ -1,8 +1,8 @@
 package Beam.UI.PetsUI;
 
 import Beam.CharactorData;
+import Beam.Scene.PetsSelectionScene;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextAlignment;
@@ -13,35 +13,49 @@ import Beam.Image.OutlineText;
 import static javafx.geometry.Pos.*;
 
 public class SelectingView extends StackPane {
-    public SelectingView(StackPane root){
+
+    public SelectingView(StackPane root, PetsSelectionScene mscene){
 
         setPrefSize(600, 1000);
         setMinSize(400, 550);
         setMaxSize(600, 1000);
 
-        ImageView Show = CharactorData.getCurrent_Pet().getView();
-        ImageView SelectingBg = CharactorData.getCurrent_Pet().getBg();
-        BaseButton DeployBtn = new BaseButton( Asset.createImageView("DeplayBtn",0,330));
+        System.out.println(CharactorData.getCurrent_Pet().getViewImage());
+        ImageView show = new ImageView( CharactorData.getCurrent_Pet().getViewImage() );
+        show.setPreserveRatio(true);
 
-        SelectingBg.setPreserveRatio(false);
-        SelectingBg.fitHeightProperty().bind(root.heightProperty());
-        StackPane.setAlignment(SelectingBg,CENTER);
+        ImageView selectingBg = new ImageView(
+                CharactorData.getCurrent_Pet().getBgImage()
+        );
 
-        OutlineText PName = new OutlineText(CharactorData.getCurrent_Pet().getName(),'C',40);
+        selectingBg.setPreserveRatio(false);
+        selectingBg.setFitWidth(350);
+        selectingBg.fitHeightProperty().bind(root.heightProperty());
+        StackPane.setAlignment(selectingBg, CENTER);
 
-        OutlineText description = new OutlineText(CharactorData.getCurrent_Pet().getDesc(),'M',20);
+        OutlineText pName =
+                new OutlineText(CharactorData.getCurrent_Pet().getName(),'C',40);
+
+        OutlineText description =
+                new OutlineText(CharactorData.getCurrent_Pet().getDesc(),'M',20);
+
         description.setTextAlignment(TextAlignment.CENTER);
 
-        Show.setFitWidth(450);
-        Show.setFitHeight(450);
-        VBox vbox = new VBox(Show,PName,DeployBtn,description);
+        show.setFitWidth(450);
+        show.setFitHeight(450);
 
+        VBox vbox = new VBox(show, pName, description);
         vbox.setAlignment(Pos.CENTER);
-        setAlignment(vbox, Pos.CENTER);
         vbox.setSpacing(30);
 
-        getChildren().addAll(SelectingBg, vbox);
+        setAlignment(vbox, Pos.CENTER);
 
+        // ส่ง reference กลับไป scene
+        mscene.setShowi(show);
+        mscene.setBgi(selectingBg);
+        mscene.setName(pName);
+        mscene.setDescription(description);
+
+        getChildren().addAll(selectingBg, vbox);
     }
 }
-
