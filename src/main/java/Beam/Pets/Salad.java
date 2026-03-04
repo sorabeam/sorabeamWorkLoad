@@ -1,31 +1,41 @@
 package Beam.Pets;
 
 import Beam.Asset;
+import Pors.ObjectInGame.Items.Chicken;
 import Pors.ObjectInGame.Items.ItemView;
-import Pors.ObjectInGame.Items.StickyMochi;
+import Pors.ObjectInGame.Items.Tomato;
+import Pors.ObjectInGame.Items.Vegetable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Moji extends Pet {
+public class Salad extends Pet {
 
-    public Moji() {
-        super(1, "Moji Niga", " au ai ah ");
+    public Salad() {
+        super(1, "Salad", " I want to break free ");
 
-        setView(Asset.createImageView("Moji",0,480));
+        setView(Asset.createImageView("Salad",0,480));
         setBg(Asset.createImageView("Selecting_Boba",0,350));
         setBtnView(Asset.createImageView("UnSelect_Boba",0,230));
-        setCooldowntime(20000);
-//        setCooldowntime(5000);
+        setCooldowntime(5000);
         setSkillReady(true);
         setUsingSkill(false);
         setSpeed(500);
+        setUseRandomSpin(true);
 
         setSpawnItemList(
             new ArrayList<>(Arrays.asList(
-                () -> new ItemView(new StickyMochi(), 0, 0)
+                    () -> new ItemView(new Tomato(), 0, 0),
+                    () -> new ItemView(new Vegetable(), 0, 0),
+                    () -> new ItemView(new Chicken(), 0, 0)
             ))
         );
+
+        setProbability(new ArrayList<>(Arrays.asList(
+                0.05,
+                0.65,
+                0.30
+        )));
     }
 
     @Override

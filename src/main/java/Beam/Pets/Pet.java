@@ -27,10 +27,10 @@ public abstract class Pet {
     private double targetPoxY;
     private double speed;
 
-    private int indexRoll = 0;
-    private final ArrayList<Supplier<ItemView>> spawnItemList = new ArrayList<>(Arrays.asList(
-            () -> new ItemView(new StickyMochi(), 0, 0)
-    ));
+    private int indexRoll = -1; //updateIndex before using
+    private ArrayList<Supplier<ItemView>> spawnItemList;
+    private ArrayList<Double> probability;
+    private boolean useRandomSpin;
 
     public Pet(int id, String name, String desc) {
         this.id = id;
@@ -38,6 +38,7 @@ public abstract class Pet {
         BGid = "BG" + id;
         this.name = name;
         this.desc = desc;
+        useRandomSpin = false;
     }
 
     public boolean hasArrived() {
@@ -59,9 +60,22 @@ public abstract class Pet {
     }
 
     public void updateIndex() {
-        indexRoll+=1;
-        int sz = spawnItemList.size();
-        if(indexRoll>=sz) indexRoll = 0;
+        if(useRandomSpin) {
+            double r = Math.random();
+            double cumulative = 0;
+            for (int i = 0; i < probability.size(); i++) {
+                cumulative += probability.get(i);
+                if (r <= cumulative) {
+                    indexRoll = i;
+                    return;
+                }
+            }
+            indexRoll = probability.size() - 1;
+        } else {
+            indexRoll+=1;
+            int sz = spawnItemList.size();
+            if(indexRoll>=sz) indexRoll = 0;
+        }
     }
 
     public int getId() { return id; }
@@ -154,5 +168,25 @@ public abstract class Pet {
 
     public ItemView getCurrentSpawnItem() {
         return spawnItemList.get(indexRoll).get();
+    }
+
+    public void setSpawnItemList(ArrayList<Supplier<ItemView>> spawnItemList) {
+        this.spawnItemList = spawnItemList;
+    }
+
+    public ArrayList<Supplier<ItemView>> getSpawnItemList() {
+        return spawnItemList;
+    }
+
+    public void setUseRandomSpin(boolean useRandomSpin) {
+        this.useRandomSpin = useRandomSpin;
+    }
+
+    public ArrayList<Double> getProbability() {
+        return probability;
+    }
+
+    public void setProbability(ArrayList<Double> probability) {
+        this.probability = probability;
     }
 }

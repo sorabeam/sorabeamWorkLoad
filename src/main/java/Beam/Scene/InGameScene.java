@@ -5,6 +5,7 @@ import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
 import Beam.Cookies.CrossiantCookie;
 import Beam.Pets.Pet;
+import Beam.Pets.Salad;
 import Beam.UI.InGameUI.*;
 import Filmmy.Pearl;
 import Got.GameLogic.GameLogic;
@@ -71,7 +72,8 @@ public class InGameScene extends BaseRoot{
 
 //       Cookie player = new BobaCookie();
         Cookie player = CharactorData.getCurrent_Cookie();
-        Pet pet = CharactorData.getCurrent_Pet();
+//        Pet pet = CharactorData.getCurrent_Pet();
+        Pet pet = new Salad();
 
         spawner =
                 new Spawner(
@@ -153,8 +155,8 @@ public class InGameScene extends BaseRoot{
                     double tarPetPosY = player.getCookie().getLayoutY();
                     pet.setTargetPos(tarPetPosX, tarPetPosY);
                     if(pet.hasArrived()) {
-                        ItemView spawnItem = pet.getCurrentSpawnItem();
                         pet.updateIndex();
+                        ItemView spawnItem = pet.getCurrentSpawnItem();
                         gameLayer.getChildren().add(spawnItem);
                         double petX = pet.getView().getLayoutX() + pet.getView().getTranslateX();
                         double petY = pet.getView().getLayoutY() + pet.getView().getTranslateY();
