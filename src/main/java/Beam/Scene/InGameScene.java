@@ -87,9 +87,9 @@ public class InGameScene extends BaseRoot{
 
 //       Cookie player = new BobaCookie();
         Cookie player = CharactorData.getCurrent_Cookie();
-//        Pet pet = CharactorData.getCurrent_Pet();
-//        Pet pet = new Salad();
-        Pet pet = new Chilly();
+        Pet pet = CharactorData.getCurrent_Pet();
+//        Pet pet = new Salad()s;
+//        Pet pet = new Chilly();
 
         spawner =
                 new Spawner(
