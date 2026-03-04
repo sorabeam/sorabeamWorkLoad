@@ -25,7 +25,7 @@ public class PetsSelectionScene extends BaseRoot{
         super();
 
         ins1 = new SelectPBtn(CharactorData.MOJINIGA,28,50);
-        ins2 = new SelectPBtn(CharactorData.MOJINIGA,28,50);
+        ins2 = new SelectPBtn(CharactorData.Chilly,28,50);
         ins3 = new SelectPBtn(CharactorData.SALAD,28,50);
         ins4 = new SelectPBtn(CharactorData.LOCKING,28,50);
 

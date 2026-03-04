@@ -1,10 +1,7 @@
 package Beam;
 
 import Beam.Cookies.*;
-import Beam.Pets.Moji;
-import Beam.Pets.Pet;
-import Beam.Pets.Salad;
-import Beam.Pets.SamplePet;
+import Beam.Pets.*;
 
 public class CharactorData {
 
@@ -25,8 +22,7 @@ public class CharactorData {
 
     public static final Pet MOJINIGA = new Moji();
 
-    public static final Pet PANDAFANG =
-            new SamplePet(2, "Pandadang","Hello Boi","DrogonFruit");
+    public static final Pet Chilly = new Chilly();
 
     public static final Pet SALAD = new Salad();
 
