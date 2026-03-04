@@ -13,12 +13,13 @@ public class CharactorData {
     private CharactorData() {}
 
 
+
     public static final Cookie BOBACOOKIE = new BobaCookie();
 
     public static final Cookie CROSSIANT_COOKIE = new CrossiantCookie();
 
     public static final Cookie TOMYUM_COOKIE =
-            new SampleCookie(2, "Pure Vanilla", 500, "Nihhen");
+            new SampleCookie(2, "TOMYUMCOOKIE", 500, "Nihhen");
 
     public static final Cookie LOCKING_COOKIE =
             new SampleCookie(4, "Holly Berry", 500, "MeowMeow");
@@ -40,6 +41,7 @@ public class CharactorData {
 
     private static Cookie Current_Cookie = BOBACOOKIE;
     private static Pet Current_Pet = MOJINIGA;
+
 
 
 

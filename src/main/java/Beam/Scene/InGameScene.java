@@ -8,6 +8,7 @@ import Beam.UI.InGameUI.*;
 import Filmmy.Pearl;
 import Got.GameLogic.GameLogic;
 import Pors.ObjectInGame.Items.*;
+import Pors.ObjectInGame.Jelly.JellyView;
 import Pors.ObjectInGame.Spawner;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -142,33 +143,13 @@ public class InGameScene extends BaseRoot{
                 //Pew-Pew Pearl And Obstacle
                 List<Node> toRemove = new ArrayList<>();
                 double screenWidth = getWidth();
-                if(player instanceof CrossiantCookie) {
 
-                    if(((CrossiantCookie) player).isUsingSkill()) {
-                        ((CrossiantCookie) player).setUsingSkill(false);
-                        BaseItem croissantSummon = null;
-                        int currentRoll = GameLogic.getCookieCountMod();
-                        if(currentRoll >= 300) {
-                            croissantSummon = new CroissantOriginal(1);
-                            currentRoll = 0;
-                        } else if(currentRoll >= 200) {
-                            croissantSummon = new CroissantButter(5);
-                        } else if(currentRoll >= 0) { //test !!! change back
-                            croissantSummon = new CroissantStrawberry(20);
-                            //Test scoreboard
-//                            Platform.runLater(() -> {
-//                                GameLogic.addScore(5000);
-//                            });
-                        }
+                if (player instanceof CrossiantCookie croissant) {
 
-                        ItemView croissantSummonView = new ItemView(croissantSummon, 0, 15);
-                        croissantSummonView.setTranslateX(Math.max(player.getHitbox().getLayoutX()+100, screenWidth-300));
-                        croissantSummonView.setFitHeight(150);
-                        croissantSummonView.setFitWidth(150);
-                        croissantSummonView.setPreserveRatio(true);
-                        gameLayer.getChildren().add(croissantSummonView);
-                        GameLogic.setCookieCountMod(currentRoll+1);
-                        System.out.println("Player using skill");
+                    if (croissant.isCroissantReady()) {
+
+                        CroissantType type = croissant.consumeCroissant();
+                        //spawnCroissant(type);
                     }
                 }
 
@@ -190,6 +171,35 @@ public class InGameScene extends BaseRoot{
 
                         if (pearl.getLayoutX() > screenWidth - 50) {
                             toRemove.add(pearl);
+                        }
+                    }
+                }
+
+                for (Node node : gameLayer.getChildren()) {
+
+                    if (node instanceof ItemView view &&
+                            view.getItem() instanceof Croissant croissant) {
+
+                        double gravity = 1500;
+                        double bouncePower = -700;
+
+                        // เพิ่มความเร็วตก
+                        croissant.vy += gravity * dt;
+
+                        view.setTranslateY(view.getTranslateY() + croissant.vy * dt);
+
+                        double bottom = view.getTranslateY() + view.getBoundsInLocal().getHeight();
+
+                        if (bottom >= groundY) {
+
+                            view.setTranslateY(groundY - view.getBoundsInLocal().getHeight());
+
+                            if (!croissant.hasBounced) {
+                                croissant.vy = bouncePower;
+                                croissant.hasBounced = true;
+                            } else {
+                                croissant.vy = 0;
+                            }
                         }
                     }
                 }

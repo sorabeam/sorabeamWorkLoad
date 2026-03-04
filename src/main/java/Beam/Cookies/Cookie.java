@@ -22,8 +22,8 @@ public abstract class Cookie {
     protected Pane gameLayer;
     protected Rectangle hitbox;
 
-    private DoubleProperty hitboxRatio = new SimpleDoubleProperty(0.85);
-    private final double slideHitboxRatio = 0.45;
+    private DoubleProperty hitboxRatio = new SimpleDoubleProperty(0.7);
+    private final double slideHitboxRatio = 0.3;
 
     private double velocity;
     private int jumpCount;
@@ -105,7 +105,7 @@ public abstract class Cookie {
                 400,400);
 
         hitbox = new Rectangle();
-        hitbox.widthProperty().bind(cookie.fitWidthProperty().multiply(0.6));
+        hitbox.widthProperty().bind(cookie.fitWidthProperty().multiply(0.4));
         hitbox.heightProperty().bind(
                 cookie.fitHeightProperty().multiply(hitboxRatio)
         );
@@ -115,10 +115,11 @@ public abstract class Cookie {
         hitbox.setFill(Color.TRANSPARENT);
 
         // bind ตำแหน่งกับ player
-        hitbox.layoutXProperty().bind(cookie.layoutXProperty().add(cookie.fitWidthProperty().multiply(0.2)));
+        hitbox.layoutXProperty().bind(cookie.layoutXProperty().add(cookie.fitWidthProperty().multiply(0.2)).add(15));
         hitbox.layoutYProperty().bind(
                 cookie.layoutYProperty().add(
                         cookie.fitHeightProperty().subtract(hitbox.heightProperty())
+                                .subtract(20)
                 )
         );
 
@@ -213,7 +214,7 @@ public abstract class Cookie {
             hitboxRatio.set(slideHitboxRatio);
         }
         else {
-            hitboxRatio.set(0.85);
+            hitboxRatio.set(0.7);
         }
     }
 
