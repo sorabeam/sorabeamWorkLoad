@@ -3,8 +3,12 @@ package Beam.Cookies;
 import Beam.Animation.Animate;
 import Beam.Animation.AnimationType;
 import Beam.Asset;
+import Beam.Media.JooxBox;
+import Got.GameLogic.GameLogic;
+import Got.GameLogic.GameState;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -27,6 +31,8 @@ public abstract class Cookie {
     private DoubleProperty hitboxRatio = new SimpleDoubleProperty(0.7);
     private final double slideHitboxRatio = 0.3;
 
+    protected Rectangle boostAura;
+
     private double velocity;
     private int jumpCount;
 
@@ -37,7 +43,10 @@ public abstract class Cookie {
     private final double jumpSpeed = -13;
     private final double maxFallSpeed = 12;
 
+    protected double damageTimer = 0;
+
     int id;
+    int maxhp;
     int hp;
     int score = 0;
     double skillTimer=0;
@@ -48,8 +57,10 @@ public abstract class Cookie {
     String desc;
 
     public Cookie(int id,String name,int hp, String desc) {
+
         this.id = id;
         this.hp = hp;
+        this.maxhp = hp;
         Bid = "B" + id;
         Sid = "S" + id;
         this.name = name;
@@ -72,20 +83,32 @@ public abstract class Cookie {
     public abstract void useSkill();
 
     public void takeDamage(int damage){
+
         hp -= damage;
         System.out.println("Cookie take " + damage + " damage");
+        JooxBox.getInstance().playSFX("Hit",100);
+
+        cookie.changeAnimationState(AnimationType.TAKE_DAMAGE);
+        damageTimer = 0.5;
+        setInvincible(1);
+
+
+        if(hp <= 0){
+            die();
+        }
     }
 
     public void setHp(int hp) {
-        this.hp = hp;
+        this.hp = Math.min(maxhp,hp);
     }
 
     public void heal(int healunit){
-        hp += healunit;
+        hp = Math.min(maxhp,hp + healunit);;
         System.out.println("Cookie get " + healunit + " heathPoint");
     }
 
     public void die(){
+        GameLogic.setGameState(GameState.GAMEOVER);
     }
 
     protected void playSkill(double duration) {
@@ -143,6 +166,10 @@ public abstract class Cookie {
 
         double scale = deltaTime * 60;
 
+        if (damageTimer > 0) {
+            damageTimer -= deltaTime;
+        }
+
         // ---------- Physics ----------
 
         velocity += gravity * scale;
@@ -163,7 +190,7 @@ public abstract class Cookie {
             jumpCount = 0;
             onGround = true;
 
-            if (!usingSkill) {
+            if (!usingSkill && damageTimer <= 0) {
                 if (cookie.getAnimationState().equals(AnimationType.SLIDE)) {
                     cookie.changeAnimationState(AnimationType.SLIDE);
                 } else {
@@ -198,6 +225,7 @@ public abstract class Cookie {
             cookie.changeAnimationState(AnimationType.DOUBLE_JUMP);
         }
 
+        JooxBox.getInstance().playSFX("JUMP",50);
         setHitbox();
         velocity = jumpSpeed;
         jumpCount++;
@@ -210,8 +238,8 @@ public abstract class Cookie {
 
         if ( isPerformingSkill() || !onGround || cookie.getAnimationState().equals(AnimationType.SLIDE)) { return; }
 
+        JooxBox.getInstance().playSFX("SLIDE",50);
         cookie.changeAnimationState(AnimationType.SLIDE);
-
     }
 
     public void upFromSlide() {
@@ -247,6 +275,10 @@ public abstract class Cookie {
 
     private boolean isPerformingSkill() {
         return cookie.getAnimationState().equals(AnimationType.SKILL);
+    }
+
+    public boolean hasCooldownBar(){
+        return true;
     }
 
     protected Pane getParentLayer() {

@@ -13,7 +13,7 @@ public class CookieSelectBG extends StackPane {
 
     public CookieSelectBG(){
 
-        ImageView MBg = Asset.createBackgroundView("BgLobby",1,1);
+        ImageView MBg = Asset.createBackgroundView("CBG",1,1);
 
         // bind กับตัวเอง
         MBg.fitWidthProperty().bind(widthProperty());

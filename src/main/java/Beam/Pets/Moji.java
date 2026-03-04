@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Moji extends Pet {
 
     public Moji() {
-        super(1, "Moji Niga", " au ai ah ");
+        super(3, "Moji Niga", " au ai ah ");
 
         setView(Asset.createImageView("Moji",0,480));
         setBg(Asset.createImageView("Selecting_Boba",0,350));

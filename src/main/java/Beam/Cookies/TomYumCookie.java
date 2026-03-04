@@ -7,8 +7,15 @@ public class TomYumCookie extends Cookie {
     private boolean rainReady = false;
 
     public TomYumCookie() {
-        super(2,"TomYumCookie",170,"Ingredient Rain");
+        super(2, "TomYumCookie", 170,
+                "Every 20 seconds, Tom Yum Cookie" + "\n" +
+                        "summons Ingredient Rain." + "\n" +
+                        "Shrimp, Galangal, Lemongrass," + "\n" +
+                        "and Kaffir Lime Leaf" + "\n" +
+                        "Jellies fall from the sky," + "\n" +
+                        "granting bonus points.");
         setImgURL("TomYum_Cookie_sheet");
+        setScore(133000);
     }
 
     @Override

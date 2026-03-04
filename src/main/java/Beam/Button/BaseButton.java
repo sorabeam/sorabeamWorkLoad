@@ -1,5 +1,6 @@
 package Beam.Button;
 
+import Beam.Media.JooxBox;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -34,6 +35,7 @@ public class BaseButton extends Button implements ClickAble{
 
     @Override
     public void handleClick() {
+        JooxBox.getInstance().playSFX("Click",50);
         clicked = true;
         scaleTo(1.1,true);
     }

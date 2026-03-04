@@ -1,6 +1,7 @@
 package Beam.Scene;
 
 import Beam.Animation.Animate;
+import Beam.CharactorData;
 import Beam.UI.MainUI.*;
 import Beam.Media.JooxBox;
 
@@ -15,7 +16,7 @@ public class MainMenuScene extends BaseRoot {
     public MainMenuScene() {
         super();
 
-        StackPane profile = new MainMenuProfile("White Lilly", "102,455,353",root);
+        StackPane profile = new MainMenuProfile(CharactorData.getCurrent_Cookie().get_Name(), CharactorData.getCurrent_Cookie().get_Score() + "",root);
         HBox Setting = new SettingZone(root,spacer('H'));
         StackPane MainMenuButtons = new MainMenuButtons();
         StackPane GlassDecoration = new GlassDecoration();

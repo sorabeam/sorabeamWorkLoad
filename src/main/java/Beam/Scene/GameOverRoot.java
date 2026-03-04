@@ -1,6 +1,7 @@
 package Beam.Scene;
 
 import Beam.Animation.Animate;
+import Beam.Animation.AnimationType;
 import Beam.Asset;
 import Beam.Button.BaseButton;
 import Beam.Button.NavBtn;
@@ -36,6 +37,7 @@ public class GameOverRoot extends BaseRoot {
 
         Buttons btns = new Buttons();
         CharactorShow imgShow = new CharactorShow();
+
         Animate cookie = imgShow.getCookie();
         DVDShow dvd = new DVDShow();
 
@@ -55,6 +57,10 @@ public class GameOverRoot extends BaseRoot {
 
                 double dt = (now - last) / 1e9;
                 last = now;
+
+                if(!cookie.getAnimationState().equals(AnimationType.IDLE)){
+                    cookie.changeAnimationState(AnimationType.IDLE);
+                }
 
                 cookie.update(dt);
             }

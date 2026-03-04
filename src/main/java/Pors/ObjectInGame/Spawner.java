@@ -1,6 +1,7 @@
 package Pors.ObjectInGame;
 
 import Beam.Cookies.Cookie;
+import Beam.Media.JooxBox;
 import Beam.Pets.Pet;
 import Beam.Cookies.CrossiantCookie;
 import Pors.ObjectInGame.Items.*;
@@ -20,7 +21,8 @@ public class Spawner {
     private double sceneWidth;
     private double sceneHeight;
     private Cookie cookie;
-    private double speed = -350;
+    private static double defaultSpeed = -350;
+    private static double speed = defaultSpeed;
     private Pet pet;
 
     private long lastUpdateTime = 0;
@@ -188,6 +190,8 @@ public class Spawner {
             javafx.scene.Node node = it.next();
 
             if (node instanceof ObstacleView o) {
+                //set speed
+                o.setSpeed(getSpeed(), 0);
                 o.update(deltaTime);
 
                 if (o.getTranslateX() < -200 ||
@@ -204,6 +208,7 @@ public class Spawner {
             javafx.scene.Node node = it.next();
 
             if (node instanceof ItemView i) {
+                i.setSpeed(getSpeed(), 0);
                 if (i.getItem() instanceof Croissant croissant) {
 
                     croissant.updatePhysics(
@@ -230,6 +235,9 @@ public class Spawner {
             javafx.scene.Node node = it.next();
 
             if (node instanceof JellyView i) {
+                //update speed
+                i.setSpeedX(getSpeed());
+
                 i.update(deltaTime);
 
                 if (i.getTranslateX() < -100 ||
@@ -303,6 +311,7 @@ public class Spawner {
                         .getBoundsInParent()
                         .intersects(item.getBoundsInParent())) {
                     item.getItem().interact(cookie);
+                    JooxBox.getInstance().playSFX("Item", 60);
                     it.remove();
                 }
             }
@@ -317,10 +326,28 @@ public class Spawner {
                         croissant.onJellyCollected();
                     }
 
+                    JooxBox.getInstance().playSFX("Jelly", 60);
+
                     it.remove();
                 }
             }
         }
+    }
+
+    public static void setSpeed(double speed) {
+        Spawner.speed = speed;
+    }
+
+    public static double getSpeed() {
+        return speed;
+    }
+
+    public static void resetSpeed() {
+        Spawner.speed = defaultSpeed;
+    }
+
+    public static double getDefaultSpeed() {
+        return defaultSpeed;
     }
 
     /*public void stop() {

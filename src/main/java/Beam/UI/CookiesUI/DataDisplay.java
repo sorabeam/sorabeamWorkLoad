@@ -16,7 +16,7 @@ public class DataDisplay extends VBox {
     public DataDisplay (String txt, CookieSelectionScene scene){
 
 
-        scene.setRecord(new OutlineText("Best Record : " + CharactorData.getCurrent_Cookie().get_Score(),'C',20));
+        scene.setRecord(new OutlineText("Best Record : " + CharactorData.getCurrent_Cookie().get_Score(),'M',20));
 
         scene.getRecord().setPadding(new Insets(0,0,20,0));
 
@@ -31,7 +31,7 @@ public class DataDisplay extends VBox {
 
         scene.setSkillVideo(Asset.createImageView(CharactorData.getCurrent_Cookie().get_Sid(),0,440));
 
-        scene.setDescription(new OutlineText(txt,'M',18));
+        scene.setDescription(new OutlineText(txt,'C',15));
         getChildren().addAll(scene.getRecord(),SubHBox,scene.getSkillVideo(),scene.getDescription());
     }
 

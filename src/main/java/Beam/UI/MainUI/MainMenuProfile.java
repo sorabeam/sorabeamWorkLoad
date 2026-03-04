@@ -3,6 +3,7 @@ package Beam.UI.MainUI;
 import Beam.Button.BaseButton;
 import Beam.Button.MapPopUpBtn;
 import Beam.UI.GameOverUI.Buttons;
+import Got.GameLogic.GameLogic;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -32,7 +33,7 @@ public class MainMenuProfile extends StackPane {
         BestScore.setMaxHeight(1);
         BestScore.setMaxWidth(1);
 
-        MapPopUpBtn SelectingMap = new MapPopUpBtn(Asset.createImageView("MAP1P",0,400),root);
+        MapPopUpBtn SelectingMap = new MapPopUpBtn(Asset.createImageView("MAP" + GameLogic.getMap() + "P",0,400),root);
 
         setMaxWidth(500);
         getChildren().addAll(LillyBar,LillyProfile,BestScore,CharactorName,CfavIco,SelectingMap);

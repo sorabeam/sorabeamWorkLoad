@@ -39,6 +39,7 @@ public class SelectPBtn extends BaseButton{
     private FavBtn BuildFav(){
 
         FavBtn fav = new FavBtn();
+        fav.setHeight(50);
 
         StackPane.setAlignment(fav,Pos.BOTTOM_LEFT);
         StackPane.setMargin(fav , new Insets(0,0,18,40));

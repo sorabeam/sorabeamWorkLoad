@@ -2,10 +2,12 @@ package Beam.Button;
 
 import Beam.Asset;
 import Beam.Image.OutlineText;
+import Beam.Scene.InGameScene;
 import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -27,6 +29,13 @@ public class SettingPopUpBtn extends BaseButton{
     @Override
     public void handleClick() {
         super.handleClick();
+        if(GameLogic.getGameState().equals(GameState.INGAME)){
+            Node child = GameLogic.getGameroot().getChildren().getFirst();
+
+            if (child instanceof InGameScene inGameScene) {
+                inGameScene.stopGameByBool();
+            }
+        }
         showSetting();
     }
 
@@ -89,7 +98,7 @@ public class SettingPopUpBtn extends BaseButton{
         deleteThis(selectChar);
         deleteThis(menu);
         deleteThis(leave);
-        deleteThis(resumeBtn);
+        runItBack(resumeBtn);
 
 
 
@@ -119,6 +128,10 @@ public class SettingPopUpBtn extends BaseButton{
 
         button.setOnAction(e -> {
 
+            if (oldAction != null) {
+            oldAction.handle(e);
+            }
+
             if (((NavSettingBtn)button).getSwitchState() == null ){
 
                 if (Objects.equals(((NavSettingBtn) button).getTxt(), "Leave")) {
@@ -134,10 +147,30 @@ public class SettingPopUpBtn extends BaseButton{
                 return;
             }
 
+
+            root.getChildren().remove(overlay);
+        });
+    }
+
+    private void runItBack(BaseButton button){
+
+        var oldAction = button.getOnAction();
+
+        button.setOnAction(e -> {
+
             if (oldAction != null) {
                 oldAction.handle(e);
             }
+
+        if(GameLogic.getGameState().equals(GameState.INGAME)){
+            Node child = GameLogic.getGameroot().getChildren().getFirst();
+
+            if (child instanceof InGameScene inGameScene) {
+                inGameScene.resumeGameByBool();
+            }
+        }
             root.getChildren().remove(overlay);
+
         });
     }
 }

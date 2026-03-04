@@ -1,11 +1,12 @@
 package Beam.UI.CookiesUI;
 
+import Beam.Button.BaseButton;
 import javafx.scene.layout.GridPane;
 import Beam.Button.CDBtn;
 
-public class GridDisplay extends GridPane {
+public class  GridDisplay extends GridPane {
 
-    public GridDisplay(CDBtn B1,CDBtn B2,CDBtn B3,CDBtn B4,CDBtn B5)
+    public GridDisplay(CDBtn B1, CDBtn B2, CDBtn B3, BaseButton B4)
     {
 
         setMaxHeight(455);

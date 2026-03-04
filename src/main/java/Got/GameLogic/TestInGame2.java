@@ -55,27 +55,46 @@ public class TestInGame2 extends Application {
             updateScale(scalableLayer);
         });
 
+        GameLogic.setGameroot(gameRoot);
+
         // เปลี่ยน scene ตาม game state
         GameLogic.gameStateProperty().addListener((obs, oldState, newState) -> {
 
             switch (newState) {
-                case INTRO -> gameRoot.getChildren().setAll(new MainMenuScene());
-                case SELECTCHAR -> gameRoot.getChildren().setAll(new CookieSelectionScene());
+                case INTRO -> {
+                    gameRoot.getChildren().setAll(new MainMenuScene());
+                    playMusic("Lobby",50);
+                }
+
+                case SELECTCHAR -> {
+                    gameRoot.getChildren().setAll(new CookieSelectionScene());
+                    playMusic("Cookies",50);
+                }
+
                 case INGAME -> {
+
+                    GameLogic.setScore(0);
+                    playMusic("SoundMAP" + GameLogic.getMap(),50);
+
                     InGameScene inGameScene = new InGameScene();
                     GameLogic.setCurrentGameScene(inGameScene);
                     gameRoot.getChildren().setAll(inGameScene);
                 }
-                case SELECTPET -> gameRoot.getChildren().setAll(new PetsSelectionScene());
-                case GAMEOVER -> gameRoot.getChildren().setAll(new GameOverRoot());
+                case SELECTPET -> {
+                    gameRoot.getChildren().setAll(new PetsSelectionScene());
+                    playMusic("Pets",50);
+                }
+
+                case GAMEOVER -> {
+                    gameRoot.getChildren().setAll(new GameOverRoot());
+                    playMusic("GameOver",50);
+                }
             }
         });
 
         GameLogic.setCurScene(scene);
-        GameLogic.setGameState(GameState.GAMEOVER);
-
+        GameLogic.setGameState(GameState.INTRO);
         stage.show();
-        playMusic();
 
         // scale ครั้งแรก
         updateScale(scalableLayer);
@@ -97,12 +116,8 @@ public class TestInGame2 extends Application {
         launch();
     }
 
-    public void callUpdateScale(){
-        updateScale(scalableLayer);
-        System.out.println("utjyhrgbfvsuikgjyhfntb,kumjyhfngbdvkhi,lujmghnfbvjkh,mng vbgv");
+    private void playMusic(String key,int v) {
+        JooxBox.getInstance().playBGM(key, true, 40);
     }
 
-    private void playMusic() {
-        JooxBox.getInstance().play("HeatWave", true, 100);
-    }
 }

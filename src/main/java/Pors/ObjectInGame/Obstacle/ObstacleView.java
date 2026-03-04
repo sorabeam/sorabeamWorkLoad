@@ -54,4 +54,9 @@ public class ObstacleView extends ImageView {
     public int getDamage() {
         return obstacle.getDamage();
     }
+
+    public void setSpeed(double vx, double vy) {
+        this.vx = vx;
+        this.vy = vy;
+    }
 }

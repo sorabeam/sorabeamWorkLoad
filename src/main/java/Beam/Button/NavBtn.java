@@ -21,13 +21,9 @@ public class NavBtn extends BaseButton{
     public void handleClick() {
         super.handleClick();
 
-        if(switchState.equals(null)) return;
+        if(switchState==null) return;
 
         if(switchState.equals(GameState.INGAME)){
-
-            //test
-            GameLogic.setScore(0);
-            JooxBox.getInstance().ChangeMusic("MS1",true,100);
         }
         getStage().setResizable(true);
         GameLogic.setGameState(switchState);

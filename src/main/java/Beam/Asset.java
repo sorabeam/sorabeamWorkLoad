@@ -84,7 +84,7 @@ public class Asset {
 
         Image Simg = getImage(_char.get_Sid());
 
-        CDBtn btn = new CDBtn(createImageView(bid,H,W),name,desc,score,Simg);
+        CDBtn btn = new CDBtn(createImageView(bid,H,W),name,desc,score,Simg,_char);
         return btn;
     }
 }

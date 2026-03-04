@@ -24,7 +24,13 @@ public class DVDShow extends StackPane {
         StackPane.setAlignment(statVBox, Pos.TOP_CENTER);
         StackPane.setMargin(statVBox,new Insets(170,0,0,0));
         OutlineText score = new OutlineText(GameLogic.getScore()+" score!",'C',24);
-        OutlineText bestScore = new OutlineText("Highest " + GameLogic.getBestScore() + " score!",'C',16);
+
+        int bestscore = Math.max(CharactorData.getCurrent_Cookie().get_Score(),GameLogic.getScore());
+        if(GameLogic.getScore() > CharactorData.getCurrent_Cookie().get_Score()){
+            CharactorData.getCurrent_Cookie().setScore(GameLogic.getScore());
+        }
+
+        OutlineText bestScore = new OutlineText("Highest " + bestscore + " score!",'C',16);
         wrapper.setMaxHeight(500);
         wrapper.setMaxWidth(500);
 

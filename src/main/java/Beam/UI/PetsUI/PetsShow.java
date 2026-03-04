@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 public class PetsShow extends HBox {
     public PetsShow(Region spacer,SelectPBtn ins1,SelectPBtn ins2,SelectPBtn ins3,SelectPBtn ins4){
 
-        ins1 =new SelectPBtn(CharactorData.MOJINIGA.getBtnView(),
+        ins1 = new SelectPBtn(CharactorData.MOJINIGA.getBtnView(),
                 CharactorData.MOJINIGA.getView().getImage(),
                 CharactorData.MOJINIGA.getBg().getImage(),
                 CharactorData.MOJINIGA.getName(),

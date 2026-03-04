@@ -1,33 +1,33 @@
 package Beam;
 
 import Beam.Cookies.*;
-import Beam.Pets.Moji;
-import Beam.Pets.Pet;
-import Beam.Pets.SamplePet;
+import Beam.Pets.*;
 
 public class CharactorData {
 
-    private CharactorData() {} // ป้องกันการ new คลาสนี้
+    private CharactorData() {}
 
-    public static final Cookie BOBACOOKIE =
-            new BobaCookie();
 
-    public static final Cookie CROISSANT =
-            new CrossiantCookie();
 
-    public static final Cookie TOMYUM =
-            new TomYumCookie();
+    public static final Cookie BOBACOOKIE = new BobaCookie();
 
-    public static final Cookie HOLLY_BERRY =
+    public static final Cookie CROSSIANT_COOKIE = new CrossiantCookie();
+
+    public static final Cookie TOMYUM_COOKIE =new TomYumCookie();
+
+    public static final Cookie LOCKING_COOKIE =
             new SampleCookie(4, "Holly Berry", 500, "MeowMeow");
 
-    public static final Cookie WHITE_LILY =
-            new SampleCookie(5, "White Lily", 500, "Eoking");
+    public static final Pet SALAD = new Salad();
+
+    public static final Pet CHILLY = new Chilly();
 
     public static final Pet MOJINIGA = new Moji();
 
+
+
     public static final Pet PANDAFANG =
-            new SamplePet(2, "Pandadang","Hello Boi","DrogonFruit");
+            new SamplePet(2, "Kangfuniga","Chi ga dutch","Pitachio");
 
     public static final Pet KANGFUNIGA =
             new SamplePet(3, "Kangfuniga","Chi ga dutch","Pitachio");
@@ -35,7 +35,13 @@ public class CharactorData {
     public static final Pet LOCKING =
             new SamplePet(4, "Lock","Play more 1.67M Games to unlock","Lemon");
 
+
+
     private static Cookie Current_Cookie = BOBACOOKIE;
+    private static Pet Current_Pet = CHILLY;
+
+
+
 
     public static Cookie getCurrent_Cookie() {
         return Current_Cookie;
@@ -44,12 +50,9 @@ public class CharactorData {
         Current_Cookie = current_Cookie;
     }
 
-    private static Pet Current_Pet = MOJINIGA;
-
     public static Pet getCurrent_Pet() {
         return Current_Pet;
     }
-
     public static void setCurrent_Pet(Pet current_Pet) {
         Current_Pet = current_Pet;
     }

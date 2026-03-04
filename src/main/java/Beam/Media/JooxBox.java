@@ -1,15 +1,16 @@
 package Beam.Media;
 
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import java.util.HashMap;
-import java.util.Objects;
 
 public class JooxBox {
-    public HashMap<String,String> playlist;
-    public MediaPlayer mp;
 
+    private HashMap<String, String> playlist;
+    private HashMap<String, AudioClip> sfxCache;
+    private MediaPlayer bgmPlayer;
     private static JooxBox instance;
 
     public static JooxBox getInstance() {
@@ -20,35 +21,76 @@ public class JooxBox {
 
     public JooxBox(){
         playlist = new HashMap<>();
-        playlist.put( "HeatWave" , "/HeatWaves.mp3" );
-        playlist.put( "MS1" , "/MS1.mp3" );
+        sfxCache = new HashMap<>();
+
+        playlist.put("GameOver", "/SOUND/GameOver.mp3");
+        playlist.put("HeatWave", "/SOUND/HeatWaves.mp3");
+        playlist.put("Hit", "/SOUND/Hit.mp3");
+        playlist.put("JUMP", "/SOUND/JUMP.mp3");
+        playlist.put("Cookies", "/SOUND/Cookies.mp3");
+        playlist.put("SLIDE", "/SOUND/SLIDE.mp3");
+        playlist.put("Click", "/SOUND/CLICK.mp3");
+        playlist.put("Lobby", "/SOUND/Lobby.mp3");
+        playlist.put("Pets", "/SOUND/PETS.mp3");
+        playlist.put("Jelly", "/SOUND/JellyCollectedSound.mp3");
+        playlist.put("Item", "/SOUND/ItemCollectedSound.mp3");
+
+        playlist.put("SoundMAP1", "/SOUND/SOUNDMAP1.mp3");
+        playlist.put("SoundMAP2", "/SOUND/SOUNDMAP2.mp3");
+        playlist.put("SoundMAP3", "/SOUND/SOUNDMAP3.mp3");
+
+        // preload SFX
+        preloadSFX("Hit");
+        preloadSFX("JUMP");
+        preloadSFX("SLIDE");
+        preloadSFX("Click");
+        preloadSFX("Jelly");
+        preloadSFX("Item");
     }
 
-    public MediaPlayer play(String path, boolean isLoop,float volum) {
-        path = playlist.get(path);
-        Media media = new Media(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
-        mp = new MediaPlayer(media);
+    private void preloadSFX(String key) {
 
-        if(isLoop) mp.setCycleCount(MediaPlayer.INDEFINITE);
-        mp.setVolume(Math.max(0,volum / 100.0));
-        mp.play();
+        String path = playlist.get(key);
+        if (path == null) return;
 
-        return mp;
+        var url = getClass().getResource(path);
+        if (url == null) return;
+
+        sfxCache.put(key, new AudioClip(url.toExternalForm()));
     }
 
-    public void ChangeMusic(String paths, boolean isLoop,float volum){
+    public void playBGM(String key, boolean loop, float volume) {
 
-        if (mp != null) {
-            mp.stop();
-            mp.dispose();
+        if (bgmPlayer != null) {
+            bgmPlayer.stop();
+            bgmPlayer.dispose();
         }
 
-        String path = playlist.get(paths);
-        Media media = new Media(Objects.requireNonNull(getClass().getResource(path)).toExternalForm());
+        String path = playlist.get(key);
+        if (path == null) {
+            System.out.println("BGM key not found: " + key);
+            return;
+        }
 
-        mp = new MediaPlayer(media);
-        if(isLoop) mp.setCycleCount(MediaPlayer.INDEFINITE);
-        mp.setVolume(Math.max(0,volum / 100.0));
-        mp.play();
+        Media media = new Media(getClass().getResource(path).toExternalForm());
+        bgmPlayer = new MediaPlayer(media);
+
+        if (loop)
+            bgmPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+        bgmPlayer.setVolume(volume / 100.0);
+        bgmPlayer.play();
+    }
+
+    public void playSFX(String key, float volume) {
+
+        AudioClip clip = sfxCache.get(key);
+        if (clip == null) {
+            System.out.println("SFX not preloaded: " + key);
+            return;
+        }
+
+        clip.setVolume(volume / 100.0);
+        clip.play();
     }
 }

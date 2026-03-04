@@ -6,6 +6,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class GameLogic {
@@ -16,7 +17,9 @@ public class GameLogic {
     private static double multiplier = 1;
     private static TestInGame2 app;
     private static int cookieCountMod = 0;
-    private static int Map;
+    private static int Map = 1;
+
+    private static StackPane gameroot;
 
     public static int getScore() {
         return score.get();
@@ -130,5 +133,14 @@ public class GameLogic {
 
     public static void setMap(int map) {
         Map = Math.max(1,map);
+    }
+
+
+    public static StackPane getGameroot() {
+        return gameroot;
+    }
+
+    public static void setGameroot(StackPane gameroot) {
+        GameLogic.gameroot = gameroot;
     }
 }

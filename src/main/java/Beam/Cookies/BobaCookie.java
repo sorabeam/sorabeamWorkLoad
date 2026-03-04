@@ -13,13 +13,15 @@ public class BobaCookie extends Cookie{
     public BobaCookie(){
 
         super(1, "BobaCookie" , 150,
-                "Boba Milk Tea Cookie is a laid-back spirit " +"\n"+
-                      "and the true queen of the boba world." +"\n"+
-                      "Every 10 seconds, she launches the Pearl "+ " \n " +
-                      "Beads forward, smashing through obstacles "+ " \n " +
-                      "and earning bonus points.?");
+                "Boba Milk Tea Cookie is a laid-back" +"\n"+
+                        "spirit  and the true queen of" +"\n"+
+                        "the boba world. Every 10 seconds,"+ "\n" +
+                        "she launches the Pearl Beads forward," + "\n" +
+                        "smashing through obstacles and" + "\n" +
+                        "earning bonus points." );
 
         setImgURL("Boba_Milk_Tea_Cookie");
+        setScore(23500);
     }
 
     @Override
