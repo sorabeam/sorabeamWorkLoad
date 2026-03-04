@@ -9,7 +9,7 @@ public class BobaCookie extends Cookie{
 
     public BobaCookie(){
 
-        super(1, "BobaCookie" , 1,
+        super(1, "BobaCookie" , 150,
                 "Boba Milk Tea Cookie is a laid-back" +"\n"+
                       "spirit  and the true queen of" +"\n"+
                       "the boba world. Every 10 seconds,"+ "\n" +
