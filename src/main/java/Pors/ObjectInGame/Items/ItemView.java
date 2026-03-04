@@ -15,8 +15,13 @@ public class ItemView extends ImageView {
         this.vy = vy;
         System.out.println("/Image/Items/" + item.getName() + ".png");
         setImage(new Image("/Image/Items/" + item.getName() + ".png"));
-        setFitWidth(50);
-        setFitHeight(50);
+        if (item instanceof Croissant) {
+            setFitWidth(200);
+            setFitHeight(145);
+        } else {
+            setFitWidth(50);
+            setFitHeight(50);
+        }
     }
 
     public void update(double deltaTime) {

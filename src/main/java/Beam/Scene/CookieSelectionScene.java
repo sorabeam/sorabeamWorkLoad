@@ -19,7 +19,7 @@ public class CookieSelectionScene extends BaseRoot{
     private String txt = CharactorData.getCurrent_Cookie().get_Desc();
 
     CDBtn B1 = Asset.createGridButton(CharactorData.BOBACOOKIE,220,0);
-    CDBtn B2 = Asset.createGridButton(CharactorData.SHADOW_MILK,220,0);
+    CDBtn B2 = Asset.createGridButton(CharactorData.CROISSANT,220,0);
     CDBtn B3 = Asset.createGridButton(CharactorData.PURE_VANILLA,220,0);
     CDBtn B4 = Asset.createGridButton(CharactorData.HOLLY_BERRY,220,0);
     CDBtn B5 = Asset.createGridButton(CharactorData.WHITE_LILY,220,0);

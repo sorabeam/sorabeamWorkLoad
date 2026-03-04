@@ -2,6 +2,7 @@ package Beam;
 
 import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
+import Beam.Cookies.CrossiantCookie;
 import Beam.Cookies.SampleCookie;
 import Beam.Pets.Moji;
 import Beam.Pets.Pet;
@@ -13,11 +14,11 @@ public class CharactorData {
 
     public static final Cookie BOBACOOKIE = new BobaCookie();
 
-    public static final Cookie SHADOW_MILK =
-            new SampleCookie(2, "Shadow Milk", 500, "Brahe");
+    public static final Cookie CROISSANT =
+            new CrossiantCookie();
 
     public static final Cookie PURE_VANILLA =
-            new SampleCookie(3, "Pure Vanilla", 500, "Nihhen");
+            new SampleCookie(2, "Pure Vanilla", 500, "Nihhen");
 
     public static final Cookie HOLLY_BERRY =
             new SampleCookie(4, "Holly Berry", 500, "MeowMeow");
@@ -36,7 +37,7 @@ public class CharactorData {
     public static final Pet LOCKING =
             new SamplePet(4, "Lock","Play more 1.67M Games to unlock","Lemon");
 
-    private static Cookie Current_Cookie = BOBACOOKIE;
+    private static Cookie Current_Cookie = CROISSANT;
 
     public static Cookie getCurrent_Cookie() {
         return Current_Cookie;

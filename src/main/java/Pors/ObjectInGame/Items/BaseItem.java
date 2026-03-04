@@ -16,4 +16,8 @@ public abstract class BaseItem implements Interactable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public boolean useGravity() {
+        return false;
+    }
 }
