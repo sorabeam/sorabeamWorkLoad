@@ -102,39 +102,16 @@ public class Spawner {
         updateItem(deltaTime);
         updateJelly(deltaTime);
         checkCollision(cookie);
-    }
 
-    /*public void start() {
-        if (timer != null) return;
+        if (cookie instanceof CrossiantCookie croissant) {
 
-        timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (lastUpdateTime == 0) {
-                    lastUpdateTime = now;
-                    return;
-                }
+            if (croissant.isCroissantReady()) {
 
-                double deltaTime = (now - lastUpdateTime) / 1_000_000_000.0;
-                lastUpdateTime = now;
-
-                spawnBySet(now);
-                updateObstacles(deltaTime);
-                updateItem(deltaTime);
-                updateJelly(deltaTime);
-                checkCollision(cookie);
-                if (cookie instanceof CrossiantCookie croissant) {
-
-                    if (croissant.isCroissantReady()) {
-
-                        CroissantType type = croissant.consumeCroissant();
-                        spawnCroissant(type);
-                    }
-                }
+                CroissantType type = croissant.consumeCroissant();
+                spawnCroissant(type);
             }
-        };
-        timer.start();
-    }*/
+        }
+    }
 
     private void spawnBySet(long now) {
 

@@ -16,7 +16,7 @@ public class CrossiantCookie extends Cookie {
     private OutlineText counterText;
 
     public CrossiantCookie() {
-        super(2, "CroissantCookie", 140, "");
+        super(3, "CroissantCookie", 140, "");
         setImgURL("Croissant_Cookie_sheet");
     }
 
@@ -47,7 +47,9 @@ public class CrossiantCookie extends Cookie {
                 anim.layoutYProperty().subtract(20)
         );
 
-        getParentLayer().getChildren().add(counterText);
+        if (getParentLayer() != null) {
+            getParentLayer().getChildren().add(counterText);
+        }
 
         return anim;
     }

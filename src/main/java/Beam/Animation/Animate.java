@@ -86,6 +86,8 @@ public class Animate extends ImageView implements Animatable{
                 setFrameDuration(0.08f);
             } else if (getAnimationState() == AnimationType.SKILL) {
                 setFrameDuration(0.12f);
+            } else if (getAnimationState() == AnimationType.IDLE) {
+                setFrameDuration(0.12f);
             }
 
 
