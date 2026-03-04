@@ -3,14 +3,16 @@ package Pors.ObjectInGame.Obstacle;
 import Beam.Cookies.Cookie;
 import Pors.ObjectInGame.Interactable;
 
+import java.util.Objects;
+
 public class BaseObstacle implements Interactable {
     private String name;
     private int damage;
 
-    public BaseObstacle(String name, int damage)
+    public BaseObstacle(String name)
     {
         setName(name);
-        setDamage(damage);
+        setDamage(40);
     }
 
     @Override

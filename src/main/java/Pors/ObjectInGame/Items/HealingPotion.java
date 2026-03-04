@@ -5,10 +5,10 @@ import Beam.Cookies.Cookie;
 public class HealingPotion extends BaseItem{
     private int healingStat;
 
-    public HealingPotion(String name,int healingStat)
+    public HealingPotion(String name)
     {
         super(name);
-        setHealingStat(healingStat);
+        setHealingStat(20);
     }
 
     public int getHealingStat() {
