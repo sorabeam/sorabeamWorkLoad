@@ -31,7 +31,7 @@ public class Spawner {
 
     private List<List<SpawnAction>> spawnSets = SpawnerLayout.spawnlayout;
 
-    private int currentSetIndex = spawnSets.size() - 5;
+    private int currentSetIndex = spawnSets.size() - 1;
     //private int currentSetIndex = 0;
     private int currentActionIndex = 0;
     private long lastSpawnTime = 0;
@@ -254,7 +254,7 @@ public class Spawner {
                         .getBoundsInParent()
                         .intersects(item.getBoundsInParent())) {
                     item.getItem().interact(cookie);
-                    JooxBox.getInstance().playSFX("Item", 60);
+                    JooxBox.getInstance().playSFX("Item");
                     it.remove();
                 }
             }
@@ -269,7 +269,7 @@ public class Spawner {
                         croissant.onJellyCollected();
                     }
 
-                    JooxBox.getInstance().playSFX("Jelly", 60);
+                    JooxBox.getInstance().playSFX("Jelly");
 
                     it.remove();
                 }

@@ -2,12 +2,15 @@ package Beam.Button;
 
 import Beam.Asset;
 import Beam.Image.OutlineText;
+import Beam.Media.JooxBox;
 import Beam.Scene.InGameScene;
 import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Slider;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -48,21 +51,91 @@ public class SettingPopUpBtn extends BaseButton{
 
         overlay = new StackPane();
 
+        Slider MainvolumeSlider = new Slider(0, 100, GameLogic.getMusicVolume());
+
+        MainvolumeSlider.setMinSize(500,30);
+        MainvolumeSlider.setMaxSize(500,30);
+        MainvolumeSlider.setPrefSize(500,30);
+
+        MainvolumeSlider.setMajorTickUnit(0.25);
+
+        Slider SFXvolumeSlider = new Slider(0, 100, GameLogic.getSFXVolume());
+
+        SFXvolumeSlider.setMinSize(500,30);
+        SFXvolumeSlider.setMaxSize(500,30);
+        SFXvolumeSlider.setPrefSize(500,30);
+        SFXvolumeSlider.setMajorTickUnit(0.25);
+
+
+        MainvolumeSlider.skinProperty().addListener((obs, oldSkin, newSkin) -> {
+            if (newSkin != null) {
+                Node track = MainvolumeSlider.lookup(".track");
+                Node thumb = MainvolumeSlider.lookup(".thumb");
+                if (track != null) {
+                    track.setStyle(
+                            "-fx-background-color: black, white;" +
+                                    "-fx-background-radius: 5;" +
+                                    "-fx-padding: 3px;"
+                    );
+                }
+                thumb.setStyle(
+                        "-fx-background-color: white, rgb(57, 44, 62);" +
+                                "-fx-background-insets: 0, 4;" +
+                                "-fx-background-radius: 50;" +
+                                "-fx-pref-width: 30px;" +
+                                "-fx-pref-height: 30px;"
+                );
+            }
+        });
+
+        SFXvolumeSlider.skinProperty().addListener((obs, oldSkin, newSkin) -> {
+            if (newSkin != null) {
+                Node track = SFXvolumeSlider.lookup(".track");
+                Node thumb = SFXvolumeSlider.lookup(".thumb");
+                if (track != null) {
+                    track.setStyle(
+                            "-fx-background-color: black, white;" +
+                                    "-fx-background-radius: 5;" +
+                                    "-fx-padding: 3px;"
+                    );
+                }
+                thumb.setStyle(
+                        "-fx-background-color: white, rgb(57, 44, 62);" +
+                                "-fx-background-insets: 0, 4;" +
+                                "-fx-background-radius: 50;" +
+                                "-fx-pref-width: 30px;" +
+                                "-fx-pref-height: 30px;"
+                );
+            }
+        });
+
+
+
         OutlineText setting = new OutlineText("setting",'C',30);
         setting.setDropShadow(shadow);
         VBox.setMargin(setting,new Insets(100,0,0,0));
 
-        OutlineText mvolume = new OutlineText("Music Volume",'C',25);
+        OutlineText mvolume = new OutlineText("Main Volume",'C',25);
         mvolume.setDropShadow(shadow);
+        OutlineText sfxvolume = new OutlineText("SFX Volume",'C',25);
+        sfxvolume.setDropShadow(shadow);
 
-        OutlineText thankyou = new OutlineText("Thank you for\nplaying",'C',25);
-        thankyou.setDropShadow(shadow);
-        thankyou.setTextAlignment(TextAlignment.CENTER);
-        thankyou.setPadding(new Insets(20,0,20,0));
+        OutlineText intmv = new OutlineText(GameLogic.getMusicVolume()+"",'M',25);
+        intmv.setDropShadow(shadow);
+        intmv.setPadding(new Insets(0,0,0,-35));
+        OutlineText intsfxv = new OutlineText(GameLogic.getSFXVolume()+"",'M',25);
+        intsfxv.setDropShadow(shadow);
+        intsfxv.setPadding(new Insets(0,0,0,-60));
 
-        HBox volumSetting = new HBox(mvolume);
-        volumSetting.setMaxHeight(200);
-        volumSetting.setPadding(new Insets(0,50,0,100));
+        HBox volumBGSetting = new HBox(mvolume,MainvolumeSlider,intmv);
+        volumBGSetting.setMaxHeight(200);
+        volumBGSetting.setSpacing(40);
+        volumBGSetting.setPadding(new Insets(0,50,0,100));
+
+        HBox volumSFXSetting = new HBox(sfxvolume,SFXvolumeSlider,intsfxv);
+        volumSFXSetting.setMaxHeight(200);
+        volumSFXSetting.setSpacing(55);
+        volumSFXSetting.setPadding(new Insets(0,50,0,100));
 
         GridPane BtnPane = new GridPane();
         BtnPane.setAlignment(Pos.CENTER);
@@ -70,7 +143,18 @@ public class SettingPopUpBtn extends BaseButton{
         BtnPane.setHgap(30);
         BtnPane.setVgap(30);
 
+        MainvolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
 
+            GameLogic.setMusicVolume(newVal.intValue());
+            intmv.setText(GameLogic.getMusicVolume() + "");
+            JooxBox.getInstance().updateBGMVolume();
+        });
+
+        SFXvolumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            GameLogic.setSFXVolume(newVal.intValue());
+            intsfxv.setText(GameLogic.getSFXVolume() + "");
+            JooxBox.getInstance().updateSFXVolume();
+        });
 
 
         NavSettingBtn play = new NavSettingBtn(GameState.INGAME,"PLAY");
@@ -109,7 +193,7 @@ public class SettingPopUpBtn extends BaseButton{
 
 
 
-        VBox popupBox = new VBox(setting,volumSetting,thankyou,BtnPane);
+        VBox popupBox = new VBox(setting,volumBGSetting,volumSFXSetting,BtnPane);
         popupBox.setSpacing(50);
         StackPane.setAlignment(popupBox, Pos.CENTER_LEFT);
         popupBox.setMaxWidth(960);

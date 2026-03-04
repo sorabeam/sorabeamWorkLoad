@@ -119,7 +119,7 @@ public class TestInGame2 extends Application {
     }
 
     private void playMusic(String key,int v) {
-        JooxBox.getInstance().playBGM(key, true, 40);
+        JooxBox.getInstance().playBGM(key, true);
     }
 
 }

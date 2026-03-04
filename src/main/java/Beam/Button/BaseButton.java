@@ -35,7 +35,7 @@ public class BaseButton extends Button implements ClickAble{
 
     @Override
     public void handleClick() {
-        JooxBox.getInstance().playSFX("Click",50);
+        JooxBox.getInstance().playSFX("Click");
         clicked = true;
         scaleTo(1.1,true);
     }

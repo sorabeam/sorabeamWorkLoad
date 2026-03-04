@@ -21,6 +21,9 @@ public class GameLogic {
     private static int Map = 1;
     private static HpDisplayZone hpBar;
 
+    private static int MusicVolume = 50;
+    private static int SFXVolume = 50;
+
     private static StackPane gameroot;
 
     public static int getScore() {
@@ -160,5 +163,21 @@ public class GameLogic {
 
     public static InGameScene getCurrentGameScene() {
         return currentGameScene;
+    }
+
+    public static int getMusicVolume() {
+        return MusicVolume;
+    }
+
+    public static void setMusicVolume(int musicVolume) {
+        MusicVolume = musicVolume;
+    }
+
+    public static int getSFXVolume() {
+        return SFXVolume;
+    }
+
+    public static void setSFXVolume(int SFXVolume) {
+        GameLogic.SFXVolume = SFXVolume;
     }
 }

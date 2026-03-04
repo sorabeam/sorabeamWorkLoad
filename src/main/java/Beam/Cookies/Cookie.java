@@ -91,7 +91,7 @@ public abstract class Cookie {
         System.out.println("Cookie take " + damage + " damage");
 
         System.out.println(hp);
-        JooxBox.getInstance().playSFX("Hit",100);
+        JooxBox.getInstance().playSFX("Hit");
 
         cookie.changeAnimationState(AnimationType.TAKE_DAMAGE);
         damageTimer = 0.5;
@@ -248,7 +248,7 @@ public abstract class Cookie {
             cookie.changeAnimationState(AnimationType.DOUBLE_JUMP);
         }
 
-        JooxBox.getInstance().playSFX("JUMP",50);
+        JooxBox.getInstance().playSFX("JUMP");
         setHitbox();
         velocity = jumpSpeed;
         jumpCount++;
@@ -261,7 +261,7 @@ public abstract class Cookie {
 
         if ( isPerformingSkill() || !onGround || cookie.getAnimationState().equals(AnimationType.SLIDE)) { return; }
 
-        JooxBox.getInstance().playSFX("SLIDE",50);
+        JooxBox.getInstance().playSFX("SLIDE");
         cookie.changeAnimationState(AnimationType.SLIDE);
     }
 
