@@ -31,7 +31,7 @@ public class Spawner {
 
     private List<List<SpawnAction>> spawnSets = SpawnerLayout.spawnlayout;
 
-    private int currentSetIndex = spawnSets.size() - 5;
+    private int currentSetIndex = spawnSets.size() - 1;
     //private int currentSetIndex = 0;
     private int currentActionIndex = 0;
     private long lastSpawnTime = 0;
