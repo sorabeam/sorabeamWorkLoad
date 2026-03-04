@@ -4,6 +4,7 @@ import Beam.CharactorData;
 import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
 import Beam.Cookies.CrossiantCookie;
+import Beam.Pets.Pet;
 import Beam.UI.InGameUI.*;
 import Filmmy.Pearl;
 import Got.GameLogic.GameLogic;
@@ -70,13 +71,15 @@ public class InGameScene extends BaseRoot{
 
 //       Cookie player = new BobaCookie();
         Cookie player = CharactorData.getCurrent_Cookie();
+        Pet pet = CharactorData.getCurrent_Pet();
 
         spawner =
                 new Spawner(
                         gameLayer,
                         scene.getWidth(),
                         scene.getHeight(),
-                        player
+                        player,
+                        pet
                 );
 
         //ground
@@ -86,7 +89,7 @@ public class InGameScene extends BaseRoot{
         ground.widthProperty().bind(root.widthProperty());
         ground.layoutYProperty().bind(root.heightProperty().subtract(groundH));
         ground.setFill(Color.LIGHTGRAY);
-        gameLayer.getChildren().add(ground);
+        gameLayer.getChildren().addAll(ground);
 
         //Dummy obstacle
         Rectangle obstacle = new Rectangle(80, 120);
@@ -104,6 +107,11 @@ public class InGameScene extends BaseRoot{
 
         gameLayer.getChildren().add(player.getCookie());
         gameLayer.getChildren().add(player.getHitbox());
+
+//        pet.getView().setLayoutX(150);
+        pet.getView().setFitWidth(50);
+        pet.getView().setFitHeight(50);
+        gameLayer.getChildren().add(pet.getView());
 
         player.getCookie().setFitWidth(200);
         player.getCookie().setFitHeight(200);
@@ -132,6 +140,27 @@ public class InGameScene extends BaseRoot{
                 player.update(dt);          // physics + movement
                 player.getCookie().update(dt);
 
+//                pet.getView().layoutYProperty().bind(player.getCookie().layoutYProperty().add(30));
+                if(pet.isUsingSkill()) {
+                    double tarPetPosX = Math.max(player.getCookie().getLayoutX()+100, getWidth()-100);
+                    double tarPetPosY = player.getCookie().getLayoutY();
+                    pet.setTargetPos(tarPetPosX, tarPetPosY);
+                    if(pet.hasArrived()) {
+                        ItemView spawnItem = pet.getCurrentSpawnItem();
+                        pet.updateIndex();
+                        gameLayer.getChildren().add(spawnItem);
+                        spawnItem.setLayoutX(pet.getView().getLayoutX());
+                        spawnItem.setLayoutY(pet.getView().getLayoutY());
+                        spawnItem.setSpeed(-100, 0);
+                        pet.setUsingSkill(false);
+                    }
+                } else {
+                    double tarPetPosX = player.getCookie().getLayoutX()-30;
+                    double tarPetPosY = player.getCookie().getLayoutY()+30;
+                    pet.setTargetPos(tarPetPosX, tarPetPosY);
+                }
+                pet.update(dt);
+
                 spawner.update(now, dt);
 
                 if (shiftHeld && player.isOnGround()) {
@@ -156,9 +185,9 @@ public class InGameScene extends BaseRoot{
                         } else if(currentRoll >= 0) { //test !!! change back
                             croissantSummon = new CroissantStrawberry(20);
                             //Test scoreboard
-                            Platform.runLater(() -> {
-                                GameLogic.addScore(5000);
-                            });
+//                            Platform.runLater(() -> {
+//                                GameLogic.addScore(5000);
+//                            });
                         }
 
                         ItemView croissantSummonView = new ItemView(croissantSummon, 0, 15);
@@ -210,6 +239,9 @@ public class InGameScene extends BaseRoot{
                 }
                 case Q -> {
                     player.useSkill();
+                }
+                case T -> {
+                    pet.useSkill();
                 }
             }
         });
