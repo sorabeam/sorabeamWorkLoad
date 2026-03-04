@@ -3,6 +3,7 @@ package Beam;
 import Beam.Cookies.*;
 import Beam.Pets.Moji;
 import Beam.Pets.Pet;
+import Beam.Pets.Salad;
 import Beam.Pets.SamplePet;
 
 public class CharactorData {
@@ -27,16 +28,15 @@ public class CharactorData {
     public static final Pet PANDAFANG =
             new SamplePet(2, "Pandadang","Hello Boi","DrogonFruit");
 
-    public static final Pet KANGFUNIGA =
-            new SamplePet(3, "Kangfuniga","Chi ga dutch","Pitachio");
+    public static final Pet SALAD = new Salad();
 
     public static final Pet LOCKING =
-            new SamplePet(4, "Lock","Play more 1.67M Games to unlock","Lemon");
+            new SamplePet(4, "Lock","","UnSelect_Lock");
 
 
 
     private static Cookie Current_Cookie = BOBACOOKIE;
-    private static Pet Current_Pet = MOJINIGA;
+    private static Pet Current_Pet = SALAD;
 
 
 

@@ -48,7 +48,6 @@ public class InGameScene extends BaseRoot{
     SettingZone settingZone = new SettingZone(this,spacer('H'));
     HpDisplayZone hpzone = new HpDisplayZone();
     ShowScore sc = new ShowScore();
-    LastRecord lastRecord = new LastRecord();
 
     private final double groundH = 150;
     public static double groundY;
@@ -69,15 +68,12 @@ public class InGameScene extends BaseRoot{
         root.getChildren().add(bg);
 
         uiLayer.getChildren().addAll(
-                new ExpBar(root),
                 settingZone,
-                lastRecord,
                 hpzone,
                 sc
         );
 
-        StackPane.setMargin(lastRecord,new Insets(120,60,0,0));
-        StackPane.setAlignment(lastRecord,Pos.TOP_RIGHT);
+        GameLogic.setHpBar(hpzone);
         StackPane.setAlignment(sc,Pos.CENTER_RIGHT);
         StackPane.setMargin(sc,new Insets(200,0,0,0));
         StackPane.setAlignment(hpzone,Pos.TOP_CENTER);

@@ -76,9 +76,11 @@ public abstract class Cookie {
     public abstract void useSkill();
 
     public void takeDamage(int damage){
-
         hp -= damage;
+        GameLogic.getHpBar().updateHpBar();
         System.out.println("Cookie take " + damage + " damage");
+
+        System.out.println(hp);
         JooxBox.getInstance().playSFX("Hit",100);
 
         if(hp <= 0){
@@ -91,6 +93,8 @@ public abstract class Cookie {
     }
 
     public void heal(int healunit){
+
+        GameLogic.getHpBar().updateHpBar();
         hp = Math.min(maxhp,hp + healunit);;
         System.out.println("Cookie get " + healunit + " heathPoint");
     }
@@ -137,6 +141,14 @@ public abstract class Cookie {
         );
 
         return cookie;
+    }
+
+    public int getMaxhp() {
+        return maxhp;
+    }
+
+    public void setMaxhp(int maxhp) {
+        this.maxhp = maxhp;
     }
 
     public void update(double deltaTime){

@@ -2,6 +2,7 @@ package Beam.Pets;
 
 import Pors.ObjectInGame.Items.ItemView;
 import Pors.ObjectInGame.Items.StickyMochi;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
@@ -17,9 +18,13 @@ public abstract class Pet {
 
     String name;
     String desc;
+
     ImageView view;
-    ImageView Bg;
-    ImageView BtnView;
+
+    Image viewImage;
+    Image bgImage;
+    Image btnImage;
+
     private boolean isSkillReady;
     private boolean isUsingSkill;
 
@@ -93,12 +98,28 @@ public abstract class Pet {
         this.view = view;
     }
 
-    public ImageView getBg() {
-        return Bg;
+    public Image getViewImage() {
+        return viewImage;
     }
 
-    public void setBg(ImageView bg) {
-        Bg = bg;
+    public void setViewImage(Image viewImage) {
+        this.viewImage = viewImage;
+    }
+
+    public Image getBgImage() {
+        return bgImage;
+    }
+
+    public void setBgImage(Image bgImage) {
+        this.bgImage = bgImage;
+    }
+
+    public Image getBtnImage() {
+        return btnImage;
+    }
+
+    public void setBtnImage(Image btnImage) {
+        this.btnImage = btnImage;
     }
 
     public String getDesc() {
@@ -109,13 +130,6 @@ public abstract class Pet {
         this.desc = desc;
     }
 
-    public ImageView getBtnView() {
-        return BtnView;
-    }
-
-    public void setBtnView(ImageView btnView) {
-        BtnView = btnView;
-    }
 
     public int getCooldowntime() {
         return cooldowntime;

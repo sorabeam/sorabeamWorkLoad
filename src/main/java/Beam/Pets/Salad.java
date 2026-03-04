@@ -12,11 +12,12 @@ import java.util.Arrays;
 public class Salad extends Pet {
 
     public Salad() {
-        super(1, "Salad", " I want to break free ");
+        super(3, "Salad", " I want to break free ");
 
         setView(Asset.createImageView("Salad",0,480));
-        setBg(Asset.createImageView("Selecting_Boba",0,350));
-        setBtnView(Asset.createImageView("UnSelect_Boba",0,230));
+        setViewImage(Asset.getImage("Salad"));
+        setBgImage(Asset.getImage("Selecting_Salad"));
+        setBtnImage(Asset.getImage("UnSelect_Salad"));
         setCooldowntime(5000);
         setSkillReady(true);
         setUsingSkill(false);
