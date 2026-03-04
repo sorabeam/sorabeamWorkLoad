@@ -8,6 +8,7 @@ import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -48,6 +49,8 @@ public abstract class Cookie {
     String Sid;
     String name;
     String desc;
+
+    Image profileImg;
 
     public Cookie(int id,String name,int hp, String desc) {
 
@@ -149,6 +152,14 @@ public abstract class Cookie {
 
     public void setMaxhp(int maxhp) {
         this.maxhp = maxhp;
+    }
+
+    public Image getProfileImg() {
+        return profileImg;
+    }
+
+    public void setProfileImg(Image profileImg) {
+        this.profileImg = profileImg;
     }
 
     public void update(double deltaTime){

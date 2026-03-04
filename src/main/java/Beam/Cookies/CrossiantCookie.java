@@ -2,6 +2,7 @@ package Beam.Cookies;
 
 import Beam.Animation.Animate;
 import Beam.Animation.AnimationType;
+import Beam.Asset;
 import Beam.Image.OutlineText;
 import Pors.ObjectInGame.Items.CroissantType;
 import javafx.scene.effect.DropShadow;
@@ -16,8 +17,9 @@ public class CrossiantCookie extends Cookie {
     private OutlineText counterText;
 
     public CrossiantCookie() {
-        super(3, "CroissantCookie", 140, "");
+        super(3, "Croissant", 140, "");
         setImgURL("Croissant_Cookie_sheet");
+        setProfileImg(Asset.getImage("Profile_Cross"));
         setScore(256200);
     }
 

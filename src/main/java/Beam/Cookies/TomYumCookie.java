@@ -1,5 +1,7 @@
 package Beam.Cookies;
 
+import Beam.Asset;
+
 public class TomYumCookie extends Cookie {
     private double rainCooldown = 5;
     private double timer = 0;
@@ -7,8 +9,9 @@ public class TomYumCookie extends Cookie {
     private boolean rainReady = false;
 
     public TomYumCookie() {
-        super(2,"TomYumCookie",170,"Ingredient Rain");
+        super(2,"TomYum",170,"Ingredient Rain");
         setImgURL("TomYum_Cookie_sheet");
+        setProfileImg(Asset.getImage("Profile_Tomyum"));
         setScore(133000);
     }
 

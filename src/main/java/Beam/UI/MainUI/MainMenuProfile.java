@@ -2,6 +2,7 @@ package Beam.UI.MainUI;
 
 import Beam.Button.BaseButton;
 import Beam.Button.MapPopUpBtn;
+import Beam.CharactorData;
 import Beam.UI.GameOverUI.Buttons;
 import Got.GameLogic.GameLogic;
 import javafx.geometry.Insets;
@@ -18,7 +19,9 @@ public class MainMenuProfile extends StackPane {
     public MainMenuProfile(String name, String score,StackPane root) {
 
         ImageView LillyBar = Asset.createImageView("LillyBar",0,460);
-        ImageView LillyProfile = Asset.createImageView("LillyProfile",0,460);
+        ImageView LillyProfile = new ImageView(CharactorData.getCurrent_Cookie().getProfileImg());
+        LillyProfile.setPreserveRatio(true);
+        LillyProfile.setFitWidth(460);
 
         FavBtn CfavIco = new FavBtn();
         CfavIco.setHeight(45);

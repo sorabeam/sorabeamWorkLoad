@@ -130,7 +130,6 @@ public abstract class Pet {
         this.desc = desc;
     }
 
-
     public int getCooldowntime() {
         return cooldowntime;
     }
