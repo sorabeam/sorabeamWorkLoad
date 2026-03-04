@@ -254,7 +254,7 @@ public class Spawner {
                         .getBoundsInParent()
                         .intersects(item.getBoundsInParent())) {
                     item.getItem().interact(cookie);
-                    JooxBox.getInstance().playSFX("Item", 60);
+                    JooxBox.getInstance().playSFX("Item");
                     it.remove();
                 }
             }
@@ -269,7 +269,7 @@ public class Spawner {
                         croissant.onJellyCollected();
                     }
 
-                    JooxBox.getInstance().playSFX("Jelly", 60);
+                    JooxBox.getInstance().playSFX("Jelly");
 
                     it.remove();
                 }
