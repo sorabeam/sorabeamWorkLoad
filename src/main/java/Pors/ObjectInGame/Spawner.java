@@ -20,7 +20,8 @@ public class Spawner {
     private double sceneWidth;
     private double sceneHeight;
     private Cookie cookie;
-    private double speed = -350;
+    private static double defaultSpeed = -350;
+    private static double speed = defaultSpeed;
     private Pet pet;
 
     private long lastUpdateTime = 0;
@@ -321,6 +322,18 @@ public class Spawner {
                 }
             }
         }
+    }
+
+    public static void setSpeed(double speed) {
+        Spawner.speed = speed;
+    }
+
+    public static double getSpeed() {
+        return speed;
+    }
+
+    public static void resetSpeed() {
+        Spawner.speed = defaultSpeed;
     }
 
     /*public void stop() {
