@@ -142,7 +142,6 @@ public class InGameScene extends BaseRoot{
         player.createCookie();
 
         gameLayer.getChildren().addAll(
-                player.getBoostAura(),
                 player.getCookie(),
                 player.getHitbox()
         );
