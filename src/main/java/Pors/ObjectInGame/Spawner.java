@@ -1,14 +1,14 @@
 package Pors.ObjectInGame;
 
 import Beam.Cookies.Cookie;
-import Pors.ObjectInGame.Items.ItemView;
+import Beam.Cookies.CrossiantCookie;
+import Pors.ObjectInGame.Items.*;
 import Pors.ObjectInGame.Jelly.BaseJelly;
 import Pors.ObjectInGame.Jelly.JellyView;
 import Pors.ObjectInGame.Obstacle.BaseObstacle;
 import Pors.ObjectInGame.Obstacle.ObstacleView;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
-import Pors.ObjectInGame.Items.HealingPotion;
 
 import java.util.Iterator;
 import java.util.List;
@@ -75,6 +75,14 @@ public class Spawner {
                 updateItem(deltaTime);
                 updateJelly(deltaTime);
                 checkCollision(cookie);
+                if (cookie instanceof CrossiantCookie croissant) {
+
+                    if (croissant.isCroissantReady()) {
+
+                        CroissantType type = croissant.consumeCroissant();
+                        spawnCroissant(type);
+                    }
+                }
             }
         };
         timer.start();
@@ -167,7 +175,17 @@ public class Spawner {
             javafx.scene.Node node = it.next();
 
             if (node instanceof ItemView i) {
-                i.update(deltaTime);
+                if (i.getItem() instanceof Croissant croissant) {
+
+                    croissant.updatePhysics(
+                            deltaTime,
+                            i,
+                            sceneHeight - 80
+                    );
+                    //System.out.println("Croissant Y: " + i.getTranslateY());
+                } else {
+                    i.update(deltaTime);
+                }
 
                 if (i.getTranslateX() < -100 ||
                         i.getTranslateY() > sceneHeight + 100) {
@@ -191,6 +209,19 @@ public class Spawner {
                 }
             }
         }
+    }
+
+    private void spawnCroissant(CroissantType type) {
+
+        BaseItem croissant = new Croissant(type, speed);
+
+        ItemView view = new ItemView(croissant, speed, 0);
+
+        // เริ่มจากฟ้า
+        view.setTranslateX(sceneWidth - 200);
+        view.setTranslateY(-50);
+
+        gameLayer.getChildren().add(view);
     }
 
     private void checkCollision(Cookie cookie) {
@@ -224,6 +255,11 @@ public class Spawner {
                         .getBoundsInParent()
                         .intersects(jelly.getBoundsInParent())) {
                     jelly.getJelly().interact(cookie);
+
+                    if (cookie instanceof CrossiantCookie croissant) {
+                        croissant.onJellyCollected();
+                    }
+
                     it.remove();
                 }
             }
