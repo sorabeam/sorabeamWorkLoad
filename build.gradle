@@ -38,7 +38,7 @@ application {
 //    mainClass = "GameLogic.TestInGame"
     //mainClass = 'supakorn.Scene.MainMenuScene' // path to your main class
     //mainClass = 'supakorn.Scene.StartUp'
-    mainClass = 'Got.GameLogic.MainGameScene'
+    mainClass = 'GameLogic.MainGameScene'
     //mainClass = 'supakorn.Animation.Tester'
     applicationDefaultJvmArgs = [
         "--enable-native-access=javafx.graphics"

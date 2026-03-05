@@ -117,7 +117,7 @@ public abstract class Cookie {
     }
 
     public void takeDamageByTime(){
-        hp -= 1;
+        hp -= 2;
         GameLogic.getHpBar().updateHpBar(GameLogic.getCurrentGameScene().getDeltatime());
 
         if(hp <= 0){
