@@ -10,14 +10,14 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 
-public class CoodownBar extends StackPane {
+public class CooldownBar extends StackPane {
 
     public Rectangle frame;
     public Rectangle background;
     public Rectangle fill;
     private Cookie cookie;
 
-    public CoodownBar (Cookie cookie) {
+    public CooldownBar(Cookie cookie) {
         frame = new Rectangle(84, 12);
         frame.setFill(Color.BLACK);
         frame.setArcWidth(10);

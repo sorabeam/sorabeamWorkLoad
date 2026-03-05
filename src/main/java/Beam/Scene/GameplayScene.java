@@ -4,19 +4,14 @@ import Beam.Animation.AnimateEffect;
 import Beam.Animation.AnimationType;
 import Beam.Asset;
 import Beam.CharactorData;
-import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
 import Beam.Cookies.CrossiantCookie;
 import Beam.Cookies.TomYumCookie;
-import Beam.Pets.Chilly;
 import Beam.Pets.Pet;
-import Beam.Pets.Salad;
 import Beam.UI.InGameUI.*;
 import Filmmy.Pearl;
 import Got.GameLogic.GameLogic;
-import Pors.ObjectInGame.Interactable;
 import Pors.ObjectInGame.Items.*;
-import Pors.ObjectInGame.Jelly.JellyView;
 import Pors.ObjectInGame.Obstacle.ObstacleView;
 import Pors.ObjectInGame.Spawner;
 import javafx.animation.AnimationTimer;
@@ -26,24 +21,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
-import javafx.scene.shape.Rectangle;
-import Pors.ObjectInGame.Obstacle.BaseObstacle;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class GameplayScene extends BaseScene {
 
@@ -118,7 +104,7 @@ public class GameplayScene extends BaseScene {
 
         player.setGameLayer(gameLayer);
         player.createCookie();
-        CoodownBar cdBar = new CoodownBar(player);
+        CooldownBar cdBar = new CooldownBar(player);
 
         gameLayer.getChildren().addAll(
                 flame,
