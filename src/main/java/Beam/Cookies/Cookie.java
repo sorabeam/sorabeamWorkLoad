@@ -355,8 +355,8 @@ public abstract class Cookie {
 
     public void reset() {
         setMagnetic(false);
+        setSpeeding(false);
         Spawner.resetSpeed();
-
     }
 
     public double getCooldownTimer() {

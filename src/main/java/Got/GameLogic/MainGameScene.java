@@ -74,6 +74,7 @@ public class MainGameScene extends Application {
                     CharactorData.getCurrent_Cookie().setCooldownTimer(0);
                     CharactorData.getCurrent_Cookie().setSkillCounter(0);
                     CharactorData.getCurrent_Cookie().setDead(false);
+                    CharactorData.getCurrent_Cookie().reset();
                     GameLogic.setScore(0);
                     playMusic("SoundMAP" + GameLogic.getMap(),50);
 
