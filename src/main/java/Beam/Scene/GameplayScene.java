@@ -1,14 +1,22 @@
 package Beam.Scene;
 
+import Beam.Animation.AnimateEffect;
+import Beam.Animation.AnimationType;
+import Beam.Asset;
 import Beam.CharactorData;
+import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
 import Beam.Cookies.CrossiantCookie;
 import Beam.Cookies.TomYumCookie;
+import Beam.Pets.Chilly;
 import Beam.Pets.Pet;
+import Beam.Pets.Salad;
 import Beam.UI.InGameUI.*;
 import Filmmy.Pearl;
 import Got.GameLogic.GameLogic;
+import Pors.ObjectInGame.Interactable;
 import Pors.ObjectInGame.Items.*;
+import Pors.ObjectInGame.Jelly.JellyView;
 import Pors.ObjectInGame.Obstacle.ObstacleView;
 import Pors.ObjectInGame.Spawner;
 import javafx.animation.AnimationTimer;
@@ -30,9 +38,12 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
+import Pors.ObjectInGame.Obstacle.BaseObstacle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class GameplayScene extends BaseScene {
 
@@ -82,6 +93,8 @@ public class GameplayScene extends BaseScene {
 //       Cookie player = new BobaCookie();
         Cookie player = CharactorData.getCurrent_Cookie();
         Pet pet = CharactorData.getCurrent_Pet();
+        AnimateEffect flame = new AnimateEffect(Asset.getImage("FireSpriteSheet"), 125, 125, 9, 4, 0.3);
+        flame.setLoop(true);
 //        Pet pet = new Salad()s;
 //        Pet pet = new Chilly();
 
@@ -131,6 +144,7 @@ public class GameplayScene extends BaseScene {
         CoodownBar cdBar = new CoodownBar(player);
 
         gameLayer.getChildren().addAll(
+                flame,
                 player.getCookie(),
                 player.getHitbox(),
                 cdBar
@@ -148,6 +162,22 @@ public class GameplayScene extends BaseScene {
         player.getCookie().setFitWidth(200);
         player.getCookie().setFitHeight(200);
         player.getCookie().setLayoutX(200);
+
+//        flame.setManaged(false);
+        flame.setFitWidth(350);
+        flame.setFitHeight(350);
+        flame.setPreserveRatio(true);
+        double flameW = flame.getFitWidth();
+        double flameH = flame.getFitHeight();
+        flame.layoutXProperty().bind(
+                player.getCookie().layoutXProperty()
+                        .add(player.getCookie().fitWidthProperty().divide(2))
+        );
+
+        flame.layoutYProperty().bind(
+                player.getCookie().layoutYProperty()
+                        .add(player.getCookie().fitHeightProperty().divide(2))
+        );
 
         root.getChildren().add(gameLayer);
         root.getChildren().add(uiLayer);
@@ -202,6 +232,23 @@ public class GameplayScene extends BaseScene {
                     cdBar.fill.setVisible(false);
                     cdBar.frame.setVisible(false);
                     cdBar.background.setVisible(false);
+                }
+
+                if(player.isSpeeding()) {
+                    flame.setVisible(true);
+                    if(player.getCookie().getAnimationState()== AnimationType.SLIDE) {
+                        flame.setRotate(270);
+                        flame.setTranslateX(-flameH/2-100);
+                        flame.setTranslateY(-flameW/2+100);
+                    } else {
+                        flame.setRotate(0);
+                        flame.setTranslateX(-flameW/2-50);
+                        flame.setTranslateY(-flameH/2-50);
+                    }
+                    flame.update(dt);
+                } else {
+                    flame.setVisible(false);
+                    flame.restart();
                 }
 
                 petCooldownTimer -= dt;
@@ -261,9 +308,7 @@ public class GameplayScene extends BaseScene {
                     }
                 }
 
-                List<Node> snapshot = new ArrayList<>(gameLayer.getChildren());
-
-                for (Node node : snapshot) {
+                for (Node node : gameLayer.getChildren()) {
 
                     if (node instanceof Pearl pearl) {
 

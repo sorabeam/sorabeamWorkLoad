@@ -43,8 +43,10 @@ public abstract class Cookie {
     private final double maxFallSpeed = 12;
 
     private boolean isMagnetic;
+    private boolean isSpeeding;
 
     protected double damageTimer = 0;
+
 
     int id;
     int maxhp;
@@ -351,5 +353,13 @@ public abstract class Cookie {
 
     public void setMagnetic(boolean magnetic) {
         isMagnetic = magnetic;
+    }
+
+    public void setSpeeding(boolean speeding) {
+        isSpeeding = speeding;
+    }
+
+    public boolean isSpeeding() {
+        return isSpeeding;
     }
 }

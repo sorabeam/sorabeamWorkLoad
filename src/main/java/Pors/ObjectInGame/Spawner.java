@@ -4,6 +4,7 @@ import Beam.Cookies.Cookie;
 import Beam.Media.MediaPlayer;
 import Beam.Pets.Pet;
 import Beam.Cookies.CrossiantCookie;
+import Got.GameLogic.GameLogic;
 import Pors.ObjectInGame.Items.*;
 import Pors.ObjectInGame.Jelly.BaseJelly;
 import Pors.ObjectInGame.Jelly.JellyView;
@@ -29,7 +30,7 @@ public class Spawner {
 
     //private AnimationTimer timer;
 
-    private List<List<SpawnAction>> spawnSets = SpawnerLayout.spawnlayout;
+    private List<List<SpawnAction>> spawnSets = SpawnerLayout.getSpawnLayout();
 
     private int currentSetIndex = spawnSets.size() - 1;
     //private int currentSetIndex = 0;
@@ -94,8 +95,15 @@ public class Spawner {
         //double y = 650;
 
         if (action.type == SpawnAction.Type.OBSTACLE) {
+            int level = GameLogic.getMap();
+
+            String name = action.name;
+
+            //replace map number
+            name = name.replaceAll("Obs_\\d+_", "Obs_" + level + "_");
+
             ObstacleView obs = new ObstacleView(
-                    new BaseObstacle(action.name),
+                    new BaseObstacle(name),
                     speed,
                     0
             );
