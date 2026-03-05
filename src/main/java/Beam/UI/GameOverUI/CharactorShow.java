@@ -3,8 +3,7 @@ package Beam.UI.GameOverUI;
 import Beam.Animation.Animate;
 import Beam.Animation.AnimationType;
 import Beam.CharactorData;
-import Beam.Cookies.Cookie;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
@@ -39,7 +38,7 @@ public class CharactorShow extends StackPane {
         setAlignment(petView, Pos.TOP_RIGHT);
         setMargin(petView, new Insets(60,-50,0,0));
 
-        OutlineText username = new OutlineText(CharactorData.getCurrent_Cookie().get_Name(), 'C',24);
+        OutlineTextImage username = new OutlineTextImage(CharactorData.getCurrent_Cookie().get_Name(), 'C',24);
         setAlignment(username, Pos.TOP_CENTER);
         setMargin(username, new Insets(0,-60,0,0));
 

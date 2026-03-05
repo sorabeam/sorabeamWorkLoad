@@ -1,12 +1,11 @@
 package Beam.UI.PetsUI;
 
-import Beam.Button.SettingPopUpBtn;
+import Beam.Button.SettingsPopupButton;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import Beam.Asset;
-import Beam.Button.NavSettingBtn;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 
 public class SettingZone extends HBox {
 
@@ -15,9 +14,9 @@ public class SettingZone extends HBox {
         ImageView SettingImg = Asset.createImageView("SettingBtn",80,0);
         ImageView WifiImg = Asset.createImageView("WiFi",0,25);
 
-        OutlineText Pname = new OutlineText("sorabeam",'C',18);
+        OutlineTextImage Pname = new OutlineTextImage("sorabeam",'C',18);
 
-        SettingPopUpBtn NavSettingBtn =new SettingPopUpBtn(SettingImg,root);
+        SettingsPopupButton NavSettingBtn =new SettingsPopupButton(SettingImg,root);
         setMargin(WifiImg,new Insets(10,0,0,0));
         setMaxHeight(80);
 

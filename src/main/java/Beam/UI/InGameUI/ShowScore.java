@@ -6,12 +6,12 @@ import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import Beam.Asset;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 
 public class ShowScore extends StackPane {
     int iscore;
     ImageView fadeBg = Asset.createImageView("ScoreBG",100,0);
-    OutlineText score = new OutlineText("0 Score",'M',30);
+    OutlineTextImage score = new OutlineTextImage("0 Score",'M',30);
 
     public ShowScore(){
 

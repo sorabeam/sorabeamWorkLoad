@@ -1,7 +1,6 @@
 package Pors.ObjectInGame.Jelly;
 
 import Beam.Cookies.Cookie;
-import Beam.Media.JooxBox;
 import Got.GameLogic.GameLogic;
 import Pors.ObjectInGame.Interactable;
 

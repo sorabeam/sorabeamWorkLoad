@@ -6,15 +6,15 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import Beam.Asset;
-import Beam.Button.NavBtn;
+import Beam.Button.NavigationButton;
 
 public class MainMenuButtons extends StackPane {
 
     public MainMenuButtons() {
 
-        NavBtn playBtn = new NavBtn(Asset.createImageView("play",100,0), GameState.INGAME);
-        NavBtn cookieBtn = new NavBtn(Asset.createImageView("MainCookie",0,300), GameState.SELECTCHAR );
-        NavBtn petsBtn = new NavBtn(Asset.createImageView("PetsBtn",0,300), GameState.SELECTPET );
+        NavigationButton playBtn = new NavigationButton(Asset.createImageView("play",100,0), GameState.INGAME);
+        NavigationButton cookieBtn = new NavigationButton(Asset.createImageView("MainCookie",0,300), GameState.SELECTCHAR );
+        NavigationButton petsBtn = new NavigationButton(Asset.createImageView("PetsBtn",0,300), GameState.SELECTPET );
 
         VBox ButtonBoy = new VBox(petsBtn,cookieBtn);
 

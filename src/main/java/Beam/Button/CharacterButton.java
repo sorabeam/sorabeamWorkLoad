@@ -5,14 +5,14 @@ import Beam.Cookies.Cookie;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class CDBtn extends BaseButton{
+public class CharacterButton extends BaseButton{
     String n;
     String r;
     String d;
     Image img;
     Cookie cookie;
 
-    public CDBtn(ImageView i, String n, String d , String r, Image img , Cookie cookie) {
+    public CharacterButton(ImageView i, String n, String d , String r, Image img , Cookie cookie) {
 
         super(i);
 

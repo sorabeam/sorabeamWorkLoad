@@ -6,9 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.TextAlignment;
-import Beam.Asset;
-import Beam.Button.BaseButton;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 
 import static javafx.geometry.Pos.*;
 
@@ -33,11 +31,11 @@ public class SelectingView extends StackPane {
         selectingBg.fitHeightProperty().bind(root.heightProperty());
         StackPane.setAlignment(selectingBg, CENTER);
 
-        OutlineText pName =
-                new OutlineText(CharactorData.getCurrent_Pet().getName(),'C',40);
+        OutlineTextImage pName =
+                new OutlineTextImage(CharactorData.getCurrent_Pet().getName(),'C',40);
 
-        OutlineText description =
-                new OutlineText(CharactorData.getCurrent_Pet().getDesc(),'M',20);
+        OutlineTextImage description =
+                new OutlineTextImage(CharactorData.getCurrent_Pet().getDesc(),'M',20);
 
         description.setTextAlignment(TextAlignment.CENTER);
 

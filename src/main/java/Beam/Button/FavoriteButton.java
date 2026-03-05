@@ -3,11 +3,11 @@ package Beam.Button;
 import javafx.scene.image.ImageView;
 import Beam.Asset;
 
-public class FavBtn extends BaseButton{
+public class FavoriteButton extends BaseButton{
 
     private boolean isFav = true;
 
-    public FavBtn() {
+    public FavoriteButton() {
         super(Asset.createImageView("FavIco",30,0));
     }
 

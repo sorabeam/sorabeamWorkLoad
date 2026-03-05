@@ -3,13 +3,11 @@ package Beam.Cookies;
 import Beam.Animation.Animate;
 import Beam.Animation.AnimationType;
 import Beam.Asset;
-import Beam.Media.JooxBox;
+import Beam.Media.MediaPlayer;
 import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -51,8 +49,10 @@ public abstract class Cookie {
     protected int skillCounter;
 
     private boolean isMagnetic;
+    private boolean isSpeeding;
 
     protected double damageTimer = 0;
+
 
     int id;
     int maxhp;
@@ -99,7 +99,7 @@ public abstract class Cookie {
         System.out.println("Cookie take " + damage + " damage");
 
         System.out.println(hp);
-        JooxBox.getInstance().playSFX("Hit");
+        MediaPlayer.getInstance().playSFX("Hit");
 
         cookie.changeAnimationState(AnimationType.TAKE_DAMAGE);
         damageTimer = 0.5;
@@ -264,7 +264,7 @@ public abstract class Cookie {
             cookie.changeAnimationState(AnimationType.DOUBLE_JUMP);
         }
 
-        JooxBox.getInstance().playSFX("JUMP");
+        MediaPlayer.getInstance().playSFX("JUMP");
         setHitbox();
         velocity = jumpSpeed;
         jumpCount++;
@@ -277,7 +277,7 @@ public abstract class Cookie {
 
         if ( isPerformingSkill() || !onGround || cookie.getAnimationState().equals(AnimationType.SLIDE)) { return; }
 
-        JooxBox.getInstance().playSFX("SLIDE");
+        MediaPlayer.getInstance().playSFX("SLIDE");
         cookie.changeAnimationState(AnimationType.SLIDE);
     }
 
@@ -387,5 +387,13 @@ public abstract class Cookie {
 
     public void setMagnetic(boolean magnetic) {
         isMagnetic = magnetic;
+    }
+
+    public void setSpeeding(boolean speeding) {
+        isSpeeding = speeding;
+    }
+
+    public boolean isSpeeding() {
+        return isSpeeding;
     }
 }

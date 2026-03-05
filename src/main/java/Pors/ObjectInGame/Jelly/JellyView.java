@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 
 import java.util.Objects;
 
-import static Beam.Scene.InGameScene.groundY;
+import static Beam.Scene.GameplayScene.groundY;
 
 public class JellyView extends ImageView {
 

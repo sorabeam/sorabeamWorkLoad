@@ -3,24 +3,23 @@ package Beam.Media;
 import Got.GameLogic.GameLogic;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 import java.util.HashMap;
 
-public class JooxBox {
+public class MediaPlayer {
 
     private HashMap<String, String> playlist;
     private HashMap<String, AudioClip> sfxCache;
-    private MediaPlayer bgmPlayer;
-    private static JooxBox instance;
+    private javafx.scene.media.MediaPlayer bgmPlayer;
+    private static MediaPlayer instance;
 
-    public static JooxBox getInstance() {
+    public static MediaPlayer getInstance() {
         if (instance == null)
-            instance = new JooxBox();
+            instance = new MediaPlayer();
         return instance;
     }
 
-    public JooxBox(){
+    public MediaPlayer(){
         playlist = new HashMap<>();
         sfxCache = new HashMap<>();
 
@@ -74,10 +73,10 @@ public class JooxBox {
         }
 
         Media media = new Media(getClass().getResource(path).toExternalForm());
-        bgmPlayer = new MediaPlayer(media);
+        bgmPlayer = new javafx.scene.media.MediaPlayer(media);
 
         if (loop)
-            bgmPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            bgmPlayer.setCycleCount(javafx.scene.media.MediaPlayer.INDEFINITE);
 
         bgmPlayer.setVolume(GameLogic.getMusicVolume() / 100.0);
         bgmPlayer.play();

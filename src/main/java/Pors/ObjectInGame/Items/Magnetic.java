@@ -6,7 +6,7 @@ public class Magnetic extends BaseItem{
     private int activeTime = 8000;
 
     public Magnetic() {
-        super("Magnet");
+        super("Magnetic");
     }
 
     @Override

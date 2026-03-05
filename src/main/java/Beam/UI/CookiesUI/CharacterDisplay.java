@@ -5,8 +5,7 @@ import Beam.CharactorData;
 import Beam.Scene.CookieSelectionScene;
 import javafx.geometry.Insets;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 
 import static javafx.geometry.Pos.BOTTOM_CENTER;
 import static javafx.geometry.Pos.TOP_CENTER;
@@ -15,7 +14,7 @@ public class CharacterDisplay extends StackPane {
 
     public CharacterDisplay(CookieSelectionScene scene){
 
-        scene.setName( new OutlineText(CharactorData.getCurrent_Cookie().get_Name(), 'C',30) );
+        scene.setName( new OutlineTextImage(CharactorData.getCurrent_Cookie().get_Name(), 'C',30) );
         scene.getName().setPadding(new Insets(0,0,40,0));
 
         Animate cookie = CharactorData.getCurrent_Cookie().createCookie();

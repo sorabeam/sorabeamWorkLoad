@@ -1,17 +1,18 @@
 package Pors.ObjectInGame;
 
 import Beam.Cookies.Cookie;
-import Beam.Media.JooxBox;
+import Beam.Media.MediaPlayer;
 import Beam.Pets.Pet;
 import Beam.Cookies.CrossiantCookie;
+import Got.GameLogic.GameLogic;
 import Pors.ObjectInGame.Items.*;
 import Pors.ObjectInGame.Jelly.BaseJelly;
 import Pors.ObjectInGame.Jelly.JellyView;
 import Pors.ObjectInGame.Obstacle.BaseObstacle;
 import Pors.ObjectInGame.Obstacle.ObstacleView;
-import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Spawner {
 
     //private AnimationTimer timer;
 
-    private List<List<SpawnAction>> spawnSets = SpawnerLayout.spawnlayout;
+    private List<List<SpawnAction>> spawnSets = SpawnerLayout.getSpawnLayout();
 
     private int currentSetIndex = spawnSets.size() - 1;
     //private int currentSetIndex = 0;
@@ -94,8 +95,15 @@ public class Spawner {
         //double y = 650;
 
         if (action.type == SpawnAction.Type.OBSTACLE) {
+            int level = GameLogic.getMap();
+
+            String name = action.name;
+
+            //replace map number
+            name = name.replaceAll("Obs_\\d+_", "Obs_" + level + "_");
+
             ObstacleView obs = new ObstacleView(
-                    new BaseObstacle(action.name),
+                    new BaseObstacle(name),
                     speed,
                     0
             );
@@ -238,47 +246,53 @@ public class Spawner {
 
     private void checkCollision(Cookie cookie) {
 
-        Iterator<javafx.scene.Node> it = gameLayer.getChildren().iterator();
+        List<javafx.scene.Node> snapshot =
+                new ArrayList<>(gameLayer.getChildren());
 
-        while (it.hasNext()) {
-            javafx.scene.Node node = it.next();
+        List<javafx.scene.Node> toRemove = new ArrayList<>();
 
-            //Obstacle
+        for (javafx.scene.Node node : snapshot) {
+
             if (node instanceof ObstacleView obs) {
                 if (cookie.getHitbox()
                         .getBoundsInParent()
-                        .intersects(obs.getBoundsInParent()) && !cookie.isInvincible()) {
+                        .intersects(obs.getBoundsInParent())
+                        && !cookie.isInvincible()) {
+
                     cookie.takeDamage(obs.getDamage());
-                    it.remove();
+                    toRemove.add(node);
                 }
             }
-            //Item
+
             else if (node instanceof ItemView item) {
                 if (cookie.getHitbox()
                         .getBoundsInParent()
                         .intersects(item.getBoundsInParent())) {
+
                     item.getItem().interact(cookie);
-                    JooxBox.getInstance().playSFX("Item");
-                    it.remove();
+                    MediaPlayer.getInstance().playSFX("Item");
+                    toRemove.add(node);
                 }
             }
-            //Jelly
+
             else if (node instanceof JellyView jelly) {
                 if (cookie.getHitbox()
                         .getBoundsInParent()
                         .intersects(jelly.getBoundsInParent())) {
+
                     jelly.getJelly().interact(cookie);
 
                     if (cookie instanceof CrossiantCookie croissant) {
                         croissant.onJellyCollected();
                     }
 
-                    JooxBox.getInstance().playSFX("Jelly");
-
-                    it.remove();
+                    MediaPlayer.getInstance().playSFX("Jelly");
+                    toRemove.add(node);
                 }
             }
         }
+
+        gameLayer.getChildren().removeAll(toRemove);
     }
 
     public static void setSpeed(double speed) {

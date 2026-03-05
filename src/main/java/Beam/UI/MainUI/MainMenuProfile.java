@@ -1,18 +1,15 @@
 package Beam.UI.MainUI;
 
-import Beam.Button.BaseButton;
-import Beam.Button.MapPopUpBtn;
+import Beam.Button.MapPopupButton;
 import Beam.CharactorData;
-import Beam.UI.GameOverUI.Buttons;
 import Got.GameLogic.GameLogic;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import Beam.Asset;
-import Beam.Button.FavBtn;
-import Beam.Image.OutlineText;
+import Beam.Button.FavoriteButton;
+import Beam.Image.OutlineTextImage;
 
 public class MainMenuProfile extends StackPane {
 
@@ -23,20 +20,20 @@ public class MainMenuProfile extends StackPane {
         LillyProfile.setPreserveRatio(true);
         LillyProfile.setFitWidth(460);
 
-        FavBtn CfavIco = new FavBtn();
+        FavoriteButton CfavIco = new FavoriteButton();
         CfavIco.setHeight(45);
 
-        OutlineText CharactorName = new OutlineText(name,'C',35);
+        OutlineTextImage CharactorName = new OutlineTextImage(name,'C',35);
         StackPane.setAlignment(CharactorName, Pos.TOP_LEFT);
         CharactorName.setMaxHeight(1);
         CharactorName.setMaxWidth(1);
 
-        OutlineText BestScore = new OutlineText("Best Score : " + score ,'M',30);
+        OutlineTextImage BestScore = new OutlineTextImage("Best Score : " + score ,'M',30);
         StackPane.setAlignment(BestScore,Pos.TOP_LEFT);
         BestScore.setMaxHeight(1);
         BestScore.setMaxWidth(1);
 
-        MapPopUpBtn SelectingMap = new MapPopUpBtn(Asset.createImageView("MAP" + GameLogic.getMap() + "P",0,400),root);
+        MapPopupButton SelectingMap = new MapPopupButton(Asset.createImageView("MAP" + GameLogic.getMap() + "P",0,400),root);
 
         setMaxWidth(500);
         getChildren().addAll(LillyBar,LillyProfile,BestScore,CharactorName,CfavIco,SelectingMap);

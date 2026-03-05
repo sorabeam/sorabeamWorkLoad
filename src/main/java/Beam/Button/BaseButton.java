@@ -1,6 +1,6 @@
 package Beam.Button;
 
-import Beam.Media.JooxBox;
+import Beam.Media.MediaPlayer;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 
-public class BaseButton extends Button implements ClickAble{
+public class BaseButton extends Button implements Clickable {
     private DropShadow dropShadow;
     private ScaleTransition scaleTransition;
     private boolean isHovering = false;
@@ -35,7 +35,7 @@ public class BaseButton extends Button implements ClickAble{
 
     @Override
     public void handleClick() {
-        JooxBox.getInstance().playSFX("Click");
+        MediaPlayer.getInstance().playSFX("Click");
         clicked = true;
         scaleTo(1.1,true);
     }

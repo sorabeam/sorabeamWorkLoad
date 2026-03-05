@@ -2,9 +2,9 @@ package Beam.Image;
 
 import javafx.scene.layout.Region;
 
-public class TopFade extends Region {
+public class CellingFade extends Region {
 
-    public TopFade(double H) {
+    public CellingFade(double H) {
 
         setMaxWidth(Double.MAX_VALUE); // ให้ขยายเต็มความกว้าง
         setMaxHeight(H);

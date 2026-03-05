@@ -1,22 +1,20 @@
 package Beam.Button;
 
 import Beam.Asset;
-import Got.GameLogic.GameLogic;
 import javafx.geometry.Insets;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 
-public class MapPopUpBtn extends BaseButton{
+public class MapPopupButton extends BaseButton{
 
     private StackPane overlay;
     private StackPane root;
 
-    private MapSelectionBtn m1 = new MapSelectionBtn(Asset.createImageView("MAP1P",400,400),this,1);
-    private MapSelectionBtn m2 = new MapSelectionBtn(Asset.createImageView("MAP2P",400,400),this,2);
-    private MapSelectionBtn m3 = new MapSelectionBtn(Asset.createImageView("MAP3P",400,400),this,3);
+    private MapSelectionButton m1 = new MapSelectionButton(Asset.createImageView("MAP1P",400,400),this,1);
+    private MapSelectionButton m2 = new MapSelectionButton(Asset.createImageView("MAP2P",400,400),this,2);
+    private MapSelectionButton m3 = new MapSelectionButton(Asset.createImageView("MAP3P",400,400),this,3);
 
-    public MapPopUpBtn(ImageView img,StackPane root) {
+    public MapPopupButton(ImageView img, StackPane root) {
         super(img);
         this.root = root;
 
@@ -57,7 +55,7 @@ public class MapPopUpBtn extends BaseButton{
         root.getChildren().addAll(overlay);
     }
 
-    private void deleteThis(MapSelectionBtn button) {
+    private void deleteThis(MapSelectionButton button) {
 
         var oldAction = button.getOnAction();
         button.setOnAction(e -> {

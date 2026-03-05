@@ -1,6 +1,6 @@
 package Beam.Button;
 
-public interface ClickAble {
+public interface Clickable {
 
     void handleClick();
     void onHoverEnter();

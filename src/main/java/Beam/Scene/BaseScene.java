@@ -1,14 +1,12 @@
 package Beam.Scene;
 
 import Got.GameLogic.GameLogic;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Screen;
 
-public abstract class BaseRoot extends StackPane{
+public abstract class BaseScene extends StackPane{
 
     protected Scene scene;
     protected StackPane root = this;
@@ -16,10 +14,9 @@ public abstract class BaseRoot extends StackPane{
     private static final double BASE_WIDTH = 1440;
     private static final double BASE_HEIGHT = 900;
 
-    public BaseRoot() {
+    public BaseScene() {
 
-        //scene = GameLogic.getCurScene();
-        scene = new Scene(this, BASE_WIDTH, BASE_HEIGHT);
+        scene = GameLogic.getCurScene();
 
         setMinSize(BASE_WIDTH, BASE_HEIGHT);
         setPrefSize(BASE_WIDTH, BASE_HEIGHT);
@@ -32,6 +29,9 @@ public abstract class BaseRoot extends StackPane{
     }
 
     public Region spacer(char c){
+
+        //มันเป็นเหมือน spacer ใน Swift ที่สร้างมาเพราะจะเอาใว้จัดหน้า UI ง่ายๆ
+
         Region space = new Region();
         if(c == 'V'){
             VBox.setVgrow(space, Priority.ALWAYS);
@@ -39,9 +39,5 @@ public abstract class BaseRoot extends StackPane{
             HBox.setHgrow(space, Priority.ALWAYS);
         }
         return space;
-    }
-
-    public Scene getRootScene() {
-        return scene;
     }
 }

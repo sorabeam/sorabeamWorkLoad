@@ -12,37 +12,34 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import Beam.Asset;
-import Beam.Button.CDBtn;
+import Beam.Button.CharacterButton;
 import Beam.CharactorData;
-import Beam.Image.OutlineText;
-import javafx.scene.paint.Color;
+import Beam.Image.OutlineTextImage;
 
 import static javafx.geometry.Pos.BOTTOM_CENTER;
 
-public class CookieSelectionScene extends BaseRoot{
+public class CookieSelectionScene extends BaseScene {
+
+    CharacterButton block1 = Asset.createGridButton(CharactorData.BOBACOOKIE,220,0);
+    CharacterButton block2 = Asset.createGridButton(CharactorData.TOMYUM_COOKIE,220,0);
+    CharacterButton block3 = Asset.createGridButton(CharactorData.CROSSIANT_COOKIE,220,0);
+
+    //ล็อคไม่ให้มันกดได้นะ ไม่งั้นมันบัค
+    BaseButton block4 = new BaseButton(Asset.createImageView("B4",220,0));
 
     ImageView SkillVideo;
-    OutlineText name,Description,Record;
-    private String txt;
-
+    OutlineTextImage name,Description,Record;
     Animate cookie;
+    CharacterButton selectButton = block1;
 
-    CDBtn B1 = Asset.createGridButton(CharactorData.BOBACOOKIE,220,0);
-    CDBtn B2 = Asset.createGridButton(CharactorData.TOMYUM_COOKIE,220,0);
-    CDBtn B3 = Asset.createGridButton(CharactorData.CROSSIANT_COOKIE,220,0);
-
-    //LOCK WAI
-    BaseButton B4 = new BaseButton(Asset.createImageView("B4",220,0));
-
-    CDBtn selectButton = B1;
-    GridPane characterBoard = new GridDisplay(B1,B2,B3,B4);
+    GridPane characterBoard = new GridDisplay(block1, block2, block3,block4);
     CharacterDisplay cd =  new CharacterDisplay(this);
 
-    public  CookieSelectionScene(){
+    public CookieSelectionScene(){
         super();
         HBox Setting = new SettingZone(root,spacer('H'));
         String txt = CharactorData.getCurrent_Cookie().get_Desc();
-        initCDBtn();
+        initCookieBtn();
 
         HBox MainHBox = new HBox(cd,new DataDisplay(txt,this),characterBoard);
         MainHBox.setPadding(new Insets(0,30,0,30));
@@ -89,13 +86,13 @@ public class CookieSelectionScene extends BaseRoot{
 
     }
 
-    private void initCDBtn() {
-        enableSwap(B1);
-        enableSwap(B2);
-        enableSwap(B3);
+    private void initCookieBtn() {
+        enableShow(block1);
+        enableShow(block2);
+        enableShow(block3);
     }
 
-    private void enableSwap(CDBtn button) {
+    private void enableShow (CharacterButton button) {
 
         var oldAction = button.getOnAction();
 
@@ -132,31 +129,15 @@ public class CookieSelectionScene extends BaseRoot{
 
     }
 
-    public void setSkillVideo(ImageView skillVideo) {
-        SkillVideo = skillVideo;
-    }
-    public void setName(OutlineText name) {
-        this.name = name;
-    }
-    public void setDescription(OutlineText description) {
-        Description = description;
-    }
-    public void setRecord(OutlineText record) {
-        Record = record;
-    }
+    public void setSkillVideo(ImageView skillVideo) { SkillVideo = skillVideo; }
+    public void setName(OutlineTextImage name) { this.name = name; }
+    public void setDescription(OutlineTextImage description) { Description = description; }
+    public void setRecord(OutlineTextImage record) { Record = record; }
     public void setCookie(Animate cookie) { this.cookie = cookie; }
 
-    public ImageView getSkillVideo() {
-        return SkillVideo;
-    }
-    public OutlineText getName() {
-        return name;
-    }
-    public OutlineText getDescription() {
-        return Description;
-    }
-    public OutlineText getRecord() {
-        return Record;
-    }
+    public ImageView getSkillVideo() { return SkillVideo; }
+    public OutlineTextImage getName() { return name; }
+    public OutlineTextImage getDescription() { return Description; }
+    public OutlineTextImage getRecord() { return Record; }
     public Animate getCookie() { return cookie; }
 }

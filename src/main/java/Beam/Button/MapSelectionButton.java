@@ -5,11 +5,11 @@ import Got.GameLogic.GameLogic;
 import javafx.scene.image.ImageView;
 
 
-public class MapSelectionBtn extends BaseButton{
+public class MapSelectionButton extends BaseButton{
     private int mapNo;
-    private MapPopUpBtn targetBtn;
+    private MapPopupButton targetBtn;
 
-    public MapSelectionBtn(ImageView img ,MapPopUpBtn targetBtn,int mapNo) {
+    public MapSelectionButton(ImageView img , MapPopupButton targetBtn, int mapNo) {
         super(img);
         this.mapNo = mapNo;
         this.targetBtn = targetBtn;

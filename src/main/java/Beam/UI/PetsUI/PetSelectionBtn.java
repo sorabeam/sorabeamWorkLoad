@@ -5,14 +5,14 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import Beam.Asset;
-import Beam.Button.NavBtn;
+import Beam.Button.NavigationButton;
 
 public class PetSelectionBtn extends HBox {
 
     public PetSelectionBtn(Region spacer){
 
-        NavBtn backBtn = new NavBtn(Asset.createImageView("BackBtn",100,0), GameState.INTRO);
-        NavBtn cookieBtn = new NavBtn(Asset.createImageView("SEcookie",100,0),GameState.SELECTCHAR);
+        NavigationButton backBtn = new NavigationButton(Asset.createImageView("BackBtn",100,0), GameState.INTRO);
+        NavigationButton cookieBtn = new NavigationButton(Asset.createImageView("SEcookie",100,0),GameState.SELECTCHAR);
 
         getChildren().addAll(spacer, cookieBtn, backBtn);
         setSpacing(20);

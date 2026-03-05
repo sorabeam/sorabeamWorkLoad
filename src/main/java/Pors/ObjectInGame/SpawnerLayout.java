@@ -1,673 +1,482 @@
 package Pors.ObjectInGame;
 
+import Got.GameLogic.GameLogic;
+
 import java.util.List;
 
+import static Pors.ObjectInGame.SpawnAction.*;
+
 public class SpawnerLayout {
-    public static final List<List<SpawnAction>> spawnlayout = List.of(
+    static int level = GameLogic.getMap();
 
-            // straight way jelly1
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
+    public static List<SpawnAction> basicJump() {
+        int level = GameLogic.getMap();
+        return List.of(
+                jelly(200_000_000L, 650, 1),
+                jelly(125_000_000L, 575, 1),
+                jelly(125_000_000L, 525, 1),
 
-            // straight way jelly2
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly2", 650)
-            ),
+                obstacle(125_000_000L,650,level,1),
+                jelly(100_000_000L, 500, 2),
 
-            // testArea
-            List.of(
+                jelly(225_000_000L, 525, 1),
+                jelly(125_000_000L, 575, 1),
+                jelly(125_000_000L, 650, 1)
+        );
+    }
+
+    public static final List<SpawnAction> doubleJump = List.of(
+            jelly(200_000_000L, 550, 1),
+            jelly(125_000_000L, 450, 1),
+            jelly(125_000_000L, 350, 1),
+
+            obstacle(100_000_000L,500,level,2),
+            jelly(100_000_000L, 300, 2),
+
+            jelly(225_000_000L, 350, 1),
+            jelly(125_000_000L, 450, 1),
+            jelly(125_000_000L, 550, 1)
+    );
+
+    public static final List<SpawnAction> basicSlice = List.of(
+            obstacle(100_000_000L, 0,level, 4),
+            jelly(100_000_000L, 650, 2),
+
+            jelly(200_000_000L, 650, 1),
+            jelly(200_000_000L, 650, 1)
+    );
+
+    public static final List<SpawnAction> advancedJump = List.of(
+            jelly(200_000_000L, 650, 1),
+            jelly(125_000_000L, 575, 1),
+            jelly(125_000_000L, 525, 1),
+
+            obstacle(100_000_000L, 650,level, 1),
+            jelly(100_000_000L, 500, 2),
+
+            jelly(100_000_000L, 400, 1),
+
+            obstacle(150_000_000L, 500,level, 2),
+            jelly(100_000_000L, 350, 2),
+
+            jelly(225_000_000L, 400, 1),
+            jelly(125_000_000L, 500, 1),
+            jelly(200_000_000L, 650, 1)
+    );
+
+    public static final List<SpawnAction> bigJump3 = List.of(
+            jelly(200_000_000L, 650, 1),
+            jelly(125_000_000L, 575, 1),
+            jelly(125_000_000L, 525, 1),
+
+            obstacle(50_000_000L, 650,level, 1),
+            jelly(50_000_000L, 475, 2),
+
+            jelly(200_000_000L, 500, 1),
+            jelly(200_000_000L, 525, 1),
+
+            obstacle(100_000_000L, 650,level, 1),
+            jelly(100_000L, 525, 2),
+
+            jelly(200_000_000L, 475, 1),
+            jelly(200_000_000L, 425, 1),
+
+            obstacle(50_000_000L, 650,level, 1),
+            jelly(100_000L, 400, 2),
+
+            jelly(225_000_000L, 475, 1),
+            jelly(125_000_000L, 550, 1),
+            jelly(125_000_000L, 650, 1)
+    );
+
+    public static List<List<SpawnAction>> getSpawnLayout() {
+        return List.of(
+
+                // straight way jelly1
+                List.of(
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                // straight way jelly2
+                List.of(
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2),
+                        jelly(200_000_000L, 650, 2)
+                ),
+
+                // testArea
+            /*List.of(
                     new SpawnAction(SpawnAction.Type.OBSTACLE, 1_000_000_000L, "ObsTest", 650),
                     new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_1", 650),
                     new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_2", 475),
                     new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_3", 650),
                     new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_4", 0)
-            ),
-
-            // Pattern jelly1
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 150_000_000L, "Jelly1", 650)
-            ),
-
-            // basic jump1
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 125_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 525),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650)
-            ),
-
-            // double jump1
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_2", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 600),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650)
-            ),
-
-            //double jump2
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_2", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 600),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_2", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 600),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650)
-            ),
-
-            // advanced jump1
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 150_000_000L, "Obs_1_2", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650)
-            ),
-
-            //big jump 3 object
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 50_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 50_000_000L, "Jelly2", 475),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000L, "Jelly2", 525),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 425),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 50_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000L, "Jelly2", 400),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650)
-            ),
-
-            //double jump2
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_2", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 600),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 125_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 525),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650)
-            ),
-
-            //basic slice
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
-
-            //basic slice2
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
-
-            //basic slice and jump
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 125_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 525),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
-
-            //basic slice and double jump and slice
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_2", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 600),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
-
-            // advanced jump and slice
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 150_000_000L, "Obs_1_2", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
-
-            // slice3 and double jump
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 600),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_2", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 600)
-            ),
-
-            // slice3 and jump2
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 125_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 525),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 125_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 525),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
-
-            //big jump 3 object + advanced jumb + slice2
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 1_000_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 50_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 50_000_000L, "Jelly2", 475),
+            ),*/
+
+                // Pattern jelly1
+                jellyWave(
+                        150_000_000L, 1,
+                        650, 600, 550, 500, 550, 600, 650,
+                        600, 550, 500, 550, 600, 650,
+                        600, 550, 500, 550, 600, 650
+                ),
+
+                // basic jump1
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicJump(),
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                // double jump1
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        doubleJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                //double jump2
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        doubleJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        doubleJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                // advanced jump1
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        advancedJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                //big jump 3 object
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        bigJump3,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(500_000_000L, 650, 1)
+                ),
+
+                //double jump2
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        doubleJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicJump(),
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(500_000_000L, 650, 1)
+                ),
+
+                //basic slice
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                //basic slice2
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 600, 1),
+                        jelly(200_000_000L, 600, 1),
+                        jelly(200_000_000L, 600, 1),
+                        jelly(200_000_000L, 600, 1),
+
+                        jelly(400_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                //basic slice and jump
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicJump(),
 
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000L, "Jelly2", 525),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 425),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 50_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000L, "Jelly2", 400),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
 
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 550),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650),
+                //basic slice and double jump and slice
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
 
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
+                        basicSlice,
 
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 150_000_000L, "Obs_1_2", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 500_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650)
-            ),
-
-            //slice + advanced jump + slice + basic jump
-            List.of(
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly1", 400),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 150_000_000L, "Obs_1_2", 475),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 350),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 400),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 500),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 100_000_000L, "Obs_1_4", 0),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 200_000_000L, "Jelly1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 525),
-
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 125_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.JELLY, 100_000_000L, "Jelly2", 500),
-
-                    new SpawnAction(SpawnAction.Type.JELLY, 225_000_000L, "Jelly1", 525),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 575),
-                    new SpawnAction(SpawnAction.Type.JELLY, 125_000_000L, "Jelly1", 650)
-            )
-    );
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        doubleJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                // advanced jump and slice
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        advancedJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(500_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                // slice3 and double jump
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        basicSlice,
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        doubleJump
+                ),
+
+                // slice3 and jump2
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicJump(),
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicJump(),
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                //big jump 3 object + advanced jumb + slice2
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        bigJump3,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        advancedJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(500_000_000L, 650, 1),
+
+                        basicSlice,
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1)
+                ),
+
+                //slice + advanced jump + slice + basic jump
+                combine(
+                        jelly(1_000_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        advancedJump,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicSlice,
+
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+                        jelly(200_000_000L, 650, 1),
+
+                        basicJump(),
+
+                        item(200_000_000L,650,"Magnetic"),
+                        item(200_000_000L,650,"HealingPotion")
+                )
+        );
+    }
 }

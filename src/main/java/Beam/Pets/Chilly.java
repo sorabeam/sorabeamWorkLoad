@@ -16,7 +16,7 @@ public class Chilly extends Pet {
         setViewImage(Asset.getImage("Chilly"));
         setBgImage(Asset.getImage("Selecting_Chilly"));
         setBtnImage(Asset.getImage("UnSelect_Chilly"));
-//        setCooldowntime(30000);
+//        setCooldowntime(5000);
         setCooldowntime(20000);
         setSkillReady(true);
         setUsingSkill(false);

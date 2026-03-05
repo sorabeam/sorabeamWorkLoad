@@ -3,7 +3,6 @@ package Beam.UI.MainUI;
 import Beam.Animation.Animate;
 import Beam.Animation.AnimationType;
 import Beam.CharactorData;
-import Beam.Image.OutlineText;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;

@@ -3,7 +3,6 @@ package Beam.Scene;
 import Beam.Animation.Animate;
 import Beam.CharactorData;
 import Beam.UI.MainUI.*;
-import Beam.Media.JooxBox;
 
 import javafx.animation.AnimationTimer;
 import javafx.geometry.Insets;
@@ -11,7 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-public class MainMenuScene extends BaseRoot {
+public class MainMenuScene extends BaseScene {
 
     public MainMenuScene() {
         super();

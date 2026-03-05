@@ -3,7 +3,7 @@ package Beam;
 import Beam.Cookies.Cookie;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import Beam.Button.CDBtn;
+import Beam.Button.CharacterButton;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -75,7 +75,7 @@ public class Asset {
         });
     }
 
-    public static CDBtn createGridButton(Cookie _char, double H, double W){
+    public static CharacterButton createGridButton(Cookie _char, double H, double W){
 
         String bid = _char.get_Bid();
         String name = _char.get_Name();
@@ -84,7 +84,7 @@ public class Asset {
 
         Image Simg = getImage(_char.get_Sid());
 
-        CDBtn btn = new CDBtn(createImageView(bid,H,W),name,desc,score,Simg,_char);
+        CharacterButton btn = new CharacterButton(createImageView(bid,H,W),name,desc,score,Simg,_char);
         return btn;
     }
 }

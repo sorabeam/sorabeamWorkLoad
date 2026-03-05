@@ -1,7 +1,7 @@
 
 package Beam.Scene;
 
-import Beam.Button.SelectPBtn;
+import Beam.Button.PetsButton;
 import Beam.UI.PetsUI.*;
 
 import javafx.geometry.Insets;
@@ -10,24 +10,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import Beam.CharactorData;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 
-public class PetsSelectionScene extends BaseRoot{
+public class PetsSelectionScene extends BaseScene {
 
     ImageView Showi,Bgi;
-    OutlineText name,Description;
+    OutlineTextImage name,Description;
 
-    SelectPBtn ins1, ins2, ins3, ins4;
+    PetsButton ins1, ins2, ins3, ins4;
 
     private String txt = CharactorData.getCurrent_Pet().getDesc();
 
     public PetsSelectionScene(){
         super();
 
-        ins1 = new SelectPBtn(CharactorData.MOJINIGA,28,50);
-        ins2 = new SelectPBtn(CharactorData.Chilly,28,50);
-        ins3 = new SelectPBtn(CharactorData.SALAD,28,50);
-        ins4 = new SelectPBtn(CharactorData.LOCKING,28,50);
+        ins1 = new PetsButton(CharactorData.MOJINIGA,28,50);
+        ins2 = new PetsButton(CharactorData.Chilly,28,50);
+        ins3 = new PetsButton(CharactorData.SALAD,28,50);
+        ins4 = new PetsButton(CharactorData.LOCKING,28,50);
 
         HBox box = new HBox(spacer('H'),ins1, ins2, ins3, ins4);
         box.setSpacing(-15);
@@ -65,22 +65,22 @@ public class PetsSelectionScene extends BaseRoot{
     public void setShowi(ImageView showi) { Showi = showi; }
     public ImageView getBgi() { return Bgi; }
     public void setBgi(ImageView bgi) { Bgi = bgi; }
-    public OutlineText getName() { return name; }
-    public void setName(OutlineText name) { this.name = name; }
-    public OutlineText getDescription() { return Description; }
-    public void setDescription(OutlineText description) { Description = description; }
-    public SelectPBtn getIns1() { return ins1; }
-    public void setIns1(SelectPBtn ins1) { this.ins1 = ins1; }
-    public SelectPBtn getIns2() { return ins2; }
-    public void setIns2(SelectPBtn ins2) { this.ins2 = ins2; }
-    public SelectPBtn getIns3() { return ins3; }
-    public void setIns3(SelectPBtn ins3) { this.ins3 = ins3; }
-    public SelectPBtn getIns4() { return ins4; }
-    public void setIns4(SelectPBtn ins4) { this.ins4 = ins4; }
+    public OutlineTextImage getName() { return name; }
+    public void setName(OutlineTextImage name) { this.name = name; }
+    public OutlineTextImage getDescription() { return Description; }
+    public void setDescription(OutlineTextImage description) { Description = description; }
+    public PetsButton getIns1() { return ins1; }
+    public void setIns1(PetsButton ins1) { this.ins1 = ins1; }
+    public PetsButton getIns2() { return ins2; }
+    public void setIns2(PetsButton ins2) { this.ins2 = ins2; }
+    public PetsButton getIns3() { return ins3; }
+    public void setIns3(PetsButton ins3) { this.ins3 = ins3; }
+    public PetsButton getIns4() { return ins4; }
+    public void setIns4(PetsButton ins4) { this.ins4 = ins4; }
     public String getTxt() { return txt; }
     public void setTxt(String txt) { this.txt = txt; }
 
-    private void enableSwap(SelectPBtn button) {
+    private void enableSwap(PetsButton button) {
 
         var oldAction = button.getOnAction();
 

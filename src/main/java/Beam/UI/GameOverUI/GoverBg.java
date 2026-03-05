@@ -1,8 +1,7 @@
 package Beam.UI.GameOverUI;
 
 import Beam.Asset;
-import Beam.Image.FloorFade;
-import Beam.Image.TopFade;
+import Beam.Image.CellingFade;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -20,7 +19,7 @@ public class GoverBg extends StackPane{
         MBg.fitWidthProperty().bind(widthProperty());
         MBg.fitHeightProperty().bind(heightProperty());
 
-        TopFade fade = new TopFade(200);
+        CellingFade fade = new CellingFade(200);
         StackPane.setAlignment(fade, Pos.TOP_CENTER);
         StackPane.setAlignment(BB, Pos.BOTTOM_CENTER);
 

@@ -1,32 +1,31 @@
 package Beam.Button;
 
-import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.text.TextAlignment;
 import Beam.Asset;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 
-public class NavSettingBtn extends NavBtn {
+public class NavSettingBtn extends NavigationButton {
 
     private StackPane Rimg;
     private DropShadow shadow;
-    private OutlineText outl;
+    private OutlineTextImage outl;
     private String txt;
+    private SettingsPopupButton settingsPopupButton;
 
-    public NavSettingBtn(GameState switchState , String txt) {
+    public NavSettingBtn(GameState switchState , String txt,SettingsPopupButton settingsPopupButton) {
 
         super(Asset.createImageView("SBtnBg",0,400),switchState);
         this.txt = txt;
         shadow = setShadow();
 
-        outl = new OutlineText(txt,'C',25);
+        this.settingsPopupButton = settingsPopupButton;
+        outl = new OutlineTextImage(txt,'C',25);
 
         outl.setDropShadow(shadow);
         outl.setMaxWidth(1);
@@ -47,7 +46,10 @@ public class NavSettingBtn extends NavBtn {
 
     @Override
     public void handleClick() {
+
         super.handleClick();
+
+        settingsPopupButton.setOpen(false);
     }
 
     public void setInset(Insets i){

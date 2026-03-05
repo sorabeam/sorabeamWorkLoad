@@ -1,25 +1,20 @@
 package Beam.Button;
 
-import Beam.CharactorData;
 import Beam.Pets.Pet;
-import Got.GameLogic.GameLogic;
-import Got.GameLogic.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import Beam.Image.OutlineText;
+import Beam.Image.OutlineTextImage;
 
-import static Got.GameLogic.GameLogic.getStage;
-
-public class SelectPBtn extends BaseButton{
+public class PetsButton extends BaseButton{
 
     ImageView img;
     Image I,Bg;
     String name,D;
     Pet pet;
-    public SelectPBtn(Pet pet ,int txtSize, double MarginBtm) {
+    public PetsButton(Pet pet , int txtSize, double MarginBtm) {
         super(new ImageView(pet.getBtnImage()));
 
         img = new ImageView(pet.getBtnImage());
@@ -34,26 +29,26 @@ public class SelectPBtn extends BaseButton{
 
         super.setGraphic(img);
 
-        OutlineText txt = setText(name,txtSize,MarginBtm);
-        FavBtn fav = BuildFav();
+        OutlineTextImage txt = setText(name,txtSize,MarginBtm);
+        FavoriteButton fav = BuildFav();
         StackPane newImg = new StackPane(fav,img,txt);
         super.setGraphic(newImg);
 
         this.pet = pet;
     }
 
-    private OutlineText setText(String text,int txtSize,double MarginBtm){
+    private OutlineTextImage setText(String text, int txtSize, double MarginBtm){
 
-        OutlineText txt = new OutlineText(text,'M',txtSize);
+        OutlineTextImage txt = new OutlineTextImage(text,'M',txtSize);
         StackPane.setAlignment(txt,Pos.BOTTOM_CENTER);
         StackPane.setMargin(txt,new Insets(0,0,MarginBtm,0));
 
         return txt;
     }
 
-    private FavBtn BuildFav(){
+    private FavoriteButton BuildFav(){
 
-        FavBtn fav = new FavBtn();
+        FavoriteButton fav = new FavoriteButton();
         fav.setHeight(50);
 
         StackPane.setAlignment(fav,Pos.BOTTOM_LEFT);

@@ -16,7 +16,7 @@ public class GameLogic {
     private static final IntegerProperty score = new SimpleIntegerProperty(0);
     private static int bestScore;
     private static double multiplier = 1;
-    private static TestInGame2 app;
+    private static MainGameScene app;
     private static int cookieCountMod = 0;
     private static int Map = 1;
     private static HpDisplayZone hpBar;
@@ -57,7 +57,7 @@ public class GameLogic {
     }
 
     // ===== GAME STATE =====
-    private static InGameScene currentGameScene;
+    private static GameplayScene currentGameScene;
 
     private static final ObjectProperty<GameState> gameState =
             new SimpleObjectProperty<>(null);
@@ -76,7 +76,7 @@ public class GameLogic {
         gameState.set(state);
     }
 
-    public static void setCurrentGameScene(InGameScene scene) {
+    public static void setCurrentGameScene(GameplayScene scene) {
         currentGameScene = scene;
     }
 
@@ -116,11 +116,11 @@ public class GameLogic {
         multiplier = value;
     }
 
-    public static void setApp(TestInGame2 application){
+    public static void setApp(MainGameScene application){
         app = application;
     }
 
-    public static TestInGame2 getApp(){
+    public static MainGameScene getApp(){
         return app;
     }
 
@@ -161,7 +161,7 @@ public class GameLogic {
         GameLogic.hpBar = hpBar;
     }
 
-    public static InGameScene getCurrentGameScene() {
+    public static GameplayScene getCurrentGameScene() {
         return currentGameScene;
     }
 

@@ -8,7 +8,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import Beam.Asset;
 
-public class OutlineText extends StackPane {
+public class OutlineTextImage extends StackPane {
 
     public static final Font FontChango =
             Font.loadFont(Asset.class.getResourceAsStream("/Fonts/Chango-Regular.ttf"), 30);
@@ -19,7 +19,7 @@ public class OutlineText extends StackPane {
     private final Text stroke = new Text();
     private final Text fill = new Text();
 
-    public OutlineText(String text,char F, int size) {
+    public OutlineTextImage(String text, char F, int size) {
 
         Font textFont;
         if(F == 'M'){

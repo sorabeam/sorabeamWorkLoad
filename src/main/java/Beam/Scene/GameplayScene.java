@@ -1,5 +1,8 @@
 package Beam.Scene;
 
+import Beam.Animation.AnimateEffect;
+import Beam.Animation.AnimationType;
+import Beam.Asset;
 import Beam.CharactorData;
 import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
@@ -40,10 +43,9 @@ import Pors.ObjectInGame.Obstacle.BaseObstacle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-import static Got.GameLogic.GameLogic.getStage;
-
-public class InGameScene extends BaseRoot{
+public class GameplayScene extends BaseScene {
 
     Pane gameLayer = new Pane();     // สำหรับ player / ground / obstacle
     StackPane uiLayer = new StackPane(); // สำหรับ UI
@@ -64,7 +66,7 @@ public class InGameScene extends BaseRoot{
     public boolean isUpdate = true;
     private InGameBG bg = new InGameBG(root);
 
-    public InGameScene(){
+    public GameplayScene(){
         super();
         setBackground(new Background(new BackgroundFill(Color.WHITE,null,null)));
         DropShadow shadow = new DropShadow();
@@ -91,6 +93,8 @@ public class InGameScene extends BaseRoot{
 //       Cookie player = new BobaCookie();
         Cookie player = CharactorData.getCurrent_Cookie();
         Pet pet = CharactorData.getCurrent_Pet();
+        AnimateEffect flame = new AnimateEffect(Asset.getImage("FireSpriteSheet"), 125, 125, 9, 4, 0.3);
+        flame.setLoop(true);
 //        Pet pet = new Salad()s;
 //        Pet pet = new Chilly();
 
@@ -137,57 +141,18 @@ public class InGameScene extends BaseRoot{
 
         player.setGameLayer(gameLayer);
         player.createCookie();
+        CoodownBar cdBar = new CoodownBar(player);
 
         gameLayer.getChildren().addAll(
+                flame,
                 player.getCookie(),
-                player.getHitbox()
+                player.getHitbox(),
+                cdBar
         );
 
-        //Cooldown Frame
-        Rectangle cdFrame = new Rectangle(84,12);
-        cdFrame.setFill(Color.BLACK);
-        cdFrame.setArcWidth(10);
-        cdFrame.setArcHeight(10);
 
-        Rectangle cdBackground = new Rectangle(80,8);
-        cdBackground.setFill(Color.rgb(40,40,40));
-        cdBackground.setArcWidth(8);
-        cdBackground.setArcHeight(8);
 
-        Rectangle cdFill = new Rectangle(80,8);
-        cdFill.setFill(Color.LIMEGREEN);
-        cdFill.setArcWidth(8);
-        cdFill.setArcHeight(8);
 
-        cdFill.setFill(new LinearGradient(
-                0,0,1,0,true, CycleMethod.NO_CYCLE,
-                new Stop(0, Color.web("#b9ff9f")),
-                new Stop(0.35, Color.web("#7dff63")),
-                new Stop(0.7, Color.web("#39d353")),
-                new Stop(1, Color.web("#1faa2a"))
-        ));
-
-        cdBackground.setLayoutX(2);
-        cdBackground.setLayoutY(2);
-
-        cdFill.setLayoutX(2);
-        cdFill.setLayoutY(2);
-
-        gameLayer.getChildren().addAll(cdFrame, cdBackground, cdFill);
-
-        cdFrame.layoutXProperty().bind(
-                player.getCookie().layoutXProperty().add(58)
-        );
-
-        cdFrame.layoutYProperty().bind(
-                player.getCookie().layoutYProperty().subtract(18)
-        );
-
-        cdBackground.layoutXProperty().bind(cdFrame.layoutXProperty().add(2));
-        cdBackground.layoutYProperty().bind(cdFrame.layoutYProperty().add(2));
-
-        cdFill.layoutXProperty().bind(cdFrame.layoutXProperty().add(2));
-        cdFill.layoutYProperty().bind(cdFrame.layoutYProperty().add(2));
 
 //        pet.getView().setLayoutX(150);
         pet.getView().setFitWidth(80);
@@ -197,6 +162,22 @@ public class InGameScene extends BaseRoot{
         player.getCookie().setFitWidth(200);
         player.getCookie().setFitHeight(200);
         player.getCookie().setLayoutX(200);
+
+//        flame.setManaged(false);
+        flame.setFitWidth(350);
+        flame.setFitHeight(350);
+        flame.setPreserveRatio(true);
+        double flameW = flame.getFitWidth();
+        double flameH = flame.getFitHeight();
+        flame.layoutXProperty().bind(
+                player.getCookie().layoutXProperty()
+                        .add(player.getCookie().fitWidthProperty().divide(2))
+        );
+
+        flame.layoutYProperty().bind(
+                player.getCookie().layoutYProperty()
+                        .add(player.getCookie().fitHeightProperty().divide(2))
+        );
 
         root.getChildren().add(gameLayer);
         root.getChildren().add(uiLayer);
@@ -244,12 +225,29 @@ public class InGameScene extends BaseRoot{
 //                pet.getView().layoutYProperty().bind(player.getCookie().layoutYProperty().add(30));
                 if(player.isCooldownable()){
                     double progress = player.getCooldownProgress();
-                    cdFill.setWidth(80 * progress);
-                    cdFill.setVisible(true);
+                    cdBar.fill.setWidth(80 * progress);
+                    cdBar.fill.setVisible(true);
                 }else{
-                    cdFill.setVisible(false);
-                    cdFrame.setVisible(false);
-                    cdBackground.setVisible(false);
+                    cdBar.fill.setVisible(false);
+                    cdBar.frame.setVisible(false);
+                    cdBar.background.setVisible(false);
+                }
+
+                if(player.isSpeeding()) {
+                    flame.setVisible(true);
+                    if(player.getCookie().getAnimationState()== AnimationType.SLIDE) {
+                        flame.setRotate(270);
+                        flame.setTranslateX(-flameH/2-100);
+                        flame.setTranslateY(-flameW/2+100);
+                    } else {
+                        flame.setRotate(0);
+                        flame.setTranslateX(-flameW/2-50);
+                        flame.setTranslateY(-flameH/2-50);
+                    }
+                    flame.update(dt);
+                } else {
+                    flame.setVisible(false);
+                    flame.restart();
                 }
 
                 petCooldownTimer -= dt;
