@@ -21,7 +21,9 @@ public class ChillyBoost extends BaseItem {
         Thread speedBoostThread = new Thread(() -> {
             Spawner.setSpeed(Spawner.getDefaultSpeed()*speedMul);
             try {
+                player.setSpeeding(true);
                 Thread.sleep(boostTime);
+                player.setSpeeding(false);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
