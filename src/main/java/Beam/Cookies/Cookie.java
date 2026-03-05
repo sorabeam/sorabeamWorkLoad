@@ -44,6 +44,8 @@ public abstract class Cookie {
     private final double jumpSpeed = -13;
     private final double maxFallSpeed = 12;
 
+    private boolean isMagnetic;
+
     protected double damageTimer = 0;
 
     int id;
@@ -343,5 +345,13 @@ public abstract class Cookie {
 
     public void setOnGround(boolean onGround) {
         this.onGround = onGround;
+    }
+
+    public boolean isMagnetic() {
+        return isMagnetic;
+    }
+
+    public void setMagnetic(boolean magnetic) {
+        isMagnetic = magnetic;
     }
 }
