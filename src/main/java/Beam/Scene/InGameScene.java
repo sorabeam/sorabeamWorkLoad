@@ -1,5 +1,8 @@
 package Beam.Scene;
 
+import Beam.Animation.AnimateEffect;
+import Beam.Animation.AnimationType;
+import Beam.Asset;
 import Beam.CharactorData;
 import Beam.Cookies.BobaCookie;
 import Beam.Cookies.Cookie;
@@ -40,6 +43,7 @@ import Pors.ObjectInGame.Obstacle.BaseObstacle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static Got.GameLogic.GameLogic.getStage;
 
@@ -91,6 +95,8 @@ public class InGameScene extends BaseRoot{
 //       Cookie player = new BobaCookie();
         Cookie player = CharactorData.getCurrent_Cookie();
         Pet pet = CharactorData.getCurrent_Pet();
+        AnimateEffect flame = new AnimateEffect(Asset.getImage("FireSpriteSheet"), 125, 125, 9, 4, 0.3);
+        flame.setLoop(true);
 //        Pet pet = new Salad()s;
 //        Pet pet = new Chilly();
 
@@ -139,6 +145,7 @@ public class InGameScene extends BaseRoot{
         player.createCookie();
 
         gameLayer.getChildren().addAll(
+                flame,
                 player.getCookie(),
                 player.getHitbox()
         );
@@ -198,6 +205,14 @@ public class InGameScene extends BaseRoot{
         player.getCookie().setFitHeight(200);
         player.getCookie().setLayoutX(200);
 
+//        flame.setFitWidth(250);
+        flame.setFitHeight(350);
+        flame.setPreserveRatio(true);
+        double flameW = flame.getFitWidth();
+        double flameH = flame.getFitHeight();
+        flame.layoutXProperty().bind(player.getCookie().layoutXProperty().subtract(flameW/2+100));
+        flame.layoutYProperty().bind(player.getCookie().layoutYProperty().subtract(flameH/2-80));
+
         root.getChildren().add(gameLayer);
         root.getChildren().add(uiLayer);
 
@@ -250,6 +265,23 @@ public class InGameScene extends BaseRoot{
                     cdFill.setVisible(false);
                     cdFrame.setVisible(false);
                     cdBackground.setVisible(false);
+                }
+
+                if(player.isSpeeding()) {
+                    flame.setVisible(true);
+                    if(player.getCookie().getAnimationState()==AnimationType.SLIDE) {
+                        flame.setRotate(270);
+                        flame.layoutYProperty().bind(player.getCookie().layoutYProperty().subtract(flameH/2-180));
+                        flame.layoutXProperty().bind(player.getCookie().layoutXProperty().subtract(flameW/2+200));
+                    } else {
+                        flame.layoutYProperty().bind(player.getCookie().layoutYProperty().subtract(flameH/2-80));
+                        flame.layoutXProperty().bind(player.getCookie().layoutXProperty().subtract(flameW/2+100));
+                        flame.setRotate(0);
+                    }
+                    flame.update(dt);
+                } else {
+                    flame.setVisible(false);
+                    flame.restart();
                 }
 
                 petCooldownTimer -= dt;
