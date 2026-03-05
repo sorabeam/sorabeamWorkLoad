@@ -139,11 +139,20 @@ public class Spawner {
             gameLayer.getChildren().add(obs);
 
         } else if (action.type == SpawnAction.Type.ITEM){
-            ItemView item = new ItemView(
-                    new HealingPotion(action.name),
-                    speed,
-                    0
-            );
+            ItemView item = null;
+            if(action.name=="Magnetic") {
+                item = new ItemView(
+                        new Magnetic(),
+                        speed,
+                        0
+                );
+            } else {
+                item = new ItemView(
+                        new HealingPotion(action.name),
+                        speed,
+                        0
+                );
+            }
             item.setTranslateX(sceneWidth + 50);
             item.setTranslateY(action.height);
             gameLayer.getChildren().add(item);
