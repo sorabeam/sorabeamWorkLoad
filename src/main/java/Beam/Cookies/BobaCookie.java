@@ -32,6 +32,8 @@ public class BobaCookie extends Cookie{
     public void update(double deltaTime) {
         super.update(deltaTime);
 
+        if (isDead()) return;
+
         setCooldownTimer(getCooldownTimer() + deltaTime);
 
         if (getCooldownTimer() >= getSkillCooldown()) {

@@ -24,6 +24,7 @@ public class TomYumCookie extends Cookie {
 
     @Override
     public void useSkill() {
+        if (isDead()) return;
 
         playSkill(0.5);
         setCooldownTimer(0);

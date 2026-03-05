@@ -69,7 +69,7 @@ public class Animate extends ImageView {
 
         state.addListener((obs,
                            oldValue, newValue) -> {
-            System.out.println(newValue + " " + newValue.getRow() );
+            //System.out.println(newValue + " " + newValue.getRow() );
             currentRow = newValue.getRow();
             currentFrame = 0;
             maxFPR = maxFPRType[newValue.getRow()];
