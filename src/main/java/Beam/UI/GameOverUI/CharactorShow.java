@@ -23,7 +23,16 @@ public class CharactorShow extends StackPane {
         );
 
         ImageView petView = CharactorData.getCurrent_Pet().getView();
-        petView.setFitHeight(150);
+
+        if(CharactorData.getCurrent_Pet().getName().equals(CharactorData.CHILLY.getName())){
+            System.out.println("hhhhhhhh");
+            petView.setFitHeight(300);
+            petView.setFitWidth(300);
+        } else {
+            petView.setFitHeight(200);
+            petView.setFitWidth(200);
+        }
+
         petView.setStyle(
                 "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 40, 0.7, 0, 5);"
         );
