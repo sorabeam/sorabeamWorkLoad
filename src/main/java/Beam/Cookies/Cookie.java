@@ -7,6 +7,7 @@ import Beam.Media.MediaPlayer;
 import Beam.Scene.GameplayScene;
 import Got.GameLogic.GameLogic;
 import Got.GameLogic.GameState;
+import Pors.ObjectInGame.Spawner;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.image.Image;
@@ -350,6 +351,12 @@ public abstract class Cookie {
         invincible = true;
         invincibleDuration = duration;
         invincibleTimer = 0;
+    }
+
+    public void reset() {
+        setMagnetic(false);
+        Spawner.resetSpeed();
+
     }
 
     public double getCooldownTimer() {

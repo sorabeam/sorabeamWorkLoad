@@ -364,9 +364,9 @@ public class GameplayScene extends BaseScene {
                     shiftHeld = true;
                     player.slide();
                 }
-                case Q -> {
-                    player.useSkill();
-                }
+//                case Q -> {
+//                    player.useSkill();
+//                }
 //                case T -> {
 //                    pet.useSkill();
 //                }
