@@ -1,6 +1,6 @@
 package Beam.Scene;
 
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;

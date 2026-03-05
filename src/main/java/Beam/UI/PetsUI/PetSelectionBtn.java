@@ -1,6 +1,6 @@
 package Beam.UI.PetsUI;
 
-import Got.GameLogic.GameState;
+import GameLogic.GameState;
 import javafx.geometry.Insets;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;

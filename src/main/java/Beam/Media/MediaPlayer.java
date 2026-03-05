@@ -1,6 +1,6 @@
 package Beam.Media;
 
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 

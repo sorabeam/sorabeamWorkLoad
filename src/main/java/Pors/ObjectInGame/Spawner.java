@@ -4,7 +4,7 @@ import Beam.Cookies.Cookie;
 import Beam.Media.MediaPlayer;
 import Beam.Pets.Pet;
 import Beam.Cookies.CrossiantCookie;
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import Pors.ObjectInGame.Items.*;
 import Pors.ObjectInGame.Jelly.BaseJelly;
 import Pors.ObjectInGame.Jelly.JellyView;

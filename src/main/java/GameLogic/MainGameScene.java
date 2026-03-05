@@ -1,9 +1,8 @@
-package Got.GameLogic;
+package GameLogic;
 
 import Beam.CharactorData;
 import Beam.Media.MediaPlayer;
 import Beam.Scene.*;
-import Pors.ObjectInGame.Spawner;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Background;

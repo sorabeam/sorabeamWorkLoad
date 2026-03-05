@@ -1,6 +1,6 @@
 package Pors.ObjectInGame;
 
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 
 import java.util.List;
 

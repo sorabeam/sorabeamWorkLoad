@@ -1,4 +1,4 @@
-package Got.GameLogic;
+package GameLogic;
 
 public enum GameState {
     INTRO,

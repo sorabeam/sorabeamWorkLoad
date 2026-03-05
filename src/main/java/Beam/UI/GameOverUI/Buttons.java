@@ -3,7 +3,7 @@ package Beam.UI.GameOverUI;
 import Beam.Asset;
 import Beam.Button.BaseButton;
 import Beam.Button.NavigationButton;
-import Got.GameLogic.GameState;
+import GameLogic.GameState;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;

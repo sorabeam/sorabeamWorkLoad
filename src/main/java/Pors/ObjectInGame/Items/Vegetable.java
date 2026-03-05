@@ -1,7 +1,7 @@
 package Pors.ObjectInGame.Items;
 
 import Beam.Cookies.Cookie;
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 
 public class Vegetable extends BaseItem{
     public Vegetable() {

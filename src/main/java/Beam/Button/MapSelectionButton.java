@@ -1,7 +1,7 @@
 package Beam.Button;
 
 import Beam.Asset;
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import javafx.scene.image.ImageView;
 
 

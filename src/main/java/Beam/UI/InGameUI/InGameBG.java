@@ -2,7 +2,7 @@ package Beam.UI.InGameUI;
 
 import Beam.Asset;
 import Beam.Image.FloorFade;
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.geometry.Pos;

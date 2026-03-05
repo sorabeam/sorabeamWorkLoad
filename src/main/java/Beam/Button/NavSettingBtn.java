@@ -1,6 +1,6 @@
 package Beam.Button;
 
-import Got.GameLogic.GameState;
+import GameLogic.GameState;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.BlurType;

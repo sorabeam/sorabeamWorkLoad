@@ -1,10 +1,10 @@
 package Beam.Button;
 
-import Got.GameLogic.GameLogic;
-import Got.GameLogic.GameState;
+import GameLogic.GameLogic;
+import GameLogic.GameState;
 import javafx.scene.image.ImageView;
 
-import static Got.GameLogic.GameLogic.getStage;
+import static GameLogic.GameLogic.getStage;
 
 public class NavigationButton extends BaseButton{
 

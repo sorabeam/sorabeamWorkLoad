@@ -2,7 +2,7 @@ package Beam.UI.MainUI;
 
 import Beam.Button.MapPopupButton;
 import Beam.CharactorData;
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;

@@ -1,7 +1,7 @@
 package Pors.ObjectInGame.Jelly;
 
 import Beam.Cookies.Cookie;
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import Pors.ObjectInGame.Interactable;
 
 import java.util.Objects;

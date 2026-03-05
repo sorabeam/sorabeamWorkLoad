@@ -1,7 +1,7 @@
 package Beam.Cookies;
 
 import Beam.Animation.AnimationType;
-import Filmmy.Pearl;
+import Pors.ObjectInGame.Items.Pearl;
 import Beam.Animation.Animate;
 import Beam.Asset;
 

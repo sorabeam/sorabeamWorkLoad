@@ -1,4 +1,4 @@
-package Got.GameLogic;
+package GameLogic;
 
 import Beam.Scene.*;
 import Beam.UI.InGameUI.HpDisplayZone;

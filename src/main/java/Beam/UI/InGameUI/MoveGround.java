@@ -1,6 +1,6 @@
 package Beam.UI.InGameUI;
 
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import Pors.ObjectInGame.Spawner;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;

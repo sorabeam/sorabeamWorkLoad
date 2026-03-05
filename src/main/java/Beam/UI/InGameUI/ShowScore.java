@@ -1,6 +1,6 @@
 package Beam.UI.InGameUI;
 
-import Got.GameLogic.GameLogic;
+import GameLogic.GameLogic;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
