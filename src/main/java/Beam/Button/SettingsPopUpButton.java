@@ -167,8 +167,8 @@ public class SettingsPopUpButton extends BaseButton{
         });
 
 
-        NavSettingBtn play = new NavSettingBtn(GameState.INGAME,"PLAY",this);
-        play.setInset(new Insets(24,0,0,82));
+//        NavSettingBtn play = new NavSettingBtn(GameState.INGAME,"PLAY",this);
+//        play.setInset(new Insets(24,0,0,82));
 
         NavSettingBtn selectPets = new NavSettingBtn(GameState.SELECTPET,"Pets",this);
         selectPets.setInset(new Insets(24,0,0,86));
@@ -187,7 +187,7 @@ public class SettingsPopUpButton extends BaseButton{
 
 
 
-        deleteThis(play);
+        //deleteThis(play);
         deleteThis(selectPets);
         deleteThis(selectChar);
         deleteThis(menu);
@@ -195,12 +195,9 @@ public class SettingsPopUpButton extends BaseButton{
         runItBack(resumeBtn);
 
 
-
-        BtnPane.add(play, 0, 0);         BtnPane.add(menu, 1, 0);
+        BtnPane.add(menu, 0, 0);         BtnPane.add(resumeBtn, 1, 0);
         BtnPane.add(selectPets, 0, 1);   BtnPane.add(leave, 1, 1);
-        BtnPane.add(selectChar, 0, 2);   BtnPane.add(resumeBtn, 1, 2);
-
-
+        BtnPane.add(selectChar, 0, 2);
 
 
         VBox popupBox = new VBox(setting,volumBGSetting,volumSFXSetting,BtnPane);
