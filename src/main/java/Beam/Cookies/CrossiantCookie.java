@@ -11,7 +11,6 @@ import javafx.scene.paint.Color;
 
 public class CrossiantCookie extends Cookie {
 
-    private int jellyCollected = 0;
     private int croissantCycle = 0;
     private boolean croissantReady = false;
     private OutlineText counterText;
@@ -26,6 +25,8 @@ public class CrossiantCookie extends Cookie {
         setImgURL("Croissant_Cookie_sheet");
         setProfileImg(Asset.getImage("Profile_Cross"));
         setScore(256200);
+        setSkillCounter(0);
+        setCooldownable(false);
     }
 
     @Override
@@ -64,15 +65,15 @@ public class CrossiantCookie extends Cookie {
 
     public void onJellyCollected() {
 
-        jellyCollected++;
+        setSkillCounter(getSkillCounter() + 1);
 
         if (counterText != null) {
-            counterText.setText(jellyCollected + "/30");
+            counterText.setText(getSkillCounter() + "/30");
         }
 
-        if (jellyCollected >= 30) {
+        if (getSkillCounter() >= 30) {
 
-            jellyCollected = 0;
+            setSkillCounter(0);
             croissantReady = true;
 
 //            playSkill(0.3);
@@ -86,11 +87,6 @@ public class CrossiantCookie extends Cookie {
 
     public boolean isCroissantReady() {
         return croissantReady;
-    }
-
-    @Override
-    public boolean hasCooldownBar(){
-        return false;
     }
 
     public CroissantType consumeCroissant() {

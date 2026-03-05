@@ -44,6 +44,12 @@ public abstract class Cookie {
     private final double jumpSpeed = -13;
     private final double maxFallSpeed = 12;
 
+    protected boolean Cooldownable = false;
+
+    protected double cooldownTimer;
+    protected double skillCooldown;
+    protected int skillCounter;
+
     private boolean isMagnetic;
 
     protected double damageTimer = 0;
@@ -158,6 +164,14 @@ public abstract class Cookie {
         );
 
         return cookie;
+    }
+
+    public boolean isCooldownable() {
+        return Cooldownable;
+    }
+
+    public void setCooldownable(boolean cooldownable) {
+        Cooldownable = cooldownable;
     }
 
     public int getMaxhp() {
@@ -294,16 +308,36 @@ public abstract class Cookie {
         invincibleTimer = 0;
     }
 
+    public double getCooldownTimer() {
+        return cooldownTimer;
+    }
+
+    public void setCooldownTimer(double cooldownTimer) {
+        this.cooldownTimer = cooldownTimer;
+    }
+
+    public double getSkillCooldown() {
+        return skillCooldown;
+    }
+
+    public void setSkillCooldown(double skillCooldown) {
+        this.skillCooldown = skillCooldown;
+    }
+
+    public int getSkillCounter() {
+        return skillCounter;
+    }
+
+    public void setSkillCounter(int skillCounter) {
+        this.skillCounter = skillCounter;
+    }
+
     public boolean isInvincible(){
         return invincible;
     }
 
     private boolean isPerformingSkill() {
         return cookie.getAnimationState().equals(AnimationType.SKILL);
-    }
-
-    public boolean hasCooldownBar(){
-        return true;
     }
 
     protected Pane getParentLayer() {

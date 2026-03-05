@@ -75,6 +75,8 @@ public class TestInGame2 extends Application {
                 case INGAME -> {
 
                     CharactorData.getCurrent_Cookie().setHp(CharactorData.getCurrent_Cookie().getMaxhp());
+                    CharactorData.getCurrent_Cookie().setCooldownTimer(0);
+                    CharactorData.getCurrent_Cookie().setSkillCounter(0);
                     GameLogic.setScore(0);
                     playMusic("SoundMAP" + GameLogic.getMap(),50);
 

@@ -9,7 +9,13 @@ import java.util.Arrays;
 public class Salad extends Pet {
 
     public Salad() {
-        super(3, "Salad", " I want to break free ");
+        super(3, "Salad",
+                "Produces Salad Jelly" + "\n" +
+                        "every 5 seconds:" + "\n" +
+                        "5% Tomato heals 20 HP," + "\n" +
+                        "65% Veggies give points," + "\n" +
+                        "30% Chicken gives bonus"
+        );
 
         setView(Asset.createImageView("Salad",0,480));
         setViewImage(Asset.getImage("Salad"));

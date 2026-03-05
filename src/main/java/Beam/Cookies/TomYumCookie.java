@@ -3,8 +3,6 @@ package Beam.Cookies;
 import Beam.Asset;
 
 public class TomYumCookie extends Cookie {
-    protected double cooldownTimer = 0;
-    protected double skillCooldown = 20;
 
     private boolean rainReady = false;
 
@@ -19,6 +17,9 @@ public class TomYumCookie extends Cookie {
         setImgURL("TomYum_Cookie_sheet");
         setProfileImg(Asset.getImage("Profile_Tomyum"));
         setScore(133000);
+        setCooldownable(true);
+        setCooldownTimer(0);
+        setSkillCooldown(20);
     }
 
     @Override
@@ -31,11 +32,11 @@ public class TomYumCookie extends Cookie {
 
     public void updateSkill(double dt){
 
-        cooldownTimer += dt;
+        setCooldownTimer(getCooldownTimer() + dt);
 
-        if(cooldownTimer >= skillCooldown){
+        if(getCooldownTimer() >= getSkillCooldown()){
             playSkill(0.5);
-            cooldownTimer = 0;
+            setCooldownTimer(0);
             setInvincible(2.0);
             rainReady = true;
         }

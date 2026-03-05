@@ -61,7 +61,7 @@ public class InGameScene extends BaseRoot{
 
     private AnimationTimer timer;
     private Spawner spawner;
-    private boolean isUpadate = true;
+    public boolean isUpdate = true;
     private InGameBG bg = new InGameBG(root);
 
     public InGameScene(){
@@ -210,7 +210,7 @@ public class InGameScene extends BaseRoot{
             @Override
             public void handle(long now) {
 
-                if (!isUpadate) {
+                if (!isUpdate) {
                     last = 0;
                     return;
                 }
@@ -242,7 +242,7 @@ public class InGameScene extends BaseRoot{
                 player.update(dt);          // physics + movement
                 player.getCookie().update(dt);
 //                pet.getView().layoutYProperty().bind(player.getCookie().layoutYProperty().add(30));
-                if(player.hasCooldownBar()){
+                if(player.isCooldownable()){
                     double progress = player.getCooldownProgress();
                     cdFill.setWidth(80 * progress);
                     cdFill.setVisible(true);
@@ -421,13 +421,21 @@ public class InGameScene extends BaseRoot{
     }
 
     public void stopGameByBool() {
-        isUpadate = false;
+        isUpdate = false;
         bg.stop();
     }
 
     public void resumeGameByBool() {
-        isUpadate = true;
+        isUpdate = true;
         bg.start();
+    }
+
+    public boolean isUpdate() {
+        return isUpdate;
+    }
+
+    public void setUpdate(boolean upadate) {
+        isUpdate = upadate;
     }
 }
 
