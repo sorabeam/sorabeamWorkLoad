@@ -6,9 +6,9 @@ import Pors.ObjectInGame.Spawner;
 public class SpeedBoost extends BaseItem{
     private int speedStat;
 
-    public SpeedBoost(String name,int speedStat) {
-        super(name);
-        setSpeedStat(speedStat);
+    public SpeedBoost() {
+        super("ChillyBoost");
+        setSpeedStat(3);
     }
 
     public int getSpeedStat() {
@@ -21,15 +21,19 @@ public class SpeedBoost extends BaseItem{
 
     @Override
     public void interact(Cookie player) {
-        //fill code//
+        player.setInvincible(6.0);
+
         Thread speedBoostThread = new Thread(() -> {
-            Spawner.setSpeed(Spawner.getDefaultSpeed()*speedStat);
+            Spawner.setSpeed(Spawner.getDefaultSpeed()*getSpeedStat());
             try {
-                Thread.sleep(speedStat);
+                player.setSpeeding(true);
+                Thread.sleep(4000);
+                player.setSpeeding(false);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             Spawner.resetSpeed();
+
         });
         speedBoostThread.start();
     }

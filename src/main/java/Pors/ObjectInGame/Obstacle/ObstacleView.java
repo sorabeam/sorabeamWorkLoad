@@ -37,7 +37,7 @@ public class ObstacleView extends ImageView {
         }
         else if(Objects.equals(obstacle.getName(), "Obs_1_4"))
         {
-            setFitWidth(470);
+            setFitWidth(200);
             setPreserveRatio(true);
         }
         else if(Objects.equals(obstacle.getName(), "Obs_2_1"))

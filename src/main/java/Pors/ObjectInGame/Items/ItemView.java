@@ -18,6 +18,9 @@ public class ItemView extends ImageView {
         if (item instanceof Croissant) {
             setFitWidth(200);
             setFitHeight(145);
+        } else if (item instanceof BigHealingPotion) {
+            setFitWidth(100);
+            setFitHeight(100);
         } else {
             setFitWidth(50);
             setFitHeight(50);

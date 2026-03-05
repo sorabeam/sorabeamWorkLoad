@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 import static Pors.ObjectInGame.SpawnerLayout.level;
 
@@ -29,13 +30,8 @@ public class Spawner {
     private Pet pet;
     private int begin = 0;
 
-    private long lastUpdateTime = 0;
-
-    //private AnimationTimer timer;
-
     private List<List<SpawnAction>> spawnSets = SpawnerLayout.getSpawnLayout();
 
-    //private int currentSetIndex = spawnSets.size() - 1;
     private int currentSetIndex = 0;
     private int currentActionIndex = 0;
     private long lastSpawnTime = 0;
@@ -66,13 +62,6 @@ public class Spawner {
     }
 
     private void spawnBySet(long now) {
-        /*if (currentSetIndex >= spawnSets.size()) {
-
-            currentSetIndex = (int)(Math.random() * spawnSets.size());
-            currentActionIndex = 0;
-            lastSpawnTime = now;
-            return;
-        }*/
         List<SpawnAction> set = spawnSets.get(currentSetIndex);
 
         if (currentActionIndex >= set.size()) {
@@ -94,8 +83,10 @@ public class Spawner {
                 begin++;
             }
             else{
+                int level = GameLogic.getMap();
+
                 int min = (level - 1) * 4;
-                int max = spawnSets.size() - 1 - ((3 - level) * 2);
+                int max = spawnSets.size() - 1 - ((3 - level) * 5);
                 currentSetIndex = (int)(Math.random() * (max - min + 1)) + min;
             }
 
@@ -106,7 +97,6 @@ public class Spawner {
             return;
         }
 
-        //List<SpawnAction> set = spawnSets.get(currentSetIndex);
         SpawnAction action = set.get(currentActionIndex);
 
         if (lastSpawnTime == 0) {
@@ -117,8 +107,6 @@ public class Spawner {
         if (now - lastSpawnTime < action.delay) return;
 
         lastSpawnTime = now;
-
-        //double y = 650;
 
         if (action.type == SpawnAction.Type.OBSTACLE) {
             int level = GameLogic.getMap();
@@ -139,8 +127,20 @@ public class Spawner {
             gameLayer.getChildren().add(obs);
 
         } else if (action.type == SpawnAction.Type.ITEM){
-            ItemView item = null;
-            if(action.name=="Magnetic") {
+            ItemView item;
+            if(Objects.equals(action.name, "BigHealingPotion")) {
+                item = new ItemView(
+                        new BigHealingPotion(),
+                        speed,
+                        0
+                );
+            } else if(Objects.equals(action.name, "SpeedBoost")) {
+                item = new ItemView(
+                        new SpeedBoost(),
+                        speed,
+                        0
+                );
+            } else if(Objects.equals(action.name, "Magnetic")) {
                 item = new ItemView(
                         new Magnetic(),
                         speed,
@@ -148,7 +148,7 @@ public class Spawner {
                 );
             } else {
                 item = new ItemView(
-                        new HealingPotion(action.name),
+                        new HealingPotion(),
                         speed,
                         0
                 );
@@ -344,14 +344,4 @@ public class Spawner {
     public static double getDefaultSpeed() {
         return defaultSpeed;
     }
-
-    /*public void stop() {
-        if (timer != null) {
-            timer.stop();
-            timer = null;
-        }
-
-        lastUpdateTime = 0;
-        lastSpawnTime = 0;
-    }*/
 }

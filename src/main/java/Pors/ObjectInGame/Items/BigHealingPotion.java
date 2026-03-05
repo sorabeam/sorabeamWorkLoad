@@ -2,13 +2,13 @@ package Pors.ObjectInGame.Items;
 
 import Beam.Cookies.Cookie;
 
-public class HealingPotion extends BaseItem{
+public class BigHealingPotion extends BaseItem{
     private int healingStat;
 
-    public HealingPotion()
+    public BigHealingPotion()
     {
-        super("HealingPotion");
-        setHealingStat(20);
+        super("BigHealingPotion");
+        setHealingStat(50);
     }
 
     public int getHealingStat() {

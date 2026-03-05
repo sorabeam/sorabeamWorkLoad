@@ -90,6 +90,10 @@ public class SpawnerLayout {
         return List.of(
             //0 straight way jelly1
             List.of(
+                    item(200_000_000L,650,"Magnetic"),
+                    item(200_000_000L,650,"HealingPotion"),
+                    item(200_000_000L,650,"SpeedBoost"),
+                    item(200_000_000L,600,"BigHealingPotion"),
                     jelly(200_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -115,15 +119,6 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 2),
                     jelly(200_000_000L, 650, 2)
             ),
-
-            // testArea
-            /*List.of(
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 1_000_000_000L, "ObsTest", 650),
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_1", 650),
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_2", 475),
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_3", 650),
-                    new SpawnAction(SpawnAction.Type.OBSTACLE, 2_000_000_000L, "Obs_1_4", 0)
-            ),*/
 
             //2 Pattern jelly1
             jellyWave(
@@ -252,7 +247,36 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 1)
             ),
 
-            //10 basic slice2
+            //10 healingPotion
+            combine(
+                    jelly(1_000_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    advancedJump,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    item(200_000_000L,600,"HealingPotion"),
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    doubleJump,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1)
+            ),
+
+            //11 basic slice2
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -278,7 +302,7 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 1)
             ),
 
-            //11 basic slice and jump
+            //12 basic slice and jump
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -300,7 +324,7 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 1)
             ),
 
-            //12 basic slice and double jump and slice
+            //13 basic slice and double jump and slice
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -329,7 +353,36 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 1)
             ),
 
-            //13 advanced jump and slice
+            //14 healingPotion
+            combine(
+                    jelly(1_000_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    bigJump3,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    item(200_000_000L,600,"SpeedBoost"),
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    bigJump3,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1)
+            ),
+
+            //15 advanced jump and slice
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -351,7 +404,7 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 1)
             ),
 
-            //14 slice3 and double jump
+            //16 slice3 and double jump
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -371,7 +424,7 @@ public class SpawnerLayout {
                     doubleJump
             ),
 
-            //15 slice3 and jump2
+            //17 slice3 and jump2
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -409,7 +462,7 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 1)
             ),
 
-            //16 big jump 3 object + advanced jumb + slice2
+            //18 big jump 3 object + advanced jumb + slice2
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -444,7 +497,7 @@ public class SpawnerLayout {
                     jelly(200_000_000L, 650, 1)
             ),
 
-            //17 slice + advanced jump + slice + basic jump
+            //19 slice + advanced jump + slice + basic jump
             combine(
                     jelly(1_000_000_000L, 650, 1),
                     jelly(200_000_000L, 650, 1),
@@ -472,8 +525,96 @@ public class SpawnerLayout {
 
                     basicJump,
 
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1)
+            ),
+
+            //20 slice + advanced jump + slice + basic jump
+            combine(
+                    jelly(1_000_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    advancedJump,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    item(200_000_000L,600,"BigHealingPotion"),
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    advancedJump,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1)
+            ),
+
+            //21 slice + advanced jump + slice + basic jump
+            combine(
+                    jelly(1_000_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    basicJump,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
                     item(200_000_000L,650,"Magnetic"),
-                    item(200_000_000L,650,"HealingPotion")
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+
+                    basicJump,
+
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1),
+                    jelly(200_000_000L, 650, 1)
+            ),
+
+            //22
+            jellyWave(
+                    50_000_000L, 1,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500
+            ),
+
+            //23
+            jellyWave(
+                    50_000_000L, 2,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500,
+                    650, 600, 550, 500
             )
         );
     }
