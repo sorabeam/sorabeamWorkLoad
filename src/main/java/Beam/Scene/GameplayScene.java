@@ -60,7 +60,7 @@ public class GameplayScene extends BaseScene {
     HpDisplayZone hpzone = new HpDisplayZone();
     ShowScore sc = new ShowScore();
 
-    private final double groundH = 150;
+    private final double groundH = -150;
     public static double groundY;
 
     private AnimationTimer timer;
@@ -182,7 +182,7 @@ public class GameplayScene extends BaseScene {
                 deltatime = (now - last) / 1e9;
                 last = now;
 
-                groundY = ground.getGroundY();
+                groundY = ground.getGroundY() - groundH - 80;
 
                 double groundWidth = scene.getWidth();
                 double groundSpeed = Spawner.getSpeed();
@@ -240,7 +240,7 @@ public class GameplayScene extends BaseScene {
                         pet.getView().setEffect(shadow);
                     }
 
-                    System.out.println(player.getCookie().getLayoutY());
+                    //System.out.println(player.getCookie().getLayoutY());
                     pet.setTargetPos(tarPetPosX, tarPetPosY);
                     if(pet.hasArrived()) {
                         pet.updateIndex();
@@ -267,7 +267,7 @@ public class GameplayScene extends BaseScene {
 
                 if (shiftHeld && player.isOnGround()) {
                     player.slide();
-                    System.out.println("slide");
+                    //System.out.println("slide");
                 }
 
                 //Pew-Pew Pearl And Obstacle
@@ -325,9 +325,9 @@ public class GameplayScene extends BaseScene {
 
                         double bottom = view.getTranslateY() + view.getBoundsInLocal().getHeight();
 
-                        if (bottom >= groundY) {
+                        if (bottom >= GameplayScene.groundY) {
 
-                            view.setTranslateY(groundY - view.getBoundsInLocal().getHeight());
+                            view.setTranslateY(GameplayScene.groundY - view.getBoundsInLocal().getHeight());
 
                             if (!croissant.hasBounced) {
                                 croissant.vy = bouncePower;
