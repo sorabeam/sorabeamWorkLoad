@@ -1,5 +1,7 @@
 package Pors.ObjectInGame.Jelly;
 
+import Beam.Cookies.Cookie;
+import Pors.ObjectInGame.Spawner;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -62,6 +64,19 @@ public class JellyView extends ImageView {
                 }
             }
         }
+    }
+
+    public void pullToPlayer(Cookie player, double dt) {
+        double x = player.getCookie().getLayoutX()+player.getCookie().getFitWidth()/2+player.getCookie().getTranslateX();
+        double y = player.getCookie().getLayoutY()+player.getCookie().getFitHeight()/2+player.getCookie().getTranslateY();
+        double ux = x-getTranslateX();
+        double uy = y-getTranslateY();
+        double dist = Math.hypot(ux, uy);
+        if(dist<=1) return;
+        double step = Math.abs(Spawner.getSpeed())*dt*2;
+        step = Math.min(step, dist);
+        setTranslateX(getTranslateX()+ux/dist*step);
+        setTranslateY(getTranslateY()+uy/dist*step);
     }
 
     public void setFalling(boolean falling){

@@ -1,10 +1,7 @@
 package Beam.Pets;
 
 import Beam.Asset;
-import Pors.ObjectInGame.Items.Chicken;
-import Pors.ObjectInGame.Items.ItemView;
-import Pors.ObjectInGame.Items.Tomato;
-import Pors.ObjectInGame.Items.Vegetable;
+import Pors.ObjectInGame.Items.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

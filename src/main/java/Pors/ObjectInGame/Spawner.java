@@ -179,7 +179,11 @@ public class Spawner {
 
             if (node instanceof JellyView i) {
                 //update speed
-                i.setSpeedX(getSpeed());
+                if(cookie.isMagnetic()) {
+                    i.pullToPlayer(cookie, deltaTime);
+                } else {
+                    i.setSpeedX(getSpeed());
+                }
 
                 i.update(deltaTime);
 
