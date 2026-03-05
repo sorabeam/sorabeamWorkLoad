@@ -62,12 +62,6 @@ public class SelectPBtn extends BaseButton{
         return fav;
     }
 
-    @Override
-    public void handleClick() {
-        super.handleClick();
-        CharactorData.setCurrent_Pet(pet);
-    }
-
     public ImageView getImg() {
         return img;
     }
@@ -106,5 +100,13 @@ public class SelectPBtn extends BaseButton{
 
     public void setD(String d) {
         D = d;
+    }
+
+    public Pet getPet() {
+        return pet;
+    }
+
+    public void setPet(Pet pet) {
+        this.pet = pet;
     }
 }

@@ -90,7 +90,7 @@ public class PetsSelectionScene extends BaseRoot{
                 oldAction.handle(e);
             }
 
-            System.out.println("jutyhng");
+            CharactorData.setCurrent_Pet(button.getPet());
 
             Showi.setImage(button.getI());
             Bgi.setImage(button.getBg());
