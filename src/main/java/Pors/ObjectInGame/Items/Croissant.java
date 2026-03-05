@@ -9,7 +9,6 @@ public class Croissant extends BaseItem {
     public double vy = 0;    // ความเร็วแกน Y
     private double gravity = 1500;
     public boolean hasBounced = false;
-    private boolean onGround = false;
     private CroissantType type;
 
     public Croissant(CroissantType type, double vx) {
@@ -31,14 +30,6 @@ public class Croissant extends BaseItem {
             default:
                 return "CroissantOriginal";
         }
-    }
-
-    public double getVx() {
-        return vx;
-    }
-
-    public double getVy() {
-        return vy;
     }
 
     public void updatePhysics(double dt, ItemView view, double groundY) {

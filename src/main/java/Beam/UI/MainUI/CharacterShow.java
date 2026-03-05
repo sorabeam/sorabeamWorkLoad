@@ -8,18 +8,18 @@ import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
-public class CharactorShow extends StackPane {
+public class CharacterShow extends StackPane {
 
-    private final Animate cookieView = CharactorData.getCurrent_Cookie().createCookie();
+    private final Animate COOKIE_VIEW = CharactorData.getCurrent_Cookie().createCookie();
 
-    public CharactorShow() {
-        cookieView.setFitWidth(400);
-        cookieView.setPreserveRatio(true);
-        cookieView.changeAnimationState(AnimationType.IDLE);
-        cookieView.setStyle(
+    public CharacterShow() {
+        COOKIE_VIEW.setFitWidth(400);
+        COOKIE_VIEW.setPreserveRatio(true);
+        COOKIE_VIEW.changeAnimationState(AnimationType.IDLE);
+        COOKIE_VIEW.setStyle(
                 "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 40, 0.7, 0, 5);"
         );
-        setMargin(cookieView, new Insets( -100,-50,0,0));
+        setMargin(COOKIE_VIEW, new Insets( -100,-50,0,0));
 
         ImageView petView = CharactorData.getCurrent_Pet().getView();
         petView.setFitHeight(150);
@@ -31,10 +31,10 @@ public class CharactorShow extends StackPane {
         setMargin(petView, new Insets(90,0,0,100));
 
         setMaxSize(600,600);
-        getChildren().addAll(petView, cookieView);
+        getChildren().addAll(petView, COOKIE_VIEW);
     }
 
     public Animate getCookie(){
-        return cookieView;
+        return COOKIE_VIEW;
     }
 }

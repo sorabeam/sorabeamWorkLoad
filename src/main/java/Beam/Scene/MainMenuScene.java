@@ -20,7 +20,7 @@ public class MainMenuScene extends BaseScene {
         StackPane MainMenuButtons = new MainMenuButtons();
         StackPane GlassDecoration = new GlassDecoration();
 
-        CharactorShow imgShow = new CharactorShow();
+        CharacterShow imgShow = new CharacterShow();
         Animate cookie = imgShow.getCookie();
 
         AnimationTimer timer = new AnimationTimer() {

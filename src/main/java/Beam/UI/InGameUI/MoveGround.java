@@ -22,7 +22,7 @@ public class MoveGround extends Pane {
     public MoveGround(Pane gameLayer, double sceneWidth){
 
         Image groundImg =
-                new Image("/Image/BackGround/GroundLevel" + GameLogic.getMap() + ".png");
+                new Image("/Image/Background/GroundLevel" + GameLogic.getMap() + ".png");
 
         ground1 = new ImageView(groundImg);
         ground2 = new ImageView(groundImg);

@@ -15,7 +15,7 @@ public class GameOverScene extends BaseScene {
         super();
 
         Buttons buttons = new Buttons();
-        CharactorShow imgShow = new CharactorShow();
+        CharacterShow imgShow = new CharacterShow();
 
         Animate cookie = imgShow.getCookie();
         DVDShow dvdShow = new DVDShow();
@@ -49,7 +49,7 @@ public class GameOverScene extends BaseScene {
         timer.start();
 
         getChildren().addAll(
-                new GoverBg(),
+                new GameOverBg(),
                 imgShow,
                 new Banner(),
                 dvdShow,

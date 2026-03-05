@@ -11,11 +11,11 @@ import java.util.Map;
 
 public class Asset {
 
-    private static final Map<String, Image> imageCache = new HashMap<>();
+    private static final Map<String, Image> IMAGE_CACHE = new HashMap<>();
 
     public static Image getImage(String name) {
 
-        return imageCache.computeIfAbsent(name, key -> {
+        return IMAGE_CACHE.computeIfAbsent(name, key -> {
             URL url = Asset.class.getResource("/Image/" + key + ".png");
 
             if (url == null) {
@@ -64,8 +64,8 @@ public class Asset {
 
     public static Image getBackGroundImage(String name) {
 
-        return imageCache.computeIfAbsent(name, key -> {
-            URL url = Asset.class.getResource("/Image/BackGround/" + key + ".png");
+        return IMAGE_CACHE.computeIfAbsent(name, key -> {
+            URL url = Asset.class.getResource("/Image/Background/" + key + ".png");
 
             if (url == null) {
                 throw new RuntimeException("Image not found: " + key);

@@ -6,9 +6,9 @@ import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
-public class GoverBg extends StackPane{
+public class GameOverBg extends StackPane{
 
-    public GoverBg(){
+    public GameOverBg(){
 
         ImageView MBg = Asset.createBackgroundView("RedStage",1,1);
         ImageView BB = Asset.createImageView("BlackBar",300,10);
