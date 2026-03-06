@@ -21,11 +21,6 @@ public class FloorFade extends Region {
         setMaxWidth(Double.MAX_VALUE);
         setMaxHeight(H);
 
-        setStyle("""
-            -fx-background-color: linear-gradient(to top,
-                rgba(2, 2, 2, 0.9),
-                rgba(255, 255, 255, 0.0)
-            );
-        """);
+        setStyle("-fx-background-color: linear-gradient(to top,\n    rgba(2, 2, 2, 0.9),\n    rgba(255, 255, 255, 0.0)\n);");
     }
 }

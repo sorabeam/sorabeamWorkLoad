@@ -21,11 +21,6 @@ public class CellingFade extends Region {
         setMaxWidth(Double.MAX_VALUE);
         setMaxHeight(H);
 
-        setStyle("""
-            -fx-background-color: linear-gradient(to bottom,
-                rgba(255, 255, 255, 0.4),
-                rgba(255, 255, 255, 0.0)
-            );
-        """);
+        setStyle("-fx-background-color: linear-gradient(to bottom,\n    rgba(255, 255, 255, 0.4),\n    rgba(255, 255, 255, 0.0)\n);");
     }
 }

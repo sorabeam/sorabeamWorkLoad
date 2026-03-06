@@ -60,16 +60,30 @@ public class Croissant extends BaseItem {
      */
     private static String getImageName(CroissantType type) {
 
+//        switch (type) {
+//
+//            case BUTTER:
+//                return "CroissantButter";
+//
+//            case STRAWBERRY:
+//                return "CroissantStrawberry";
+//
+//            default:
+//                return "CroissantOriginal";
+//        }
         switch (type) {
 
-            case BUTTER:
+            case BUTTER: {
                 return "CroissantButter";
+            }
 
-            case STRAWBERRY:
+            case STRAWBERRY: {
                 return "CroissantStrawberry";
+            }
 
-            default:
+            default: {
                 return "CroissantOriginal";
+            }
         }
     }
 

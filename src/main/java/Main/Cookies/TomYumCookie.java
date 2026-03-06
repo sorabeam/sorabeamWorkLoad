@@ -20,13 +20,7 @@ public class TomYumCookie extends Cookie {
      */
     public TomYumCookie() {
         super(2, "TomYum", 170,
-                """
-                        Every 15 seconds, Tom Yum Cookie
-                        summons Ingredient Rain.
-                        Shrimp, Galangal, Lemongrass,
-                        and Kaffir Lime Leaf
-                        Jellies fall from the sky,
-                        granting bonus points.""");
+                "Every 15 seconds, Tom Yum Cookie\nsummons Ingredient Rain.\nShrimp, Galangal, Lemongrass,\nand Kaffir Lime Leaf\nJellies fall from the sky,\ngranting bonus points.");
         setImgURL("TomYum_Cookie_sheet");
         setProfileImg(Asset.getImage("Profile_Tomyum"));
         setScore(133000);

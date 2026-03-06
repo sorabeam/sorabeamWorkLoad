@@ -21,10 +21,7 @@ public class Moji extends Pet {
      * produced by its skill.
      */
     public Moji() {
-        super(3, "Moji", """
-                Produce Mochi jelly,
-                every 20 seconds Contains
-                scores and healing""");
+        super(3, "Moji", "Produce Mochi jelly,\nevery 20 seconds Contains\nscores and healing");
 
         setView(Asset.createImageView("Moji",0,480));
         setViewImage(Asset.getImage("Moji"));

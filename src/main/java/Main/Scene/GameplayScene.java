@@ -319,19 +319,22 @@ public class GameplayScene extends BaseScene {
 
                 List<Node> toRemove = new ArrayList<>();
 
-                if (player instanceof CrossiantCookie croissant) {
+                if (player instanceof CrossiantCookie) {
+                    CrossiantCookie croissant = (CrossiantCookie) player;
                     if (croissant.isCroissantReady()) {
                         CroissantType type = croissant.consumeCroissant();
                     }
                 }
 
                 for (Node node : gameLayer.getChildren()) {
-                    if (node instanceof Pearl pearl) {
+                    if (node instanceof Pearl) {
+                        Pearl pearl = (Pearl) node;
 
                         pearl.update(deltatime);
 
                         for (Node other : gameLayer.getChildren()) {
-                            if (other instanceof ObstacleView obstacle) {
+                            if (other instanceof ObstacleView) {
+                                ObstacleView obstacle = (ObstacleView) other;
                                 if (pearl.getBoundsInParent().intersects(obstacle.getBoundsInParent())) {
                                     GameLogic.addScore(7000);
                                     toRemove.add(pearl);
@@ -348,32 +351,36 @@ public class GameplayScene extends BaseScene {
                 }
 
                 for (Node node : gameLayer.getChildren()) {
-                    if (node instanceof ItemView view &&
-                            view.getItem() instanceof Croissant croissant) {
+                    if (node instanceof ItemView) {
+                        ItemView view = (ItemView) node;
 
-                        double gravity = 1500;
-                        double bouncePower = -700;
+                        if (view.getItem() instanceof Croissant) {
+                            Croissant croissant = (Croissant) view.getItem();
 
-                        croissant.vy += gravity * deltatime;
-                        view.setTranslateY(view.getTranslateY() + croissant.vy * deltatime);
+                            double gravity = 1500;
+                            double bouncePower = -700;
 
-                        double bottom = view.getTranslateY() + view.getBoundsInLocal().getHeight();
+                            croissant.vy += gravity * deltatime;
+                            view.setTranslateY(view.getTranslateY() + croissant.vy * deltatime);
 
-                        if (bottom >= GameplayScene.groundY) {
+                            double bottom = view.getTranslateY() + view.getBoundsInLocal().getHeight();
 
-                            view.setTranslateY(GameplayScene.groundY - view.getBoundsInLocal().getHeight());
+                            if (bottom >= GameplayScene.groundY) {
+                                view.setTranslateY(GameplayScene.groundY - view.getBoundsInLocal().getHeight());
 
-                            if (!croissant.hasBounced) {
-                                croissant.vy = bouncePower;
-                                croissant.hasBounced = true;
-                            } else {
-                                croissant.vy = 0;
+                                if (!croissant.hasBounced) {
+                                    croissant.vy = bouncePower;
+                                    croissant.hasBounced = true;
+                                } else {
+                                    croissant.vy = 0;
+                                }
                             }
                         }
                     }
                 }
 
-                if (player instanceof TomYumCookie tomyum) {
+                if (player instanceof TomYumCookie) {
+                    TomYumCookie tomyum = (TomYumCookie) player;
 
                     tomyum.updateSkill(deltatime);
 
@@ -393,10 +400,14 @@ public class GameplayScene extends BaseScene {
             if (player.isDead()) return;
 
             switch (e.getCode()) {
-                case SPACE -> player.jump();
-                case SHIFT -> {
+                case SPACE: {
+                    player.jump();
+                    break;
+                }
+                case SHIFT: {
                     shiftHeld = true;
                     player.slide();
+                    break;
                 }
             }
         });

@@ -161,7 +161,7 @@ public class Animate extends ImageView {
         accumulator += deltaTime;
 
         if (accumulator >= frameDuration) {
-            accumulator -= frameDuration;   // ดีกว่า reset เป็น 0
+            accumulator -= frameDuration;
 
             currentFrame++;
 

@@ -86,39 +86,80 @@ public class MainGameScene extends Application {
 
         GameLogic.gameStateProperty().addListener((obs, oldState, newState) -> {
 
+//            switch (newState) {
+//                case INTRO -> {
+//                    gameRoot.getChildren().setAll(new MainMenuScene());
+//                    playMusic("Lobby",50);
+//                }
+//
+//                case SELECT_CHAR -> {
+//                    gameRoot.getChildren().setAll(new CookieSelectionScene());
+//                    playMusic("Main/Cookies",50);
+//                }
+//
+//                case IN_GAME -> {
+//
+//                    CharacterData.getCurrent_Cookie().setHp(CharacterData.getCurrent_Cookie().getMaxHp());
+//                    CharacterData.getCurrent_Cookie().setCooldownTimer(0);
+//                    CharacterData.getCurrent_Cookie().setSkillCounter(0);
+//                    CharacterData.getCurrent_Cookie().setDead(false);
+//                    CharacterData.getCurrent_Cookie().reset();
+//                    GameLogic.setScore(0);
+//                    playMusic("SoundMAP" + GameLogic.getMap(),50);
+//
+//                    GameplayScene inGameScene = new GameplayScene();
+//                    GameLogic.setCurrentGameScene(inGameScene);
+//                    gameRoot.getChildren().setAll(inGameScene);
+//                }
+//                case SELECT_PET -> {
+//                    gameRoot.getChildren().setAll(new PetsSelectionScene());
+//                    playMusic("Main/Pets",50);
+//                }
+//
+//                case GAME_OVER -> {
+//                    gameRoot.getChildren().setAll(new GameOverScene());
+//                    playMusic("GameOver",50);
+//                }
+//            }
             switch (newState) {
-                case INTRO -> {
+
+                case INTRO: {
                     gameRoot.getChildren().setAll(new MainMenuScene());
-                    playMusic("Lobby",50);
+                    playMusic("Lobby", 50);
+                    break;
                 }
 
-                case SELECT_CHAR -> {
+                case SELECT_CHAR: {
                     gameRoot.getChildren().setAll(new CookieSelectionScene());
-                    playMusic("Main/Cookies",50);
+                    playMusic("Main/Cookies", 50);
+                    break;
                 }
 
-                case IN_GAME -> {
-
+                case IN_GAME: {
                     CharacterData.getCurrent_Cookie().setHp(CharacterData.getCurrent_Cookie().getMaxHp());
                     CharacterData.getCurrent_Cookie().setCooldownTimer(0);
                     CharacterData.getCurrent_Cookie().setSkillCounter(0);
                     CharacterData.getCurrent_Cookie().setDead(false);
                     CharacterData.getCurrent_Cookie().reset();
                     GameLogic.setScore(0);
-                    playMusic("SoundMAP" + GameLogic.getMap(),50);
+                    playMusic("SoundMAP" + GameLogic.getMap(), 50);
 
                     GameplayScene inGameScene = new GameplayScene();
                     GameLogic.setCurrentGameScene(inGameScene);
                     gameRoot.getChildren().setAll(inGameScene);
-                }
-                case SELECT_PET -> {
-                    gameRoot.getChildren().setAll(new PetsSelectionScene());
-                    playMusic("Main/Pets",50);
+                    break;
                 }
 
-                case GAME_OVER -> {
+                case SELECT_PET: {
+                    gameRoot.getChildren().setAll(new PetsSelectionScene());
+                    playMusic("Main/Pets", 50);
+                    break;
+                }
+
+                case GAME_OVER: {
                     gameRoot.getChildren().setAll(new GameOverScene());
-                    playMusic("GameOver",50);
+                    playMusic("GameOver", 50);
+                    break;
                 }
             }
         });

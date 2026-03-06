@@ -74,10 +74,13 @@ public class SpawnAction {
         List<SpawnAction> result = new ArrayList<>();
 
         for (Object obj : items) {
-            if (obj instanceof SpawnAction action) {
+            if (obj instanceof SpawnAction) {
+                SpawnAction action = (SpawnAction) obj;
                 result.add(action);
             }
-            else if (obj instanceof List<?> list) {
+            else if (obj instanceof List<?>) {
+                List<?> list = (List<?>) obj;
+
                 for (Object o : list) {
                     result.add((SpawnAction) o);
                 }

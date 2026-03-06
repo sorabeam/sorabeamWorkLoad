@@ -104,7 +104,9 @@ public class Spawner {
         updateJelly(deltaTime);
         checkCollision(cookie);
 
-        if (cookie instanceof CrossiantCookie croissant) {
+        if (cookie instanceof CrossiantCookie) {
+            CrossiantCookie croissant = (CrossiantCookie) cookie;
+
             if (croissant.isCroissantReady()) {
                 CroissantType type = croissant.consumeCroissant();
                 spawnCroissant(type);
@@ -232,7 +234,9 @@ public class Spawner {
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
-            if (node instanceof ObstacleView o) {
+            if (node instanceof ObstacleView) {
+                ObstacleView o = (ObstacleView) node;
+
                 o.setSpeed(getSpeed(), 0);
                 o.update(deltaTime);
 
@@ -258,14 +262,18 @@ public class Spawner {
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
-            if (node instanceof ItemView i) {
+            if (node instanceof ItemView) {
+                ItemView i = (ItemView) node;
+
                 i.setSpeed(getSpeed(), 0);
-                if (i.getItem() instanceof Croissant croissant) {
+
+                if (i.getItem() instanceof Croissant) {
+                    Croissant croissant = (Croissant) i.getItem();
 
                     croissant.updatePhysics(
                             deltaTime,
                             i,
-                            gameLayer.getLayoutBounds().getHeight() - 80
+                    gameLayer.getLayoutBounds().getHeight() - 80
                     );
                 } else {
                     i.update(deltaTime);
@@ -293,8 +301,10 @@ public class Spawner {
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
-            if (node instanceof JellyView i) {
-                if(cookie.isMagnetic()) {
+            if (node instanceof JellyView) {
+                JellyView i = (JellyView) node;
+
+                if (cookie.isMagnetic()) {
                     i.pullToPlayer(cookie, deltaTime);
                 } else {
                     i.setSpeedX(getSpeed());
@@ -382,7 +392,9 @@ public class Spawner {
 
         for (javafx.scene.Node node : snapshot) {
 
-            if (node instanceof ObstacleView obs) {
+            if (node instanceof ObstacleView) {
+                ObstacleView obs = (ObstacleView) node;
+
                 if (cookie.getHitBox()
                         .getBoundsInParent()
                         .intersects(obs.getBoundsInParent())
@@ -393,7 +405,9 @@ public class Spawner {
                 }
             }
 
-            else if (node instanceof ItemView item) {
+            else if (node instanceof ItemView) {
+                ItemView item = (ItemView) node;
+
                 if (cookie.getHitBox()
                         .getBoundsInParent()
                         .intersects(item.getBoundsInParent())) {
@@ -404,14 +418,17 @@ public class Spawner {
                 }
             }
 
-            else if (node instanceof JellyView jelly) {
+            else if (node instanceof JellyView) {
+                JellyView jelly = (JellyView) node;
+
                 if (cookie.getHitBox()
                         .getBoundsInParent()
                         .intersects(jelly.getBoundsInParent())) {
 
                     jelly.getJelly().interact(cookie);
 
-                    if (cookie instanceof CrossiantCookie croissant) {
+                    if (cookie instanceof CrossiantCookie) {
+                        CrossiantCookie croissant = (CrossiantCookie) cookie;
                         croissant.onJellyCollected();
                     }
 

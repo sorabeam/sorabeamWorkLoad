@@ -21,11 +21,7 @@ public class BobaCookie extends Cookie{
     public BobaCookie(){
 
         super(1, "Boba" , 150,
-                """
-                        Every 10 seconds Boba Cookie
-                        launches the Pearl Beads forward,
-                        smashing through obstacles and
-                        earning bonus points.""");
+                "Every 10 seconds Boba Cookie\nlaunches the Pearl Beads forward,\nsmashing through obstacles and\nearning bonus points.");
 
         setImgURL("Boba_Milk_Tea_Cookie");
         setProfileImg(Asset.getImage("Profile_Boba"));

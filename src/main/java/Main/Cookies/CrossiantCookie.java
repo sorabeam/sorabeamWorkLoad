@@ -36,12 +36,7 @@ public class CrossiantCookie extends Cookie {
      */
     public CrossiantCookie() {
         super(3, "Croissant", 140,
-                """
-                        Every 50 Jellies collected,
-                        a Croissant Jelly falls from the sky.
-                        Original grants bonus points,
-                        Butter gives a Speed Boost,
-                        and Strawberry restores 20 HP.""");
+                "Every 50 Jellies collected,\na Croissant Jelly falls from the sky.\nOriginal grants bonus points,\nButter gives a Speed Boost,\nand Strawberry restores 20 HP.");
         setImgURL("Croissant_Cookie_sheet");
         setProfileImg(Asset.getImage("Profile_Cross"));
         setScore(256200);
@@ -134,11 +129,30 @@ public class CrossiantCookie extends Cookie {
 
         CroissantType type;
 
+//        switch (croissantCycle) {
+//            case 0 -> type = CroissantType.ORIGINAL;
+//            case 1 -> type = CroissantType.BUTTER;
+//            case 2 -> type = CroissantType.STRAWBERRY;
+//            default -> type = CroissantType.ORIGINAL;
+//        }
+
         switch (croissantCycle) {
-            case 0 -> type = CroissantType.ORIGINAL;
-            case 1 -> type = CroissantType.BUTTER;
-            case 2 -> type = CroissantType.STRAWBERRY;
-            default -> type = CroissantType.ORIGINAL;
+            case 0: {
+                type = CroissantType.ORIGINAL;
+                break;
+            }
+            case 1: {
+                type = CroissantType.BUTTER;
+                break;
+            }
+            case 2: {
+                type = CroissantType.STRAWBERRY;
+                break;
+            }
+            default: {
+                type = CroissantType.ORIGINAL;
+                break;
+            }
         }
 
         croissantCycle = (croissantCycle + 1) % 3;

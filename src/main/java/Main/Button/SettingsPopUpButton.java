@@ -67,9 +67,10 @@ public class SettingsPopUpButton extends BaseButton{
             if (!GameLogic.getGameroot().getChildren().isEmpty()) {
                 Node child = GameLogic.getGameroot().getChildren().getFirst();
 
-            if (child instanceof GameplayScene inGameScene) {
-                inGameScene.stopGameByBool();
-            }
+                if (child instanceof GameplayScene) {
+                    GameplayScene inGameScene = (GameplayScene) child;
+                    inGameScene.stopGameByBool();
+                }
             }
         }
         showSetting();
@@ -307,9 +308,11 @@ public class SettingsPopUpButton extends BaseButton{
             if (!GameLogic.getGameroot().getChildren().isEmpty()) {
                 Node child = GameLogic.getGameroot().getChildren().getFirst();
 
-            if  (child instanceof GameplayScene inGameScene) {
-                inGameScene.resumeGameByBool();
-            }}
+                if (child instanceof GameplayScene) {
+                    GameplayScene inGameScene = (GameplayScene) child;
+                    inGameScene.resumeGameByBool();
+                }
+            }
         }
             root.getChildren().remove(overlay);
 
