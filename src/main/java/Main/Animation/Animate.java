@@ -10,7 +10,6 @@ public class Animate extends ImageView {
 
     protected int currentRow = 4;
     protected int currentFrame = 0;
-    protected long lastTime = 0;
     protected double accumulator = 0;
 
     private boolean isLoop = true;
@@ -121,10 +120,6 @@ public class Animate extends ImageView {
 
     public AnimationType getAnimationState() {
         return state.get();
-    }
-
-    public void setFrameDuration(int fd){
-        this.frameDuration = fd;
     }
 
 }

@@ -10,8 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class BaseButton extends Button implements Clickable {
-    private DropShadow dropShadow;
-    private ScaleTransition scaleTransition;
     private boolean isHovering = false;
     private boolean clicked = false;
 
@@ -19,7 +17,7 @@ public class BaseButton extends Button implements Clickable {
 
         super();
 
-        createButton();
+        initializesButton();
 
         img.setPreserveRatio(true);
 
@@ -35,23 +33,23 @@ public class BaseButton extends Button implements Clickable {
     public void handleClick() {
         MediaPlayer.getInstance().playSFX("Click");
         clicked = true;
-        scaleTo(1.1,true);
+        scaleTo(1.1);
     }
 
     @Override
     public void onHoverEnter() {
         isHovering = true;
-        scaleTo(1.05,false);
+        scaleTo(1.05);
     }
 
     @Override
     public void onHoverExit() {
         isHovering = false;
-        scaleTo(1.0,false);
+        scaleTo(1.0);
     }
 
-    private void scaleTo(double scale,boolean AR) {
-        scaleTransition = new ScaleTransition(Duration.millis(50), this);
+    private void scaleTo(double scale) {
+        ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(50), this);
         scaleTransition.setToX(scale);
         scaleTransition.setToY(scale);
         scaleTransition.play();
@@ -59,15 +57,15 @@ public class BaseButton extends Button implements Clickable {
         scaleTransition.setOnFinished(e -> {
             if(clicked){
                 clicked = false;
-                if(isHovering)scaleTo(1.05,false);
-                else scaleTo(1,false);
+                if(isHovering)scaleTo(1.05);
+                else scaleTo(1);
             }
         });
     }
 
-    public void createButton(){
+    public void initializesButton(){
 
-        dropShadow = new DropShadow();
+        DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(40);
         dropShadow.setOffsetX(0);
         dropShadow.setOffsetY(0);

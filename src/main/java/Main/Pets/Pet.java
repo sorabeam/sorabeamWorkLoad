@@ -11,7 +11,6 @@ import java.util.function.Supplier;
 public abstract class Pet {
     int id;
     int cooldownTime;
-    String Pid;   //paneID
     String BGid;
 
     String name;
@@ -37,7 +36,7 @@ public abstract class Pet {
 
     public Pet(int id, String name, String description) {
         this.id = id;
-        Pid = "P" + id;
+
         BGid = "BG" + id;
         this.name = name;
         this.description = description;
@@ -82,7 +81,6 @@ public abstract class Pet {
     }
 
     public int getId() { return id; }
-    public String getPid() { return Pid; }
     public String getName() { return name; }
     public String getBGid() { return BGid; }
 
