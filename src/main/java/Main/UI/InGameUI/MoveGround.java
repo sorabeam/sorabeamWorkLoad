@@ -36,8 +36,8 @@ public class MoveGround extends Pane {
         ground1.setPreserveRatio(false);
         ground2.setPreserveRatio(false);
 
-        ground1.setScaleY(1.5);
-        ground2.setScaleY(1.5);
+        ground1.setScaleY(2);
+        ground2.setScaleY(2);
 
         ground1.layoutYProperty().bind(gameLayer.heightProperty().subtract(groundH).subtract(90));
         ground2.layoutYProperty().bind(gameLayer.heightProperty().subtract(groundH).subtract(90));

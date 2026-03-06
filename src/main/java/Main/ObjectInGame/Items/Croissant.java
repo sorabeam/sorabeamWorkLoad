@@ -1,5 +1,6 @@
 package Main.ObjectInGame.Items;
 
+import Main.CharacterData;
 import Main.Cookies.Cookie;
 import Main.GameLogic.GameLogic;
 
@@ -36,7 +37,9 @@ public class Croissant extends BaseItem {
 
         vy += gravity * dt;
 
-        view.setTranslateX(view.getTranslateX() + vx * dt);
+        if (!CharacterData.getCurrent_Cookie().isDead()) {
+            view.setTranslateX(view.getTranslateX() + vx * dt);
+        }
         view.setTranslateY(view.getTranslateY() + vy * dt);
 
         double bottom = view.getTranslateY() + view.getBoundsInLocal().getHeight();
