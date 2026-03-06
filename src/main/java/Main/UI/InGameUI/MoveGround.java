@@ -4,6 +4,7 @@ import Main.GameLogic.GameLogic;
 import Main.ObjectInGame.Spawner;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.geometry.Bounds;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -19,10 +20,13 @@ public class MoveGround extends Pane {
     private AnimationTimer timer;
     private long lastTime = 0;
 
-    public MoveGround(Pane gameLayer, double sceneWidth){
+    private final Pane gameLayer;
+
+    public MoveGround(Pane gameLayer){
 
         Image groundImg =
                 new Image("/Image/Background/GroundLevel" + GameLogic.getMap() + ".png");
+        this.gameLayer = gameLayer;
 
         ground1 = new ImageView(groundImg);
         ground2 = new ImageView(groundImg);
@@ -30,8 +34,8 @@ public class MoveGround extends Pane {
         ground1.setFitHeight(groundH + 100);
         ground2.setFitHeight(groundH + 100);
 
-        ground1.setFitWidth(sceneWidth * 2);
-        ground2.setFitWidth(sceneWidth * 2);
+//        ground1.setFitWidth(gameLayer.getLayoutBounds().getWidth() * 2);
+//        ground2.setFitWidth(gameLayer.getLayoutBounds().getWidth() * 2);
 
         ground1.setPreserveRatio(false);
         ground2.setPreserveRatio(false);
@@ -44,15 +48,32 @@ public class MoveGround extends Pane {
 
         getChildren().addAll(ground1, ground2);
 
-        Platform.runLater(() -> {
-            width = sceneWidth * 2;
+//        Platform.runLater(() -> {
+//            width = gameLayer.getLayoutBounds().getWidth() * 2;
+//
+//            ground1.setTranslateX(0);
+//            ground2.setTranslateX(width);
+//        });
+        Platform.runLater(() -> updateGroundWidth(gameLayer.getLayoutBounds()));
 
-            ground1.setTranslateX(0);
-            ground2.setTranslateX(width);
+        gameLayer.layoutBoundsProperty().addListener((obs, oldBounds, newBounds) -> {
+            updateGroundWidth(newBounds);
         });
 
         createLoop();
         start();
+    }
+
+    private void updateGroundWidth(Bounds bounds) {
+        width = bounds.getWidth() * 2;
+
+        ground1.setFitWidth(width);
+        ground2.setFitWidth(width);
+
+        if (ground2.getTranslateX() == 0 && ground1.getTranslateX() == 0) {
+            ground1.setTranslateX(0);
+            ground2.setTranslateX(width);
+        }
     }
 
     private void createLoop(){

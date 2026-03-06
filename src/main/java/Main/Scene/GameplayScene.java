@@ -95,7 +95,7 @@ public class GameplayScene extends BaseScene {
 
         Spawner.setSpeed(-350);
         //ground
-        ground = new MoveGround(gameLayer, scene.getWidth());
+        ground = new MoveGround(gameLayer);
         gameLayer.getChildren().add(ground);
         ground.start();
 
@@ -166,9 +166,6 @@ public class GameplayScene extends BaseScene {
                 last = now;
 
                 groundY = ground.getGroundY() - groundH - 80;
-
-                double groundWidth = scene.getWidth();
-                double groundSpeed = Spawner.getSpeed();
 
                 damageTimer += deltatime;
 
@@ -252,7 +249,7 @@ public class GameplayScene extends BaseScene {
 
                 //Pew-Pew Pearl And Obstacle
                 List<Node> toRemove = new ArrayList<>();
-                double screenWidth = getWidth();
+//                double screenWidth = getWidth();
 
                 if (player instanceof CrossiantCookie croissant) {
 
@@ -284,7 +281,7 @@ public class GameplayScene extends BaseScene {
 
                         }
 
-                        if (pearl.getLayoutX() > screenWidth - 50) {
+                        if (pearl.getLayoutX() > getWidth() - 50) {
                             toRemove.add(pearl);
                         }
                     }

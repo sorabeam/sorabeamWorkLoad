@@ -105,7 +105,7 @@ public class Spawner {
                     speed,
                     0
             );
-            obs.setTranslateX(sceneWidth + 50);
+            obs.setTranslateX(gameLayer.getLayoutBounds().getWidth() + 50);
             obs.setTranslateY(action.height);
 
             gameLayer.getChildren().add(obs);
@@ -137,7 +137,7 @@ public class Spawner {
                         0
                 );
             }
-            item.setTranslateX(sceneWidth + 50);
+            item.setTranslateX(gameLayer.getLayoutBounds().getWidth() + 50);
             item.setTranslateY(action.height);
             gameLayer.getChildren().add(item);
         } else {
@@ -146,7 +146,7 @@ public class Spawner {
                     speed,
                     0
             );
-            jelly.setTranslateX(sceneWidth + 50);
+            jelly.setTranslateX(gameLayer.getLayoutBounds().getWidth() + 50);
             jelly.setTranslateY(action.height);
             gameLayer.getChildren().add(jelly);
         }
@@ -165,7 +165,7 @@ public class Spawner {
                 o.update(deltaTime);
 
                 if (o.getTranslateX() < -200 ||
-                        o.getTranslateY() > sceneHeight + 100) {
+                        o.getTranslateY() > gameLayer.getLayoutBounds().getHeight() + 100) {
                     it.remove();
                 }
             }
@@ -184,14 +184,14 @@ public class Spawner {
                     croissant.updatePhysics(
                             deltaTime,
                             i,
-                            sceneHeight - 80
+                            gameLayer.getLayoutBounds().getHeight() - 80
                     );
                 } else {
                     i.update(deltaTime);
                 }
 
                 if (i.getTranslateX() < -100 ||
-                        i.getTranslateY() > sceneHeight + 100) {
+                        i.getTranslateY() > gameLayer.getLayoutBounds().getHeight() + 100) {
                     it.remove();
                 }
             }
@@ -214,7 +214,7 @@ public class Spawner {
                 i.update(deltaTime);
 
                 if (i.getTranslateX() < -100 ||
-                        i.getTranslateY() > sceneHeight + 100) {
+                        i.getTranslateY() > gameLayer.getLayoutBounds().getHeight() + 100) {
                     it.remove();
                 }
             }
@@ -227,7 +227,7 @@ public class Spawner {
 
         ItemView view = new ItemView(croissant, speed, 0);
 
-        view.setTranslateX(sceneWidth - 200);
+        view.setTranslateX(gameLayer.getLayoutBounds().getWidth() - 200);
         view.setTranslateY(-50);
 
         gameLayer.getChildren().add(view);
@@ -254,7 +254,7 @@ public class Spawner {
 
             jelly.setFalling(true);
 
-            jelly.setTranslateX(sceneWidth + Math.random()*300);
+            jelly.setTranslateX(gameLayer.getLayoutBounds().getWidth() + Math.random()*300);
             jelly.setTranslateY(0 - Math.random()*200);
 
             gameLayer.getChildren().add(jelly);
