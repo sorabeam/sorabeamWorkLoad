@@ -13,8 +13,28 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * A UI component that displays the score statistics on the Game Over screen.
+ * <p>
+ * This class shows the player's current score, compares it with the stored
+ * highest score of the selected cookie, and updates the record if a new
+ * highest score is achieved. It also displays the currently selected
+ * character and provides a button to navigate back to the character
+ * selection screen.
+ */
 public class DVDShow extends StackPane {
 
+    /**
+     * Constructs the statistics display for the Game Over screen.
+     * <p>
+     * The constructor creates two main UI sections:
+     * <ul>
+     *     <li>A statistics panel showing the current score and highest score.</li>
+     *     <li>A character preview panel that allows navigation to the character selection screen.</li>
+     * </ul>
+     * It also updates the stored highest score if the current score
+     * exceeds the previous record.
+     */
     public DVDShow(){
         StackPane wrapper = new StackPane();
         wrapper.setMaxSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);

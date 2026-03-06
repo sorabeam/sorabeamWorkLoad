@@ -11,10 +11,28 @@ import Main.Button.FavoriteButton;
 import Main.CharacterData;
 import Main.Image.OutlineTextImage;
 
+/**
+ * Displays detailed information about the selected cookie.
+ * <p>
+ * This component organizes several UI elements vertically, including
+ * the best record text, HP bar with a favorite button, skill preview
+ * image, and a description of the character.
+ */
 public class DataDisplay extends VBox {
 
+    /**
+     * Creates and arranges character data components including best record text,
+     * HP bar, favorite button, skill preview image, and description text.
+     * <p>
+     * The constructor retrieves the current cookie data from {@link CharacterData},
+     * creates the corresponding UI components, and adds them sequentially
+     * into the VBox layout.
+     *
+     * @param txt   the description text of the selected cookie
+     * @param scene the {@link CookieSelectionScene} used to store and access
+     *              UI components such as record text, skill preview, and description
+     */
     public DataDisplay (String txt, CookieSelectionScene scene){
-
 
         scene.setRecord(new OutlineTextImage("Best Record : " + CharacterData.getCurrent_Cookie().get_Score(),'M',20));
 

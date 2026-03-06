@@ -1,0 +1,289 @@
+@startuml
+class Main.UI.GameOverUI.Banner {
++ <<Create>> Banner()
+}
+
+class Main.Scene.PetsSelectionScene {
+~ ImageView showImage
+~ OutlineTextImage name
+~ PetsButton ins1
+- String txt
++ <<Create>> PetsSelectionScene()
++ ImageView getShowImage()
++ void setShowImage(ImageView)
++ ImageView getBackGroundImage()
++ void setBackGroundImage(ImageView)
++ OutlineTextImage getName()
++ void setName(OutlineTextImage)
++ OutlineTextImage getDescription()
++ void setDescription(OutlineTextImage)
++ PetsButton getIns1()
++ void setIns1(PetsButton)
++ PetsButton getIns2()
++ void setIns2(PetsButton)
++ PetsButton getIns3()
++ void setIns3(PetsButton)
++ PetsButton getIns4()
++ void setIns4(PetsButton)
++ String getTxt()
++ void setTxt(String)
+- void enableSwap(PetsButton)
+}
+
+
+class Main.UI.CookiesUI.SettingZone {
++ <<Create>> SettingZone(StackPane,Region)
+}
+
+abstract class Main.Scene.BaseScene {
+# Scene scene
+# StackPane root
+- {static} double BASE_WIDTH
+- {static} double BASE_HEIGHT
++ <<Create>> BaseScene()
++ Region spacer(char)
+}
+
+
+class Main.UI.CookiesUI.CharacterDisplay {
++ <<Create>> CharacterDisplay(CookieSelectionScene)
+}
+
+class Main.UI.CookiesUI.DataDisplay {
++ <<Create>> DataDisplay(String,CookieSelectionScene)
+}
+
+class Main.UI.MainMenuUI.CharacterShow {
+- Animate cookieView
++ <<Create>> CharacterShow()
++ Animate getCookie()
+}
+
+
+class Main.UI.MainMenuUI.SettingZone {
++ <<Create>> SettingZone(StackPane,Region)
+}
+
+class Main.UI.CookiesUI.GridDisplay {
++ <<Create>> GridDisplay(CharacterButton,CharacterButton,CharacterButton,BaseButton)
+}
+
+class Main.Scene.GameplayScene {
+~ Pane gameLayer
+~ StackPane uiLayer
+- MoveGround ground
+- boolean shiftHeld
+~ SettingZone settingZone
+~ HpDisplayZone hpZone
+~ ShowScore sc
+- double groundH
++ {static} double groundY
+- AnimationTimer timer
+- Spawner spawner
++ boolean isUpdate
+- InGameBG bg
+- double deltatime
++ <<Create>> GameplayScene()
++ void stopGame()
++ void stopGameByBool()
++ void resumeGameByBool()
++ void stopEnvironment()
++ boolean isUpdate()
++ void setUpdate(boolean)
++ double getDeltatime()
++ void setDeltatime(double)
+}
+
+
+class Main.UI.PetsUI.SettingZone {
++ <<Create>> SettingZone(StackPane,Region)
+}
+
+class Main.UI.MainMenuUI.GlassDecoration {
++ <<Create>> GlassDecoration()
+}
+
+class Main.UI.InGameUI.CooldownBar {
++ Rectangle frame
++ Rectangle background
++ Rectangle fill
++ <<Create>> CooldownBar(Cookie)
+}
+
+
+class Main.UI.GameOverUI.Buttons {
++ <<Create>> Buttons()
+}
+
+class Main.UI.GameOverUI.DVDShow {
++ <<Create>> DVDShow()
+}
+
+class Main.UI.InGameUI.ShowScore {
+~ ImageView fadeBg
+~ OutlineTextImage score
++ <<Create>> ShowScore()
+}
+
+
+class Main.UI.MainMenuUI.MainMenuProfile {
++ <<Create>> MainMenuProfile(String,String,StackPane)
+}
+
+class Main.Scene.MainMenuScene {
++ <<Create>> MainMenuScene()
+}
+
+class Main.Scene.CookieSelectionScene {
+~ CharacterButton block1
+~ CharacterButton block2
+~ CharacterButton block3
+~ BaseButton block4
+~ ImageView skillVideo
+~ OutlineTextImage name
+~ Animate cookie
+~ CharacterButton selectButton
+~ GridPane characterBoard
+~ CharacterDisplay characterDisplay
++ <<Create>> CookieSelectionScene()
+- void initCookieBtn()
+- void enableShow(CharacterButton)
++ void setSkillVideo(ImageView)
++ void setName(OutlineTextImage)
++ void setDescription(OutlineTextImage)
++ void setRecord(OutlineTextImage)
++ void setCookie(Animate)
++ ImageView getSkillVideo()
++ OutlineTextImage getName()
++ OutlineTextImage getDescription()
++ OutlineTextImage getRecord()
++ Animate getCookie()
+}
+
+
+class Main.UI.PetsUI.PetSelectionBG {
++ <<Create>> PetSelectionBG()
+}
+
+class Main.UI.InGameUI.InGameBG {
+- ImageView bg1
+- ImageView bg2
+- double speed
+- double width
+- AnimationTimer timer
+- long lastTime
++ <<Create>> InGameBG(StackPane)
+- void createLoop()
+- void recalculatePositions()
++ void start()
++ void stop()
+}
+
+
+class Main.UI.MainMenuUI.MainMenuButtons {
++ <<Create>> MainMenuButtons()
+}
+
+class Main.UI.PetsUI.SelectingView {
++ <<Create>> SelectingView(StackPane,PetsSelectionScene)
+}
+
+class Main.UI.CookiesUI.CharacterSelectButtons {
++ <<Create>> CharacterSelectButtons()
+}
+
+class Main.UI.MainMenuUI.MainMenuBG {
++ <<Create>> MainMenuBG()
+}
+
+class Main.UI.GameOverUI.CharacterShow {
+- Animate cookieView
++ <<Create>> CharacterShow()
++ Animate getCookie()
+}
+
+
+class Main.UI.GameOverUI.GameOverBg {
++ <<Create>> GameOverBg()
+}
+
+class Main.UI.CookiesUI.CookieSelectBG {
++ <<Create>> CookieSelectBG()
+}
+
+class Main.UI.InGameUI.MoveGround {
+- ImageView ground1
+- ImageView ground2
+- double groundH
+- double width
+- AnimationTimer timer
+- long lastTime
++ <<Create>> MoveGround(Pane,double)
+- void createLoop()
++ double getGroundY()
++ void start()
++ void stop()
+}
+
+
+class Main.UI.PetsUI.PetSelectionBtn {
++ <<Create>> PetSelectionBtn(Region)
+}
+
+class Main.Scene.GameOverScene {
++ <<Create>> GameOverScene()
+}
+
+class Main.UI.InGameUI.HpDisplayZone {
+~ int max_hp
+~ int current_hp
+~ double barWidth
+~ double barHeight
+- double displayPercent
+- double smoothSpeed
+~ Rectangle cdFill
++ <<Create>> HpDisplayZone()
++ void updateHpBar(double)
+}
+
+
+class Main.UI.InGameUI.SettingZone {
++ <<Create>> SettingZone(StackPane,Region)
+}
+
+
+
+javafx.scene.layout.StackPane <|-- Main.UI.GameOverUI.Banner
+Main.Scene.BaseScene <|-- Main.Scene.PetsSelectionScene
+Main.UI.CookiesUI.HBox <|-- Main.UI.CookiesUI.SettingZone
+Main.Scene.StackPane <|-- Main.Scene.BaseScene
+Main.UI.CookiesUI.StackPane <|-- Main.UI.CookiesUI.CharacterDisplay
+javafx.scene.layout.VBox <|-- Main.UI.CookiesUI.DataDisplay
+javafx.scene.layout.StackPane <|-- Main.UI.MainMenuUI.CharacterShow
+javafx.scene.layout.HBox <|-- Main.UI.MainMenuUI.SettingZone
+javafx.scene.layout.GridPane <|-- Main.UI.CookiesUI.GridDisplay
+Main.Scene.BaseScene <|-- Main.Scene.GameplayScene
+Main.UI.PetsUI.HBox <|-- Main.UI.PetsUI.SettingZone
+javafx.scene.layout.StackPane <|-- Main.UI.MainMenuUI.GlassDecoration
+javafx.scene.layout.StackPane <|-- Main.UI.InGameUI.CooldownBar
+javafx.scene.layout.HBox <|-- Main.UI.GameOverUI.Buttons
+javafx.scene.layout.StackPane <|-- Main.UI.GameOverUI.DVDShow
+javafx.scene.layout.StackPane <|-- Main.UI.InGameUI.ShowScore
+javafx.scene.layout.StackPane <|-- Main.UI.MainMenuUI.MainMenuProfile
+Main.Scene.BaseScene <|-- Main.Scene.MainMenuScene
+Main.Scene.BaseScene <|-- Main.Scene.CookieSelectionScene
+javafx.scene.layout.StackPane <|-- Main.UI.PetsUI.PetSelectionBG
+javafx.scene.layout.StackPane <|-- Main.UI.InGameUI.InGameBG
+javafx.scene.layout.StackPane <|-- Main.UI.MainMenuUI.MainMenuButtons
+Main.UI.PetsUI.StackPane <|-- Main.UI.PetsUI.SelectingView
+javafx.scene.layout.HBox <|-- Main.UI.CookiesUI.CharacterSelectButtons
+javafx.scene.layout.StackPane <|-- Main.UI.MainMenuUI.MainMenuBG
+javafx.scene.layout.StackPane <|-- Main.UI.GameOverUI.CharacterShow
+Main.UI.GameOverUI.StackPane <|-- Main.UI.GameOverUI.GameOverBg
+javafx.scene.layout.StackPane <|-- Main.UI.CookiesUI.CookieSelectBG
+javafx.scene.layout.Pane <|-- Main.UI.InGameUI.MoveGround
+javafx.scene.layout.HBox <|-- Main.UI.PetsUI.PetSelectionBtn
+Main.Scene.BaseScene <|-- Main.Scene.GameOverScene
+Main.UI.InGameUI.StackPane <|-- Main.UI.InGameUI.HpDisplayZone
+javafx.scene.layout.HBox <|-- Main.UI.InGameUI.SettingZone
+@enduml

@@ -10,17 +10,56 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
+/**
+ * A scrolling background container used during gameplay.
+ * <p>
+ * This class creates two background images that move horizontally to produce
+ * an infinite scrolling effect. When one background moves out of the screen,
+ * it is repositioned to the right of the other background to maintain a
+ * seamless loop. A floor fade effect is also added at the bottom of the screen.
+ */
 public class InGameBG extends StackPane {
 
+    /**
+     * First background image used for the scrolling effect.
+     */
     private ImageView bg1;
+
+    /**
+     * Second background image used for seamless background looping.
+     */
     private ImageView bg2;
 
-    private double speed = 200; // pixel per second
+    /**
+     * Scrolling speed of the background in pixels per second.
+     */
+    private double speed = 200;
+
+    /**
+     * Current width of the scene used to reposition backgrounds.
+     */
     private double width;
 
+    /**
+     * AnimationTimer responsible for updating background movement each frame.
+     */
     private AnimationTimer timer;
+
+    /**
+     * Stores the timestamp of the previous frame for delta time calculation.
+     */
     private long lastTime = 0;
 
+    /**
+     * Constructs the in-game scrolling background.
+     * <p>
+     * The constructor loads two background images based on the current map,
+     * binds their sizes to the root container, and places them inside a
+     * background layer. A floor fade effect is added for visual styling.
+     * The scrolling animation loop is then created and started.
+     *
+     * @param root the root StackPane whose size determines the background size
+     */
     public InGameBG(StackPane root){
 
         Pane bgLayer = new Pane();
@@ -55,6 +94,14 @@ public class InGameBG extends StackPane {
         start();
     }
 
+    /**
+     * Creates the AnimationTimer loop that moves the background images.
+     * <p>
+     * Each frame calculates delta time and shifts both background images
+     * horizontally. When one image completely leaves the screen, it is
+     * repositioned to the right side of the other image to maintain a
+     * continuous scrolling effect.
+     */
     private void createLoop(){
 
         timer = new AnimationTimer() {
@@ -86,6 +133,12 @@ public class InGameBG extends StackPane {
         };
     }
 
+    /**
+     * Recalculates the background positions when the screen size changes.
+     * <p>
+     * Ensures that both background images remain placed side-by-side so
+     * the scrolling loop continues smoothly after resizing or resetting.
+     */
     private void recalculatePositions(){
 
         double x1 = bg1.getTranslateX();
@@ -104,13 +157,21 @@ public class InGameBG extends StackPane {
         }
     }
 
+    /**
+     * Starts the background scrolling animation.
+     * <p>
+     * Resets the time reference before starting the AnimationTimer.
+     */
     public void start(){
         if (timer != null) {
-            lastTime = 0;   // reset delta
+            lastTime = 0;
             timer.start();
         }
     }
 
+    /**
+     * Stops the background scrolling animation.
+     */
     public void stop(){
         if (timer != null) {
             timer.stop();

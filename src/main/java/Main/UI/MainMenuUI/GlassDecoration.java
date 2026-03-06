@@ -7,8 +7,24 @@ import javafx.scene.layout.StackPane;
 import Main.Asset;
 import Main.Button.BaseButton;
 
+/**
+ * A decorative UI component used in the main menu to display
+ * layered glass elements on the right side of the screen.
+ *
+ * <p>This class creates three decorative glass images using
+ * {@link BaseButton} and positions them with different margins
+ * to form a layered visual effect.</p>
+ */
 public class GlassDecoration extends StackPane {
 
+    /**
+     * Creates the glass decoration layout for the main menu.
+     *
+     * <p>This constructor initializes three glass decorative elements
+     * using images from {@link Asset}. Each element is wrapped in a
+     * {@link BaseButton} and positioned on the right side with different
+     * margins to create a layered visual arrangement.</p>
+     */
     public GlassDecoration() {
 
         BaseButton glass1 = new BaseButton(Asset.createImageView("Glass1", 0, 500));

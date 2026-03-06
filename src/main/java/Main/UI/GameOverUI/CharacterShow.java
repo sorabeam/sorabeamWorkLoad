@@ -9,10 +9,31 @@ import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
+/**
+ * Displays the character result view in the Game Over screen.
+ * <p>
+ * This component shows the selected cookie character, the equipped pet,
+ * and the cookie name. The cookie uses an animated view while the pet
+ * is displayed as an image. All elements are arranged inside a
+ * {@link StackPane}.
+ */
 public class CharacterShow extends StackPane {
 
+    /**
+     * Animated character view representing the current cookie
+     * selected by the player.
+     */
     private final Animate cookieView = CharacterData.getCurrent_Cookie().createCookie();
 
+    /**
+     * Initializes the Game Over character display.
+     * <p>
+     * The constructor creates the animated cookie view, configures
+     * its animation state, and displays the currently selected pet.
+     * It also shows the cookie name at the top and applies visual
+     * effects such as drop shadows. All components are arranged
+     * within the StackPane layout.
+     */
     public CharacterShow() {
         cookieView.setFitWidth(700);
         cookieView.setPreserveRatio(true);
@@ -46,6 +67,14 @@ public class CharacterShow extends StackPane {
         getChildren().addAll(petView, cookieView, username);
     }
 
+    /**
+     * Returns the animated cookie view used in the character display.
+     * <p>
+     * This allows other classes to access the cookie animation
+     * for further control or updates.
+     *
+     * @return the animated cookie view
+     */
     public Animate getCookie(){
         return cookieView;
     }

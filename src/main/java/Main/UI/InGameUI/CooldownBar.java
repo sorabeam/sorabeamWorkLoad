@@ -10,12 +10,43 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * A visual cooldown bar that follows a cookie character during gameplay.
+ * <p>
+ * This class displays a small bar above the cookie to represent the
+ * remaining cooldown time of the character's skill. The bar consists
+ * of a frame, background, and a gradient fill that can shrink or grow
+ * to indicate cooldown progress.
+ */
 public class CooldownBar extends StackPane {
 
+    /**
+     * Outer frame of the cooldown bar.
+     * This rectangle acts as the border of the bar.
+     */
     public Rectangle frame;
+
+    /**
+     * Inner dark background of the cooldown bar.
+     * This represents the empty cooldown state.
+     */
     public Rectangle background;
+
+    /**
+     * The fill rectangle representing the remaining cooldown time.
+     * Its width can be adjusted dynamically to show cooldown progress.
+     */
     public Rectangle fill;
 
+    /**
+     * Constructs a cooldown bar that is visually attached to a specific cookie.
+     * <p>
+     * The bar is composed of a frame, background, and gradient fill.
+     * Its position is bound to the cookie's layout position so the bar
+     * moves together with the cookie during gameplay.
+     *
+     * @param cookie the cookie whose position the cooldown bar follows
+     */
     public CooldownBar(Cookie cookie) {
         frame = new Rectangle(84, 12);
         frame.setFill(Color.BLACK);

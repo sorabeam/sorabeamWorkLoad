@@ -11,15 +11,53 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * Main entry point of the JavaFX game application.
+ * <p>
+ * This class initializes the main window, prepares the root containers,
+ * manages scene scaling to keep the aspect ratio, and switches game
+ * scenes based on the current {@link GameState}.
+ */
 public class MainGameScene extends Application {
 
+    /**
+     * Stores the main root container that holds and switches
+     * the current game scene content.
+     */
     private StackPane gameRoot;
+
+    /**
+     * Stores the main JavaFX scene used to display the game window.
+     */
     private Scene scene;
+
+    /**
+     * Stores the layer that is scaled to keep the game display
+     * proportional when the window size changes.
+     */
     private StackPane scalableLayer;
 
+    /**
+     * Defines the base width of the game window used
+     * as the reference size for scaling.
+     */
     private static final double BASE_WIDTH = 1600;
+
+    /**
+     * Defines the base height of the game window used
+     * as the reference size for scaling.
+     */
     private static final double BASE_HEIGHT = 900;
 
+    /**
+     * Initializes the main game window and prepares the application layout.
+     * <p>
+     * This method sets up the root containers, configures automatic scaling
+     * when the window size changes, listens for game state updates, and
+     * switches scenes based on the current {@link GameState}.
+     *
+     * @param stage the primary stage provided by the JavaFX application
+     */
     @Override
     public void start(Stage stage) {
 
@@ -92,6 +130,12 @@ public class MainGameScene extends Application {
         updateScale(scalableLayer);
     }
 
+    /**
+     * Updates the scale of the game display so that the content
+     * maintains its aspect ratio when the window size changes.
+     *
+     * @param scalableLayer the layer that will be scaled based on the window size
+     */
     private void updateScale(StackPane scalableLayer) {
 
         double scaleX = scene.getWidth() / BASE_WIDTH;
@@ -103,10 +147,22 @@ public class MainGameScene extends Application {
         scalableLayer.setScaleY(scale);
     }
 
+    /**
+     * Launches the JavaFX application.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         launch();
     }
 
+    /**
+     * Plays the background music associated with the given key.
+     * The music is played using the global MediaPlayer instance.
+     *
+     * @param key the key used to find the music file in the playlist
+     * @param v unused parameter representing volume level
+     */
     private void playMusic(String key,int v) {
         MediaPlayer.getInstance().playBGM(key, true);
     }

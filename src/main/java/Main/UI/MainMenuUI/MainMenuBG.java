@@ -8,8 +8,23 @@ import Main.Asset;
 import Main.Image.FloorFade;
 import Main.Image.OutlineTextImage;
 
+/**
+ * Background layout for the Main Menu screen.
+ *
+ * <p>This class creates the main background of the lobby using an image,
+ * adds a bottom fade effect, and displays a small developer name label
+ * at the bottom-left corner.</p>
+ */
 public class MainMenuBG extends StackPane {
 
+    /**
+     * Creates and initializes the main menu background layout.
+     *
+     * <p>The constructor loads the lobby background image and binds its
+     * size to the current container size so it always fills the screen.
+     * It also adds a {@link FloorFade} effect at the bottom and displays
+     * a small developer name text using {@link OutlineTextImage}.</p>
+     */
     public MainMenuBG(){
 
         ImageView MBg = Asset.createBackgroundView("BgLobby",1,1);
@@ -28,4 +43,3 @@ public class MainMenuBG extends StackPane {
         getChildren().addAll(MBg, fade, name);
     }
 }
-

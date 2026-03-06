@@ -10,19 +10,58 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
 
+/**
+ * A visual HP bar display for the current character during gameplay.
+ * <p>
+ * This class creates a large health bar positioned at the top of the screen.
+ * The bar consists of a frame, background, and a dynamic fill that represents
+ * the remaining HP of the currently selected cookie. The fill width updates
+ * smoothly over time to create a gradual animation effect when HP changes.
+ */
 public class HpDisplayZone extends StackPane {
 
+    /**
+     * Maximum HP value of the current character.
+     */
     int max_hp;
+
+    /**
+     * Current HP value retrieved from CharacterData.
+     */
     int current_hp;
 
+    /**
+     * Width of the HP bar fill area.
+     */
     double barWidth = 980;
+
+    /**
+     * Height of the HP bar fill area.
+     */
     double barHeight = 32;
 
+    /**
+     * Current displayed HP percentage used for smooth animation.
+     */
     private double displayPercent = 1.0;
+
+    /**
+     * Controls interpolation speed when updating the HP bar.
+     */
     private double smoothSpeed = 5.0;
 
+    /**
+     * Dynamic fill rectangle representing the remaining HP.
+     */
     Rectangle cdFill;
 
+    /**
+     * Constructs the HP display bar.
+     * <p>
+     * The constructor initializes the frame, background, and fill rectangles
+     * that form the HP bar. The components are arranged inside a StackPane
+     * and positioned at the top center of the screen.
+     */
     public HpDisplayZone() {
 
         max_hp = CharacterData.getCurrent_Cookie().getMaxHp();
@@ -60,6 +99,15 @@ public class HpDisplayZone extends StackPane {
 
     }
 
+    /**
+     * Updates the HP bar based on the current character's HP value.
+     * <p>
+     * The method calculates the target HP percentage using the current
+     * and maximum HP. The displayed HP value is interpolated smoothly
+     * toward the target percentage to create an animated transition.
+     *
+     * @param dt delta time used to control the smooth animation speed
+     */
     public void updateHpBar(double dt) {
 
         current_hp = CharacterData.getCurrent_Cookie().get_Hp();
@@ -83,3 +131,4 @@ public class HpDisplayZone extends StackPane {
         ));
     }
 }
+

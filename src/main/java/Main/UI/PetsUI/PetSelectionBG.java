@@ -6,8 +6,23 @@ import javafx.scene.layout.StackPane;
 import Main.Asset;
 import Main.Image.FloorFade;
 
+/**
+ * Background layout for the pet selection scene.
+ *
+ * <p>This class creates the visual background of the pet selection screen,
+ * including the main stage background, a decorative bottom image,
+ * and a floor fade effect.</p>
+ */
 public class PetSelectionBG extends StackPane {
 
+    /**
+     * Constructs the pet selection background.
+     *
+     * <p>The constructor loads the main background image and binds it
+     * to the size of the pane so it always fills the screen. It also
+     * adds a decorative bottom image and a floor fade effect aligned
+     * at the bottom of the layout.</p>
+     */
     public PetSelectionBG(){
 
         ImageView MBg = Asset.createBackgroundView("RedStage",1,1);
