@@ -25,9 +25,9 @@ public class Moji extends Pet {
         setSpeed(500);
 
         setSpawnItemList(
-            new ArrayList<>(Arrays.asList(
-                () -> new ItemView(new StickyMochi(), 0, 0)
-            ))
+                new ArrayList<>(Arrays.asList(
+                        () -> new ItemView(new StickyMochi(), 0, 0)
+                ))
         );
     }
 
