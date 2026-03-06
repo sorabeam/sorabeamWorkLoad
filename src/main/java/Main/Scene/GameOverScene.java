@@ -8,9 +8,26 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 
+/**
+ * Scene displayed when the game ends.
+ *
+ * This scene shows the game over background, the player's character,
+ * UI banners, decorative elements, and action buttons such as retry
+ * or returning to the menu.
+ */
 public class GameOverScene extends BaseScene {
 
-    //change to game data later, after game really done
+    /**
+     * Creates the game over scene and initializes all UI components,
+     * animations, and layout positioning.
+     *
+     * The scene includes:
+     * - The background
+     * - Character display
+     * - Game over banner
+     * - Decorative DVD animation
+     * - Control buttons
+     */
     public GameOverScene() {
         super();
 
@@ -23,8 +40,13 @@ public class GameOverScene extends BaseScene {
         setAlignment(imgShow,Pos.BOTTOM_LEFT);
         setMargin(imgShow,new Insets(0,0,-100,-100));
 
+        /**
+         * Animation loop used to update the character animation
+         * displayed on the game over screen.
+         */
         AnimationTimer timer = new AnimationTimer() {
             long last = 0;
+
             @Override
             public void handle(long now) {
 
@@ -36,8 +58,7 @@ public class GameOverScene extends BaseScene {
                 double dt = (now - last) / 1e9;
                 last = now;
 
-                //แก้บัค งง เหมือนกันว่าใน imgShow ก็เขียนแล้ว แต่มันไม่ติดเฉยเลย
-
+                // Ensure the character stays in IDLE animation state
                 if (!cookie.getAnimationState().equals(AnimationType.IDLE)) {
                     cookie.changeAnimationState(AnimationType.IDLE);
                 }
@@ -58,7 +79,8 @@ public class GameOverScene extends BaseScene {
 
         setAlignment(dvdShow,Pos.CENTER_RIGHT);
         setMargin(dvdShow,new Insets(0,0,-70,0));
+
         StackPane.setAlignment(buttons,Pos.BOTTOM_RIGHT);
-        StackPane.setMargin(buttons,new Insets(0,30,0,0));;
+        StackPane.setMargin(buttons,new Insets(0,30,0,0));
     }
 }
