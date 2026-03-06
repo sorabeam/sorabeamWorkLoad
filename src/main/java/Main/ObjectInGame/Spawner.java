@@ -16,27 +16,87 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Handles spawning, updating, and collision processing for obstacles,
+ * items, and jellies in the game.
+ *
+ * This class reads predefined spawn patterns, creates game objects
+ * at the correct time, updates their movement, and applies interaction
+ * effects when they collide with the player.
+ */
 public class Spawner {
 
+    /**
+     * The pane that contains all spawned game objects.
+     */
     private final Pane gameLayer;
+
+    /**
+     * The player character used for collision checks and item effects.
+     */
     private final Cookie cookie;
+
+    /**
+     * The default horizontal movement speed of spawned objects.
+     */
     private static final double DEFAULT_SPEED = -350;
+
+    /**
+     * The current horizontal movement speed applied to spawned objects.
+     */
     private static double speed = DEFAULT_SPEED;
+
+    /**
+     * Tracks the current tutorial pattern position.
+     */
     private int begin = 0;
 
+    /**
+     * The list of spawn sets used to control object spawning patterns.
+     */
     private final List<List<SpawnAction>> spawnSets = SpawnerLayout.getSpawnLayout();
 
+    /**
+     * The index of the current spawn set being processed.
+     */
     private int currentSetIndex = 0;
+
+    /**
+     * The index of the current action inside the active spawn set.
+     */
     private int currentActionIndex = 0;
+
+    /**
+     * The timestamp of the last spawned action.
+     */
     private long lastSpawnTime = 0;
 
+    /**
+     * The predefined tutorial spawn pattern indices.
+     */
     private final int[] tutorialPatterns = {3,4,9};
 
+    /**
+     * Creates a spawner for the specified game layer and player.
+     *
+     * @param gameLayer the pane where spawned objects are displayed
+     * @param cookie the player character
+     */
     public Spawner(Pane gameLayer, Cookie cookie) {
         this.gameLayer = gameLayer;
         this.cookie = cookie;
     }
 
+    /**
+     * Updates the spawning system for the current frame.
+     *
+     * This method spawns new objects when needed, updates all active
+     * obstacles, items, and jellies, checks collisions with the player,
+     * and spawns a croissant if the current cookie is ready to create one.
+     *
+     * @param now the current timestamp
+     * @param deltaTime the time elapsed since the last update
+     */
     public void update(long now, double deltaTime) {
         spawnBySet(now);
         updateObstacles(deltaTime);
@@ -45,15 +105,21 @@ public class Spawner {
         checkCollision(cookie);
 
         if (cookie instanceof CrossiantCookie croissant) {
-
             if (croissant.isCroissantReady()) {
-
                 CroissantType type = croissant.consumeCroissant();
                 spawnCroissant(type);
             }
         }
     }
 
+    /**
+     * Spawns the next object in the current spawn set when its delay has passed.
+     *
+     * When all actions in the current set are finished, the spawner switches
+     * to either a tutorial pattern or a random pattern based on the current map.
+     *
+     * @param now the current timestamp
+     */
     private void spawnBySet(long now) {
         List<SpawnAction> set = spawnSets.get(currentSetIndex);
 
@@ -93,7 +159,10 @@ public class Spawner {
 
             String name = action.name;
 
-            //replace map number
+            /**
+             * Replaces the map number in the obstacle name so the correct
+             * obstacle variation is used for the current level.
+             */
             name = name.replaceAll("Obs_\\d+_", "Obs_" + level + "_");
 
             ObstacleView obs = new ObstacleView(
@@ -150,13 +219,20 @@ public class Spawner {
         currentActionIndex++;
     }
 
+    /**
+     * Updates all obstacle views currently in the game layer.
+     *
+     * Obstacles move using the current spawner speed and are removed
+     * when they leave the visible area.
+     *
+     * @param deltaTime the time elapsed since the last update
+     */
     private void updateObstacles(double deltaTime) {
         Iterator<javafx.scene.Node> it = gameLayer.getChildren().iterator();
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
             if (node instanceof ObstacleView o) {
-                //set speed
                 o.setSpeed(getSpeed(), 0);
                 o.update(deltaTime);
 
@@ -168,6 +244,15 @@ public class Spawner {
         }
     }
 
+    /**
+     * Updates all item views currently in the game layer.
+     *
+     * Normal items move with the current speed, while croissants use
+     * their own physics update logic. Items are removed when they leave
+     * the visible area.
+     *
+     * @param deltaTime the time elapsed since the last update
+     */
     private void updateItem(double deltaTime) {
         Iterator<javafx.scene.Node> it = gameLayer.getChildren().iterator();
         while (it.hasNext()) {
@@ -194,13 +279,21 @@ public class Spawner {
         }
     }
 
+    /**
+     * Updates all jelly views currently in the game layer.
+     *
+     * If the player is magnetic, jellies are pulled toward the player.
+     * Otherwise, they move with the current spawner speed. Jellies are
+     * removed when they leave the visible area.
+     *
+     * @param deltaTime the time elapsed since the last update
+     */
     private void updateJelly(double deltaTime) {
         Iterator<javafx.scene.Node> it = gameLayer.getChildren().iterator();
         while (it.hasNext()) {
             javafx.scene.Node node = it.next();
 
             if (node instanceof JellyView i) {
-                //update speed
                 if(cookie.isMagnetic()) {
                     i.pullToPlayer(cookie, deltaTime);
                 } else {
@@ -217,6 +310,14 @@ public class Spawner {
         }
     }
 
+    /**
+     * Spawns a croissant item generated by a CrossiantCookie.
+     *
+     * The croissant is created near the right side of the game layer
+     * and starts falling into the scene.
+     *
+     * @param type the type of croissant to spawn
+     */
     private void spawnCroissant(CroissantType type) {
 
         BaseItem croissant = new Croissant(type, speed);
@@ -229,6 +330,12 @@ public class Spawner {
         gameLayer.getChildren().add(view);
     }
 
+    /**
+     * Spawns a rain of ingredient jellies from the top of the screen.
+     *
+     * Each jelly is given a random horizontal start position and falls
+     * with physics enabled.
+     */
     public void spawnIngredientRain(){
 
         String[] ingredients = {
@@ -257,6 +364,15 @@ public class Spawner {
         }
     }
 
+    /**
+     * Checks collisions between the player and all spawned objects.
+     *
+     * Obstacles damage the player, items activate their effects, and
+     * jellies add score. Collected or hit objects are removed after
+     * interaction. Sound effects are also played for items and jellies.
+     *
+     * @param cookie the player used for collision detection
+     */
     private void checkCollision(Cookie cookie) {
 
         List<javafx.scene.Node> snapshot =
@@ -308,18 +424,36 @@ public class Spawner {
         gameLayer.getChildren().removeAll(toRemove);
     }
 
+    /**
+     * Sets the global movement speed used by spawned objects.
+     *
+     * @param speed the new spawner speed
+     */
     public static void setSpeed(double speed) {
         Spawner.speed = speed;
     }
 
+    /**
+     * Returns the current movement speed used by spawned objects.
+     *
+     * @return the current spawner speed
+     */
     public static double getSpeed() {
         return speed;
     }
 
+    /**
+     * Resets the spawner speed to its default value.
+     */
     public static void resetSpeed() {
         Spawner.speed = DEFAULT_SPEED;
     }
 
+    /**
+     * Returns the default movement speed of spawned objects.
+     *
+     * @return the default spawner speed
+     */
     public static double getDefaultSpeed() {
         return DEFAULT_SPEED;
     }
