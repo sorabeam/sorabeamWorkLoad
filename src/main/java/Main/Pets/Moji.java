@@ -7,8 +7,19 @@ import Main.ObjectInGame.Items.StickyMochi;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Represents the Moji pet.
+ *
+ * Moji periodically produces StickyMochi items which give
+ * both score and healing when collected by the player.
+ */
 public class Moji extends Pet {
 
+    /**
+     * Creates a Moji pet with its default configuration including
+     * images, cooldown settings, movement speed, and the item
+     * produced by its skill.
+     */
     public Moji() {
         super(3, "Moji", """
                 Produce Mochi jelly,
@@ -31,9 +42,16 @@ public class Moji extends Pet {
         );
     }
 
+    /**
+     * Activates the pet's skill if it is available.
+     *
+     * The skill temporarily disables itself and enters a cooldown
+     * period before it can be used again.
+     */
     @Override
     public void useSkill() {
         if(!isSkillReady() || isUsingSkill()) return;
+
         Thread skillCooldownThread = new Thread(() -> {
             try {
                 setUsingSkill(true);
@@ -45,6 +63,7 @@ public class Moji extends Pet {
                 throw new RuntimeException(e);
             }
         });
+
         skillCooldownThread.start();
     }
 }
