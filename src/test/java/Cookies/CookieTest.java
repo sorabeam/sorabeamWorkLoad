@@ -11,6 +11,7 @@ import Main.GameLogic.GameLogic;
 import Main.Scene.GameplayScene;
 import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.Mockito.*;
+import testutil.UtilTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,7 @@ class CookieTest {
 
     @BeforeAll
     static void initJavaFX() {
-        new JFXPanel();
+        UtilTest.init();
     }
 
     /**
