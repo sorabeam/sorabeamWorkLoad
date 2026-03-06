@@ -30,8 +30,8 @@ public class MoveGround extends Pane {
         ground1.setFitHeight(groundH + 100);
         ground2.setFitHeight(groundH + 100);
 
-        ground1.setFitWidth(sceneWidth);
-        ground2.setFitWidth(sceneWidth);
+        ground1.setFitWidth(sceneWidth * 2);
+        ground2.setFitWidth(sceneWidth * 2);
 
         ground1.setPreserveRatio(false);
         ground2.setPreserveRatio(false);
@@ -39,14 +39,13 @@ public class MoveGround extends Pane {
         ground1.setScaleY(1.5);
         ground2.setScaleY(1.5);
 
-        // ⭐ ใช้สูตรเดิมของ GameplayScene
         ground1.layoutYProperty().bind(gameLayer.heightProperty().subtract(groundH).subtract(90));
         ground2.layoutYProperty().bind(gameLayer.heightProperty().subtract(groundH).subtract(90));
 
         getChildren().addAll(ground1, ground2);
 
         Platform.runLater(() -> {
-            width = sceneWidth;
+            width = sceneWidth * 2;
 
             ground1.setTranslateX(0);
             ground2.setTranslateX(width);
