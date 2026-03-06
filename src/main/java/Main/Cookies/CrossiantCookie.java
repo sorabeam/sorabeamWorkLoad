@@ -7,16 +7,37 @@ import Main.ObjectInGame.Items.CroissantType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 
+/**
+ * Concrete cookie class representing Croissant Cookie.
+ *
+ * Croissant Cookie gains a special croissant ability after collecting
+ * a certain number of jellies. Every 30 jellies collected will trigger
+ * a Croissant Jelly drop that grants different effects.
+ */
 public class CrossiantCookie extends Cookie {
 
+    /**
+     * Tracks the current croissant type cycle.
+     */
     private int croissantCycle = 0;
+
+    /**
+     * Indicates whether a croissant reward is ready to be consumed.
+     */
     private boolean croissantReady = false;
+
+    /**
+     * UI text used to display the jelly collection counter.
+     */
     private OutlineTextImage counterText;
 
+    /**
+     * Creates a Croissant Cookie with predefined stats and ability settings.
+     */
     public CrossiantCookie() {
         super(3, "Croissant", 140,
                 """
-                        Every 30 Jellies collected,
+                        Every 50 Jellies collected,
                         a Croissant Jelly falls from the sky.
                         Original grants bonus points,
                         Butter gives a Speed Boost,
@@ -28,12 +49,17 @@ public class CrossiantCookie extends Cookie {
         setHasCooldown(false);
     }
 
+    /**
+     * Creates the cookie animation and initializes the jelly counter UI.
+     *
+     * @return Animate object used to control the cookie animation
+     */
     @Override
     public Animate createCookie() {
 
         Animate anim = super.createCookie();
 
-        counterText = new OutlineTextImage("0/30", 'C', 28);
+        counterText = new OutlineTextImage("0/50", 'C', 28);
         counterText.setStyle("-fx-font-size: 28px; -fx-font-weight: bold;");
         counterText.setColor(Color.YELLOW);
 
@@ -61,29 +87,47 @@ public class CrossiantCookie extends Cookie {
         return anim;
     }
 
+    /**
+     * Called when a jelly is collected.
+     *
+     * Updates the counter and prepares the croissant reward
+     * when the required amount is reached.
+     */
     public void onJellyCollected() {
 
         setSkillCounter(getSkillCounter() + 1);
 
         if (counterText != null) {
-            counterText.setText(getSkillCounter() + "/30");
+            counterText.setText(getSkillCounter() + "/50");
         }
 
-        if (getSkillCounter() >= 30) {
+        if (getSkillCounter() >= 50) {
 
             setSkillCounter(0);
             croissantReady = true;
 
             if (counterText != null) {
-                counterText.setText("0/30");
+                counterText.setText("0/50");
             }
         }
     }
 
+    /**
+     * Returns whether the croissant reward is ready.
+     *
+     * @return true if the croissant reward can be used
+     */
     public boolean isCroissantReady() {
         return croissantReady;
     }
 
+    /**
+     * Consumes the croissant reward and returns its type.
+     *
+     * The type cycles between Original, Butter, and Strawberry.
+     *
+     * @return CroissantType representing the next croissant effect
+     */
     public CroissantType consumeCroissant() {
 
         croissantReady = false;
@@ -102,6 +146,11 @@ public class CrossiantCookie extends Cookie {
         return type;
     }
 
+    /**
+     * Croissant Cookie does not use a direct skill activation.
+     *
+     * The ability is triggered automatically through jelly collection.
+     */
     @Override
     public void useSkill() {
     }

@@ -20,16 +20,46 @@ import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
+/**
+ * Button used to open the settings popup.
+ *
+ * This class extends BaseButton and displays a popup overlay
+ * containing volume controls and navigation buttons.
+ */
 public class SettingsPopUpButton extends BaseButton{
+
+    /**
+     * Root container where the settings popup overlay is added.
+     */
     private final Pane root;
+
+    /**
+     * Overlay container used to display the settings popup.
+     */
     private StackPane overlay;
+
+    /**
+     * Indicates whether the settings popup is currently open.
+     */
     private boolean isOpen = false;
 
+    /**
+     * Initializes the settings popup button with image and root container.
+     *
+     * @param img image used as the button graphic
+     * @param root root container where the popup overlay will be displayed
+     */
     public SettingsPopUpButton(ImageView img, Pane root) {
         super(img);
         this.root = root;
     }
 
+    /**
+     * Handles the click event and displays the settings popup.
+     *
+     * If the game is currently in IN_GAME state, the gameplay scene
+     * will be paused before opening the settings popup.
+     */
     @Override
     public void handleClick() {
         super.handleClick();
@@ -45,6 +75,12 @@ public class SettingsPopUpButton extends BaseButton{
         showSetting();
     }
 
+    /**
+     * Creates and displays the settings popup overlay.
+     *
+     * The popup contains sliders for main volume and SFX volume,
+     * along with navigation buttons for different game states.
+     */
     private void showSetting() {
 
         if(isOpen) return;
@@ -213,6 +249,12 @@ public class SettingsPopUpButton extends BaseButton{
         root.getChildren().addAll(overlay);
     }
 
+    /**
+     * Wraps the button action and removes the settings popup
+     * overlay after the button is clicked.
+     *
+     * @param button navigation button associated with the popup
+     */
     private void deleteThis(BaseButton button) {
 
         EventHandler<ActionEvent> oldAction = button.getOnAction();
@@ -243,6 +285,14 @@ public class SettingsPopUpButton extends BaseButton{
         });
     }
 
+    /**
+     * Handles the resume action for the resume button.
+     *
+     * If the game is currently running, the gameplay scene
+     * will resume and the settings popup will be removed.
+     *
+     * @param button resume button used to trigger this action
+     */
     private void runItBack(BaseButton button){
 
         EventHandler<ActionEvent> oldAction = button.getOnAction();
@@ -266,10 +316,20 @@ public class SettingsPopUpButton extends BaseButton{
         });
     }
 
+    /**
+     * Returns whether the settings popup is currently open.
+     *
+     * @return true if the popup is open, otherwise false
+     */
     public Boolean getOpen() {
         return isOpen;
     }
 
+    /**
+     * Sets the open state of the settings popup.
+     *
+     * @param open new open state of the popup
+     */
     public void setOpen(Boolean open) {
         isOpen = open;
     }

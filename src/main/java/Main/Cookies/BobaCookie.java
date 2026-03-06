@@ -5,8 +5,19 @@ import Main.ObjectInGame.Items.Pearl;
 import Main.Animation.Animate;
 import Main.Asset;
 
+/**
+ * Concrete cookie class representing Boba Cookie.
+ *
+ * Boba Cookie periodically launches Pearl Beads forward as a skill.
+ * The pearl travels through the stage, breaking obstacles and
+ * granting additional score bonuses.
+ */
 public class BobaCookie extends Cookie{
 
+    /**
+     * Creates a Boba Cookie with predefined stats, profile image,
+     * and skill cooldown configuration.
+     */
     public BobaCookie(){
 
         super(1, "Boba" , 150,
@@ -24,11 +35,24 @@ public class BobaCookie extends Cookie{
         setHasCooldown(true);
     }
 
+    /**
+     * Creates and returns the animation controller for the cookie.
+     *
+     * @return Animate object used to control the cookie animation
+     */
     @Override
     public Animate createCookie(){
         return super.createCookie();
     }
 
+    /**
+     * Updates the cookie state every frame.
+     *
+     * This method updates cooldown timing and automatically
+     * activates the skill when the cooldown reaches its limit.
+     *
+     * @param deltaTime time passed since the last update
+     */
     @Override
     public void update(double deltaTime) {
         super.update(deltaTime);
@@ -43,6 +67,12 @@ public class BobaCookie extends Cookie{
         }
     }
 
+    /**
+     * Activates the Boba Cookie skill.
+     *
+     * The cookie becomes temporarily invincible and launches
+     * a Pearl projectile forward to break obstacles.
+     */
     @Override
     public void useSkill() {
         setInvincible(2.0);
@@ -58,6 +88,11 @@ public class BobaCookie extends Cookie{
         cookie.changeAnimationState(AnimationType.SKILL);
     }
 
+    /**
+     * Returns the cooldown progress of the skill.
+     *
+     * @return value between 0 and 1 representing cooldown progress
+     */
     @Override
     public double getCooldownProgress(){
         return Math.min(getCooldownTimer() / getSkillCooldown(), 1.0);

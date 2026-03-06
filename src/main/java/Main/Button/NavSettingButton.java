@@ -10,12 +10,37 @@ import javafx.scene.paint.Color;
 import Main.Asset;
 import Main.Image.OutlineTextImage;
 
+/**
+ * Navigation button used inside the settings popup.
+ *
+ * This class extends NavigationButton and displays
+ * outlined text on top of the button background.
+ */
 public class NavSettingButton extends NavigationButton {
 
+    /**
+     * Custom outlined text image displayed on the button.
+     */
     private final OutlineTextImage outlineTextImage;
+
+    /**
+     * Stores the button label text.
+     */
     private final String txt;
+
+    /**
+     * Reference to the popup button that will be closed after click.
+     */
     private final SettingsPopUpButton settingsPopupButton;
 
+    /**
+     * Initializes the navigation setting button with target GameState,
+     * display text, and reference to the SettingsPopupButton.
+     *
+     * @param switchState target GameState to switch to
+     * @param txt button label text
+     * @param settingsPopupButton reference to the SettingsPopupButton
+     */
     public NavSettingButton(GameState switchState , String txt, SettingsPopUpButton settingsPopupButton) {
 
         super(Asset.createImageView("SBtnBg",0,400),switchState);
@@ -34,6 +59,11 @@ public class NavSettingButton extends NavigationButton {
 
     }
 
+    /**
+     * Creates and configures a DropShadow effect for the text.
+     *
+     * @return configured DropShadow effect
+     */
     private DropShadow setShadow(){
         DropShadow shadow = new DropShadow();
         shadow.setRadius(10);
@@ -42,6 +72,10 @@ public class NavSettingButton extends NavigationButton {
         return shadow;
     }
 
+    /**
+     * Overrides NavigationButton handleClick(), performs state switch,
+     * and closes the settings popup.
+     */
     @Override
     public void handleClick() {
 
@@ -50,10 +84,20 @@ public class NavSettingButton extends NavigationButton {
         settingsPopupButton.setOpen(false);
     }
 
+    /**
+     * Sets margin for the outlined text inside the StackPane.
+     *
+     * @param i margin value applied to the text
+     */
     public void setInset(Insets i){
         StackPane.setMargin(outlineTextImage,i);
     }
 
+    /**
+     * Returns the button label text.
+     *
+     * @return button text label
+     */
     public String getTxt() {
         return txt;
     }
